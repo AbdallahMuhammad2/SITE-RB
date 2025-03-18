@@ -8,6 +8,14 @@ import { StudyMaterialsSection } from '../components/sections/StudyMaterialsSect
 import { NewsSection } from '../components/sections/NewsSection';
 
 import { CTASection } from '../components/sections/CTASection';
+import yan from '../images/yan.jpg';
+import paula from '../images/Paula.png';
+import Valbert from '../images/Valbert.png';
+import jessica from '../images/jessica.png';
+import Nicassio from '../images/Nicassio.png';
+import Henrique from '../images/Henrique-Landim-Perfil.png';
+import Anna from '../images/Anna-Alves-Perfil.png';
+import Andreia from '../images/Andreia-Torres-Perfil.png';
 
 // Main Home component with optimized structure
 const HomePage = () => {
@@ -1461,35 +1469,35 @@ const ProfessorsSection = () => {
     {
       name: "Profª Paula Barreto",
       role: "Língua Portuguesa e Redação",
-      image: "../images/Paula.png",
+      image: paula,
       specialization: "Doutora em Linguística Aplicada",
       approvalRate: "97%"
     },
     {
       name: "Profº Yan Ribeiro",
       role: "Matemática",
-      image: "../images/Yan.png",
+      image: yan,
       specialization: "Mestre em Matemática Aplicada",
       approvalRate: "95%"
     },
     {
       name: "Profº Nicássio Couto",
       role: "Informática",
-      image: "../images/Nicassio.png",
+      image: Nicassio,
       specialization: "Especialista em Segurança de Dados",
       approvalRate: "98%"
     },
     {
       name: "Profª Jessica Fontes",
       role: "Geografia",
-      image: "../images/Jessica.png",
+      image: jessica,
       specialization: "Mestre em Geografia Humana",
       approvalRate: "96%"
     },
     {
       name: "Profº Valbert Laert",
       role: "Adm. Legislação",
-      image: "../../images/Valbert.png",
+      image: Valbert,
       specialization: "Especialista em Direito Administrativo",
       approvalRate: "94%"
     },
