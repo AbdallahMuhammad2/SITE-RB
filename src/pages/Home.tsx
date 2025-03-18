@@ -1658,19 +1658,19 @@ const TestimonialsSection = () => {
       content: "A metodologia focada em resolução de questões foi fundamental para minha aprovação. O direcionamento dos professores fez toda a diferença!",
       name: "Henrique Landim",
       role: "Aprovado em 1º lugar",
-      image: "../../images/Henrique-Landim-Perfil.png" // Placeholder para imagem real da aluna
+      image: Henrique// Placeholder para imagem real da aluna
     },
     {
       content: "Estudei apenas 4 meses com o método RB e consegui minha aprovação. Os materiais são excelentes e os professores realmente se importam com os alunos.",
       name: "Anna Alves",
       role: "Aprovada em 2023",
-      image: "../../images/Anna-Alves-Perfil.png" // Placeholder para imagem real da aluna
+      image: Anna // Placeholder para imagem real da aluna
     },
     {
       content: "Já tinha tentado outros cursos antes, mas só depois que conheci o RB consegui finalmente ser aprovada. A abordagem é completamente diferente!",
       name: "Andreia Torres",
       role: "Aprovada em 2024",
-      image: "../../images/Andreia-Torres-Perfil.png" // Placeholder para imagem real da aluna
+      image: Andreia// Placeholder para imagem real da aluna
     }
   ];
 
