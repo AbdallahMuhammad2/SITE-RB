@@ -8,7 +8,7 @@ import { StudyMaterialsSection } from '../components/sections/StudyMaterialsSect
 import { NewsSection } from '../components/sections/NewsSection';
 
 import { CTASection } from '../components/sections/CTASection';
-import yan from '../images/yan.jpg';
+import yan from '../images/Yan.png';
 import paula from '../images/Paula.png';
 import Valbert from '../images/Valbert.png';
 import jessica from '../images/jessica.png';
