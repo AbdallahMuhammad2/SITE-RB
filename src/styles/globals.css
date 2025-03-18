@@ -1,0 +1,61 @@
+/* Add to your globals.css or create a theme.css file */
+:root {
+    /* Color Palette */
+    --bg-deep: 10, 8, 5; /* Dark background */
+    --bg-surface: 18, 15, 10; /* Slightly lighter surface */
+    --text-primary: 255, 255, 255; /* White text */
+    --text-secondary: 245, 238, 220; /* Off-white/cream */
+    --gold-primary: 212, 175, 55; /* Rich gold */
+    --gold-secondary: 184, 151, 46; /* Darker gold */
+    --accent: 139, 92, 246; /* Purple accent */
+    
+    /* Z-Indices */
+    --z-base: 1;
+    --z-above: 10;
+    --z-top: 50;
+    --z-overlay: 100;
+    --z-modal: 1000;
+    
+    /* Typography Scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-display: clamp(3.5rem, 5vw, 6rem);
+  }
+  
+  /* Premium Styles */
+  .noise-texture {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  
+  .glass-card {
+    background: rgba(18, 15, 10, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 12px;
+  }
+  /* Add to globals.css */
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -5%); }
+    20% { transform: translate(5%, 5%); }
+    30% { transform: translate(-5%, 5%); }
+    40% { transform: translate(5%, -5%); }
+    50% { transform: translate(-5%, -5%); }
+    60% { transform: translate(5%, 5%); }
+    70% { transform: translate(-5%, 5%); }
+    80% { transform: translate(5%, -5%); }
+    90% { transform: translate(-5%, -5%); }
+  }
+  
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(10) infinite;
+  }

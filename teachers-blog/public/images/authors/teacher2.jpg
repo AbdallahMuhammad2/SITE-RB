@@ -1,0 +1,43 @@
+/blog-project
+│
+├── /public
+│   ├── /images                # Images for the blog
+│   ├── favicon.ico            # Favicon for the website
+│   └── index.html             # Main HTML file
+│
+├── /src
+│   ├── /assets                # Static assets (fonts, icons, etc.)
+│   ├── /components            # Reusable components
+│   │   ├── Header.tsx         # Header component
+│   │   ├── Footer.tsx         # Footer component
+│   │   ├── ArticleCard.tsx    # Component for displaying individual articles
+│   │   └── TeacherProfile.tsx  # Component for teacher profiles
+│   │
+│   ├── /pages                 # Page components
+│   │   ├── Home.tsx           # Home page
+│   │   ├── Articles.tsx       # Articles listing page
+│   │   ├── ArticleDetail.tsx   # Individual article detail page
+│   │   ├── About.tsx          # About page for teachers
+│   │   └── Contact.tsx        # Contact page
+│   │
+│   ├── /styles                # Global styles
+│   │   ├── index.css          # Main CSS file
+│   │   └── variables.css       # CSS variables for theming
+│   │
+│   ├── /hooks                 # Custom hooks
+│   │   └── useFetch.ts        # Hook for fetching articles
+│   │
+│   ├── /context               # Context API for state management
+│   │   └── ArticleContext.tsx # Context for managing articles
+│   │
+│   ├── /utils                 # Utility functions
+│   │   └── api.ts             # API calls for fetching articles
+│   │
+│   ├── App.tsx                # Main App component
+│   ├── index.tsx              # Entry point of the application
+│   └── reportWebVitals.ts     # Performance measuring
+│
+├── .gitignore                 # Git ignore file
+├── package.json               # Project dependencies and scripts
+├── tsconfig.json              # TypeScript configuration
+└── README.md                  # Project documentation

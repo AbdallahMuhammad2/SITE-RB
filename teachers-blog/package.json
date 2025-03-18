@@ -1,0 +1,36 @@
+/blog-project
+│
+├── /public
+│   ├── /images          # Images for the blog
+│   ├── /favicon.ico     # Favicon
+│   └── index.html       # Main HTML file
+│
+├── /src
+│   ├── /assets          # Static assets (fonts, icons, etc.)
+│   ├── /components      # Reusable components
+│   │   ├── Header.tsx   # Header component
+│   │   ├── Footer.tsx   # Footer component
+│   │   ├── ArticleCard.tsx # Component for displaying articles
+│   │   └── TeacherCard.tsx  # Component for displaying teacher info
+│   │
+│   ├── /pages           # Page components
+│   │   ├── Home.tsx     # Home page
+│   │   ├── Teacher1.tsx # Page for Teacher 1
+│   │   ├── Teacher2.tsx # Page for Teacher 2
+│   │   └── Article.tsx   # Individual article page
+│   │
+│   ├── /styles          # CSS or styled-components
+│   │   ├── main.css     # Main stylesheet
+│   │   └── variables.css # CSS variables for theming
+│   │
+│   ├── /utils           # Utility functions
+│   │   └── api.ts       # API calls for fetching articles
+│   │
+│   ├── /hooks           # Custom hooks
+│   │   └── useFetch.ts  # Hook for fetching data
+│   │
+│   ├── App.tsx          # Main App component
+│   └── index.tsx        # Entry point
+│
+├── package.json          # Project metadata and dependencies
+└── README.md             # Project documentation

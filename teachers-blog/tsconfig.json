@@ -1,0 +1,39 @@
+/blog-project
+├── /public
+│   ├── index.html
+│   ├── favicon.ico
+│   └── /images
+│       └── (images for the blog)
+├── /src
+│   ├── /assets
+│   │   ├── /styles
+│   │   │   ├── main.css
+│   │   │   └── (other style files)
+│   │   └── /images
+│   │       └── (images used in components)
+│   ├── /components
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── ArticleCard.tsx
+│   │   ├── TeacherProfile.tsx
+│   │   └── (other reusable components)
+│   ├── /pages
+│   │   ├── Home.tsx
+│   │   ├── TeacherOne.tsx
+│   │   ├── TeacherTwo.tsx
+│   │   ├── ArticleDetail.tsx
+│   │   └── NotFound.tsx
+│   ├── /hooks
+│   │   └── useFetchArticles.ts
+│   ├── /context
+│   │   └── ArticleContext.tsx
+│   ├── /utils
+│   │   └── helpers.ts
+│   ├── /data
+│   │   └── articles.json
+│   ├── App.tsx
+│   ├── index.tsx
+│   └── serviceWorker.ts
+├── package.json
+├── tsconfig.json
+└── README.md

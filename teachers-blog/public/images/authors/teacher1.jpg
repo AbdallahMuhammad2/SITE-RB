@@ -1,0 +1,38 @@
+/blog-project
+│
+├── /public
+│   ├── /images               # Images for the blog (e.g., logos, teacher photos)
+│   ├── favicon.ico           # Favicon for the website
+│   └── index.html            # Main HTML file
+│
+├── /src
+│   ├── /components           # Reusable components (e.g., buttons, headers, footers)
+│   │   ├── Header.tsx        # Header component
+│   │   ├── Footer.tsx        # Footer component
+│   │   ├── ArticleCard.tsx   # Component for displaying individual articles
+│   │   └── TeacherCard.tsx    # Component for displaying teacher profiles
+│   │
+│   ├── /pages                # Page components
+│   │   ├── Home.tsx          # Home page
+│   │   ├── Articles.tsx      # Articles listing page
+│   │   ├── Teacher1.tsx      # Teacher 1's articles page
+│   │   ├── Teacher2.tsx      # Teacher 2's articles page
+│   │   └── ArticleDetail.tsx  # Detailed view of a single article
+│   │
+│   ├── /styles               # CSS or styled-components
+│   │   ├── global.css        # Global styles
+│   │   ├── Header.css        # Styles for Header component
+│   │   ├── Footer.css        # Styles for Footer component
+│   │   └── ArticleCard.css    # Styles for ArticleCard component
+│   │
+│   ├── /data                 # Data files (e.g., articles, teachers)
+│   │   ├── articles.json      # JSON file containing article data
+│   │   └── teachers.json      # JSON file containing teacher data
+│   │
+│   ├── App.tsx               # Main application component
+│   ├── index.tsx             # Entry point of the application
+│   └── routes.ts             # Routing configuration
+│
+├── package.json               # Project metadata and dependencies
+├── tsconfig.json              # TypeScript configuration
+└── README.md                  # Project documentation

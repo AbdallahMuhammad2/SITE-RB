@@ -1,0 +1,26 @@
+/blog-project
+├── /public
+│   ├── /images                # Images for the blog (e.g., teacher photos, article images)
+│   ├── index.html             # Main HTML file
+│   └── favicon.ico            # Favicon for the website
+├── /src
+│   ├── /assets                # Static assets (fonts, icons, etc.)
+│   ├── /components            # Reusable components (buttons, headers, footers)
+│   ├── /pages                 # Page components
+│   │   ├── /Home              # Home page for the blog
+│   │   ├── /Articles          # Articles listing page
+│   │   ├── /Article           # Individual article page
+│   │   ├── /About             # About page for the teachers
+│   │   └── /Contact           # Contact page
+│   ├── /layouts               # Layout components (e.g., main layout, sidebar)
+│   ├── /hooks                 # Custom hooks for state management
+│   ├── /context               # Context API for global state management
+│   ├── /styles                # Global styles and theme settings
+│   ├── /utils                 # Utility functions (e.g., formatting dates)
+│   ├── /data                  # Static data (e.g., teacher profiles, articles)
+│   ├── App.tsx                # Main application component
+│   └── index.tsx              # Entry point for React
+├── /tests                     # Test files for components and pages
+├── package.json               # Project metadata and dependencies
+├── tsconfig.json              # TypeScript configuration (if using TypeScript)
+└── README.md                  # Project documentation
