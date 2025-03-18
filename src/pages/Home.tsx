@@ -1461,28 +1461,28 @@ const ProfessorsSection = () => {
     {
       name: "Profª Paula Barreto",
       role: "Língua Portuguesa e Redação",
-      image: "../../images/Paula.png",
+      image: "../images/Paula.png",
       specialization: "Doutora em Linguística Aplicada",
       approvalRate: "97%"
     },
     {
       name: "Profº Yan Ribeiro",
       role: "Matemática",
-      image: "../../images/Yan.png",
+      image: "../images/Yan.png",
       specialization: "Mestre em Matemática Aplicada",
       approvalRate: "95%"
     },
     {
       name: "Profº Nicássio Couto",
       role: "Informática",
-      image: "../../images/Nicassio.png",
+      image: "../images/Nicassio.png",
       specialization: "Especialista em Segurança de Dados",
       approvalRate: "98%"
     },
     {
       name: "Profª Jessica Fontes",
       role: "Geografia",
-      image: "../../images/Jessica.png",
+      image: "../images/Jessica.png",
       specialization: "Mestre em Geografia Humana",
       approvalRate: "96%"
     },
