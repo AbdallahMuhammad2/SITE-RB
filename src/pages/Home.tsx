@@ -11,7 +11,7 @@ import { CTASection } from '../components/sections/CTASection';
 import yan from '../images/Yan.png';
 import paula from '../images/Paula.png';
 import Valbert from '../images/Valbert.png';
-import jessica from '../images/jessica.png';
+import jessica from '../images/Jessica.png';
 import Nicassio from '../images/Nicassio.png';
 import Henrique from '../images/Henrique-Landim-Perfil.png';
 import Anna from '../images/Anna-Alves-Perfil.png';
@@ -942,31 +942,39 @@ const FloatingCard = ({ index, delay, mouseX, mouseY }: { index: number; delay: 
 // About Section (Quem somos nós)
 const AboutSection = () => {
   return (
-    <section className="py-24 bg-[#0A090C] relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-32 bg-[#0A090C] relative overflow-hidden">
+      {/* Enhanced background elements */}
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-80 h-80 bg-[#D4AF37]/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-purple-500/3 rounded-full blur-[80px] pointer-events-none" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <motion.div 
-            className="max-w-3xl mx-auto text-center mb-16"
+          <motion.div
+            className="max-w-3xl mx-auto text-center mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {/* Premium section label */}
-            <div className="flex items-center justify-center mb-3">
-              <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#D4AF37]"></div>
-              <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-[0.2em] mx-4">Quem somos nós</span>
-              <div className="h-[1px] w-8 bg-gradient-to-r from-[#D4AF37] to-transparent"></div>
+            {/* Refined premium section label */}
+            <div className="flex items-center justify-center mb-4">
+              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#D4AF37]"></div>
+              <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-[0.25em] mx-4">Quem somos nós</span>
+              <div className="h-[1px] w-12 bg-gradient-to-r from-[#D4AF37] to-transparent"></div>
             </div>
             
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mt-3 mb-5">
-              Referência em <span className="text-[#D4AF37]">aprovações</span> há mais de 15 anos
+            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mt-4 mb-6 leading-tight">
+              Referência em <span className="text-[#D4AF37] relative">
+                aprovações
+                <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37]/50 to-transparent"></span>
+              </span> há mais de 15 anos
             </h2>
             
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+            <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
               Não fique mais preocupado pensando na sua aprovação! Para todas as dúvidas, 
               você terá onde encontrar a resposta. Nossa metodologia exclusiva já 
-              transformou a vida de mais de 5.000 alunos.
+              transformou a vida de mais de <span className="text-white font-medium">5.000 alunos</span>.
             </p>
           </motion.div>
           
@@ -975,54 +983,54 @@ const AboutSection = () => {
               {
                 icon: <Mail className="w-6 h-6 text-[#D4AF37]" />,
                 title: "Email",
-                description: "Tire suas dúvidas diretamente com nossos professores",
+                description: "Tire suas dúvidas diretamente com nossos professores especialistas",
                 cta: "contato@rbcursos.com.br"
               },
               {
                 icon: <Phone className="w-6 h-6 text-[#D4AF37]" />,
                 title: "WhatsApp",
-                description: "Atendimento rápido e personalizado",
-                cta: "DDD + WhatsApp"
+                description: "Atendimento rápido e personalizado para seu sucesso",
+                cta: "(00) 00000-0000"
               },
               {
                 icon: <BookOpen className="w-6 h-6 text-[#D4AF37]" />,
                 title: "Conteúdos",
-                description: "Acesse materiais exclusivos para sua preparação",
+                description: "Acesse materiais exclusivos desenvolvidos para sua aprovação",
                 cta: "Acessar agora"
               }
             ].map((item, i) => (
               <motion.div
                 key={i}
-                className="bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-8 group hover:border-[#D4AF37]/20 transition-all duration-300"
+                className="bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-8 group hover:border-[#D4AF37]/30 transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -5, boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.5)" }}
+                transition={{ delay: i * 0.2 }}
+                whileHover={{ y: -8, boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.6)" }}
               >
-                <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mb-6">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   {item.icon}
                 </div>
                 
-                <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4">{item.title}</h3>
                 <p className="text-white/70 mb-6">{item.description}</p>
                 
                 <div className="inline-flex items-center text-[#D4AF37] font-medium">
                   <span>{item.cta}</span>
-                  <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" />
                 </div>
               </motion.div>
             ))}
           </div>
+          
+          {/* Added decorative elements */}
+          <div className="absolute -right-16 top-1/4 w-32 h-32 border border-[#D4AF37]/20 rounded-full opacity-20"></div>
+          <div className="absolute -left-24 bottom-1/3 w-48 h-48 border border-[#D4AF37]/10 rounded-full opacity-10"></div>
         </div>
       </div>
-      
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-[100px] pointer-events-none" />
     </section>
   );
 };
-
 // Mission Correios Section
 const MissionCorreiosSection = () => {
   return (
