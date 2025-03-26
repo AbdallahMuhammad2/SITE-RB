@@ -62,3 +62,39 @@
 .hover-gold:hover::after {
   left: 100%;
 }
+
+.article-content h2 {
+  @apply text-2xl font-bold text-white mt-10 mb-4;
+}
+
+.article-content h3 {
+  @apply text-xl font-bold text-white mt-8 mb-3;
+}
+
+.article-content p {
+  @apply text-white/80 mb-4 leading-relaxed;
+}
+
+.article-content ul, .article-content ol {
+  @apply text-white/80 mb-6 pl-6;
+}
+
+.article-content ul {
+  @apply list-disc;
+}
+
+.article-content ol {
+  @apply list-decimal;
+}
+
+.article-content li {
+  @apply mb-2;
+}
+
+.article-highlight {
+  @apply bg-[#13121A] border-l-4 border-[#D4AF37] p-4 rounded-r-lg mb-6;
+}
+
+.article-formula {
+  @apply bg-[#181820] p-4 rounded-lg my-4 font-mono text-white/90;
+}

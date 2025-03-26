@@ -30,13 +30,13 @@ export const Navbar = () => {
       label: "Quem somos nós",
       icon: <Info className="h-4 w-4" />,
       subItems: [
-        { label: "Prof. Paula Barreto", href: "/professores/paula" },
-        { label: "Prof. Yan Ribeiro", href: "/professores/yan" }
+        { label: "Prof. Paula Barreto", href: "/prof-paula" },
+        { label: "Prof. Yan Ribeiro", href: "/prof-yan" }
       ]
     },
     { 
-      href: "/noticias", 
-      label: "Notícias",
+      href: "/blog", 
+      label: "Blog",
       icon: <Newspaper className="h-4 w-4" /> 
     },
     { 
@@ -53,6 +53,7 @@ export const Navbar = () => {
       label: "Materiais de estudo",
       icon: <FileText className="h-4 w-4" /> 
     },
+    
   ];
   
   return (

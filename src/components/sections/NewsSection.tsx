@@ -12,6 +12,7 @@ export const NewsSection = () => {
       title: "Novo curso intensivo de Direito Constitucional preparado para o Edital",
       category: "Lançamentos",
       date: "15/03/2023",
+      name: "tecnicas-avancadas-equacoes",
       readTime: "4 min",
       views: "2.4K",
       featured: true,
@@ -25,6 +26,7 @@ export const NewsSection = () => {
       category: "Resultados",
       date: "02/02/2023",
       readTime: "3 min",
+      name: "tecnicas-avancadas-equacoes",
       views: "3.8K",
       image: "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?ixlib=rb-4.0.3",
       excerpt: "Nosso método exclusivo alcançou mais uma vez resultados excepcionais nas aprovações dos principais concursos federais realizados no último trimestre.",
@@ -35,6 +37,7 @@ export const NewsSection = () => {
       title: "Estratégias avançadas para resolver questões de RLM em tempo recorde",
       category: "Metodologia",
       date: "28/01/2023",
+      name: "tecnicas-avancadas-equacoes",
       readTime: "5 min",
       views: "1.9K",
       image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3",
@@ -312,7 +315,7 @@ export const NewsSection = () => {
                     <div className="mt-auto">
                       {/* Premium CTA */}
                       <motion.a
-                        href={`/noticias/${featuredItem.id}`}
+                        href={`/article/${featuredItem.name}`}
                         className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white overflow-hidden relative group"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}

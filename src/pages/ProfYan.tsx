@@ -9,8 +9,17 @@ import {
   Download, ChevronRight, ChevronLeft, Clock, Users, Play, Sparkles,
   GraduationCap, Target, FileCheck, Zap, TrendingUp, ShieldCheck, Brain,
   ArrowUpRight, BookText, Medal, ArrowDown, BookMarked, Bookmark, Glasses,
-  Mail, User, FileText, X, Menu, MessageSquare, Eye, MapPin, HeartHandshake, Heart
+  Mail, User, FileText, X, Menu, MessageSquare, Eye, MapPin, HeartHandshake, Heart, Trophy, Plus
 } from 'lucide-react';
+import case1 from '../images/case1.jpg';
+import case2 from '../images/case2.jpg';
+import case3 from '../images/case3.jpg';
+import case4 from '../images/case4.jpg';
+import case5 from '../images/case5.jpg';
+import case6 from '../images/case6.jpg';
+import case7 from '../images/case7.jpg';
+import case8 from '../images/case8.jpg';
+
 import yan from '../images/Yan.jpg';
 // ProfYanNavigation component with black and gold luxury theme
 const ProfYanNavigation = () => {
@@ -59,9 +68,8 @@ const ProfYanNavigation = () => {
 
   return (
     <>
-      <header className={`fixed w-full top-0 z-50 transition-all duration-300 bg-[#080608]/90 backdrop-blur-lg shadow-lg ${
-        isScrolled ? 'bg-[#080608]/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
-      }`}>
+      <header className={`fixed w-full top-0 z-50 transition-all duration-300 bg-[#080608]/90 backdrop-blur-lg shadow-lg ${isScrolled ? 'bg-[#080608]/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo and Professor Branding */}
@@ -77,7 +85,7 @@ const ProfYanNavigation = () => {
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F9E077]"></div>
                     <div className="absolute inset-[2px] rounded-full bg-[#080608] flex items-center justify-center text-[#D4AF37] font-bold text-lg">
                       YR
-                  </div>
+                    </div>
                     <span className={`font-bold text-[#D4AF37]`}>
                     </span>
                   </div>
@@ -91,14 +99,13 @@ const ProfYanNavigation = () => {
                 <motion.a
                   key={index}
                   href={item.href}
-                  className={`px-4 py-2 rounded-md hover:bg-[#D4AF37]/10 flex items-center gap-2 text-sm font-medium ${
-                    isScrolled ? 'text-white/90 hover:text-[#D4AF37]' : 'text-white/90 hover:text-[#F9E077] hover:bg-white/10'
-                  } transition-colors`}
+                  className={`px-4 py-2 rounded-md hover:bg-[#D4AF37]/10 flex items-center gap-2 text-sm font-medium ${isScrolled ? 'text-white/90 hover:text-[#D4AF37]' : 'text-white/90 hover:text-[#F9E077] hover:bg-white/10'
+                    } transition-colors`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {React.cloneElement(item.icon, { 
-                    className: `w-4 h-4 ${isScrolled ? 'text-[#D4AF37]' : 'text-[#F9E077]'}` 
+                  {React.cloneElement(item.icon, {
+                    className: `w-4 h-4 ${isScrolled ? 'text-[#D4AF37]' : 'text-[#F9E077]'}`
                   })}
                   {item.title}
                 </motion.a>
@@ -106,9 +113,9 @@ const ProfYanNavigation = () => {
             </nav>
 
             {/* CTA Button */}
-                <motion.a
-                  href="#contato"
-                  className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#F9E077] text-[#080608] font-medium text-sm shadow-lg shadow-[#D4AF37]/20 hover:scale-105 transition-transform"
+            <motion.a
+              href="#contato"
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#F9E077] text-[#080608] font-medium text-sm shadow-lg shadow-[#D4AF37]/20 hover:scale-105 transition-transform"
 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -342,6 +349,203 @@ const PremiumButton = ({
   );
 };
 
+// Premium Case Study Carousel Component
+const CaseStudyCarousel = () => {
+  // Replace these with your actual case study images
+  const caseImages = [
+    case1,
+    case2,
+    case3,
+    case4,
+    case5,
+    case6,
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [dragStart, setDragStart] = useState(0);
+  const [dragEnd, setDragEnd] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const visibleSlides = 3; // Number of slides visible at once on desktop
+
+  // Controls the number of visible slides based on screen width
+  const getVisibleSlidesCount = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 640) return 1;
+      if (window.innerWidth < 1024) return 2;
+      return 3;
+    }
+    return 3;
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex(prev =>
+      prev === caseImages.length - getVisibleSlidesCount() ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(prev =>
+      prev === 0 ? caseImages.length - getVisibleSlidesCount() : prev - 1
+    );
+  };
+
+  // Handle drag events for mobile swipe
+  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    setDragStart(clientX);
+  };
+
+  const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (dragStart === 0) return;
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    setDragEnd(clientX);
+  };
+
+  const handleDragEnd = () => {
+    if (dragStart === 0 || dragEnd === 0) return;
+    const diff = dragStart - dragEnd;
+    if (diff > 50) {
+      nextSlide();
+    } else if (diff < -50) {
+      prevSlide();
+    }
+    setDragStart(0);
+    setDragEnd(0);
+  };
+
+  // Auto-advance the carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+  return (
+    <div className="relative max-w-7xl mx-auto pb-20">
+      {/* Premium glow effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -left-20 top-1/3 w-40 h-40 rounded-full bg-[#D4AF37]/10 blur-3xl"></div>
+        <div className="absolute -right-20 top-2/3 w-40 h-40 rounded-full bg-[#D4AF37]/10 blur-3xl"></div>
+      </div>
+
+      {/* Carousel container with elegant border */}
+      <motion.div
+        className="relative mx-auto rounded-2xl overflow-hidden border border-[#D4AF37]/20 bg-[#0F0E13]/80 backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Carousel viewport */}
+        <div
+          ref={carouselRef}
+          className="overflow-hidden py-12 px-4"
+          onMouseDown={handleDragStart}
+          onMouseMove={handleDragMove}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={handleDragEnd}
+          onTouchStart={handleDragStart}
+          onTouchMove={handleDragMove}
+          onTouchEnd={handleDragEnd}
+        >
+          <motion.div
+            className="flex"
+            animate={{
+              x: `-${currentIndex * (100 / getVisibleSlidesCount())}%`
+            }}
+            transition={{ type: "spring", stiffness: 200, damping: 30 }}
+          >
+            {caseImages.map((image, index) => (
+              <motion.div
+                key={index}
+                className={`px-3 w-full sm:w-1/2 lg:w-1/3 flex-shrink-0`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+              >
+                <div className="bg-gradient-to-br from-[#13121A] to-[#0A090C] rounded-xl overflow-hidden shadow-xl border border-[#D4AF37]/10 h-full">
+                  {/* Image container */}
+                  <div className="aspect-[4/5] relative overflow-hidden">
+                    {/* Placeholder for your case images */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#080608]/80 z-10"></div>
+                    <img
+                      src={image}
+                      alt={`Caso de sucesso ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback if image fails to load
+                        (e.target as HTMLImageElement).src = "https://via.placeholder.com/400x500?text=Caso+de+Sucesso";
+                      }}
+                    />
+
+                    {/* Success badge */}
+                    <div className="absolute top-4 right-4 z-20">
+                      <div className="bg-[#D4AF37] text-[#080608] text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+                        <Trophy className="w-3.5 h-3.5" />
+                        Aprovado
+                      </div>
+                    </div>
+
+                    {/* Case details overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-bold text-white">Aluno {index + 1}</h3>
+                        <p className="text-[#D4AF37] font-medium">Concurso XYZ</p>
+                        <p className="text-white/80 text-sm">Aprovado em 1º lugar</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Premium control buttons */}
+        <div className="absolute top-1/2 left-0 right-0 flex justify-between px-4 -mt-6 pointer-events-none">
+          <motion.button
+            className="w-12 h-12 rounded-full bg-[#080608]/80 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] pointer-events-auto shadow-lg backdrop-blur-sm"
+            onClick={prevSlide}
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(212,175,55,0.2)" }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </motion.button>
+
+          <motion.button
+            className="w-12 h-12 rounded-full bg-[#080608]/80 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] pointer-events-auto shadow-lg backdrop-blur-sm"
+            onClick={nextSlide}
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(212,175,55,0.2)" }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ChevronRight className="w-6 h-6" />
+          </motion.button>
+        </div>
+
+        {/* Carousel indicators */}
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+          {Array.from({ length: caseImages.length - getVisibleSlidesCount() + 1 }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === index
+                ? "w-8 bg-[#D4AF37]"
+                : "bg-[#D4AF37]/30"
+                }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </motion.div>
+
+     
+    </div>
+  );
+};
+
 // Main Page Component with premium design
 const ProfYan = () => {
   // Keep existing state and refs
@@ -373,19 +577,19 @@ const ProfYan = () => {
     <div className="relative overflow-hidden bg-[#080608] text-white">
       {/* Add the navigation component */}
       <ProfYanNavigation />
-      
+
       {/* Global background canvas with animated particles */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Luxury diagonal lines */}
         <div className="absolute -inset-[20%] opacity-[0.03] rotate-[-20deg]">
           {[...Array(15)].map((_, i) => (
-            <div 
-              key={i} 
-              className="h-1.5 my-20 bg-gradient-to-r from-[#D4AF37]/10 via-[#F9E077] to-[#D4AF37]/10" 
+            <div
+              key={i}
+              className="h-1.5 my-20 bg-gradient-to-r from-[#D4AF37]/10 via-[#F9E077] to-[#D4AF37]/10"
             />
           ))}
         </div>
-        
+
         {/* Subtle gold particles */}
         <div className="absolute inset-0">
           {[...Array(30)].map((_, i) => (
@@ -412,7 +616,7 @@ const ProfYan = () => {
             />
           ))}
         </div>
-        
+
         {/* Main gold atmospheric glow */}
         <motion.div
           className="absolute top-1/3 left-1/4 w-1/2 h-1/2 rounded-full opacity-[0.08] blur-[140px]"
@@ -429,400 +633,400 @@ const ProfYan = () => {
 
       {/* ULTRA-PREMIUM HERO SECTION */}
       <section id="professor" ref={heroRef} className="relative min-h-[100vh] py-28 lg:py-0 flex items-center overflow-hidden bg-[#080608]">
-  {/* Premium animated background */}
-  <div className="absolute inset-0 z-0">
-    {/* Luxury gold patterns */}
-    <div className="absolute inset-0 opacity-[0.07]">
-      <div className="absolute top-0 left-0 w-full h-full">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
-            style={{
-              height: 1,
-              width: '120%',
-              top: `${i * 12.5}%`,
-              left: '-10%',
-              rotate: Math.random() * 5 - 2.5,
-            }}
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 0.4, scaleX: 1 }}
-            transition={{ duration: 2, delay: 0.1 * i, ease: "easeOut" }}
-          />
-        ))}
-      </div>
-      
-      {/* Vertical gold lines */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-[1px] bg-gradient-to-b from-transparent via-[#D4AF37] to-transparent"
-            style={{
-              height: `${Math.random() * 30 + 20}%`,
-              left: `${i * 7}%`,
-              top: `${Math.random() * 70}%`,
-              opacity: 0.2 + (Math.random() * 0.4)
-            }}
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={{ opacity: 0.3, scaleY: 1 }}
-            transition={{ duration: 1.8, delay: 0.07 * i, ease: "easeOut" }}
-          />
-        ))}
-      </div>
-    </div>
-    
-    {/* Dynamic atmospheric glow */}
-    <motion.div
-      className="absolute top-1/4 left-1/4 w-1/2 h-1/2 rounded-full opacity-[0.15] blur-[160px]"
-      style={{
-        background: 'radial-gradient(circle, rgba(212,175,55,0.8) 0%, rgba(212,175,55,0.2) 60%, transparent 100%)',
-      }}
-      animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.15, 0.22, 0.15],
-      }}
-      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-    />
-  </div>
-
-  <div className="container mx-auto px-4 relative z-10">
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      {/* Content */}
-      <motion.div className="lg:col-span-7 lg:pr-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          {/* Luxury badge */}
-          <motion.div 
-            className="inline-flex items-center mb-6 overflow-hidden"
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "auto", opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="flex items-center gap-3 px-4 py-2 bg-[#D4AF37]/10 backdrop-blur-sm border border-[#D4AF37]/20 rounded-full">
-              <motion.div 
-                className="w-6 h-6 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F9E077] flex items-center justify-center"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.7 }}
-              >
-                <Star className="w-3.5 h-3.5 text-[#080608]" />
-              </motion.div>
-              <span className="text-sm font-medium bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
-                Especialista em Matemática e RLM para Concursos
-              </span>
+        {/* Premium animated background */}
+        <div className="absolute inset-0 z-0">
+          {/* Luxury gold patterns */}
+          <div className="absolute inset-0 opacity-[0.07]">
+            <div className="absolute top-0 left-0 w-full h-full">
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
+                  style={{
+                    height: 1,
+                    width: '120%',
+                    top: `${i * 12.5}%`,
+                    left: '-10%',
+                    rotate: Math.random() * 5 - 2.5,
+                  }}
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 0.4, scaleX: 1 }}
+                  transition={{ duration: 2, delay: 0.1 * i, ease: "easeOut" }}
+                />
+              ))}
             </div>
-          </motion.div>
 
-          {/* Title with premium effects */}
-          <div className="perspective">
-            <motion.h1
-              className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-4"
-              initial={{ opacity: 0, rotateX: -20 }}
-              animate={{ opacity: 1, rotateX: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Prof. <span className="relative inline-block">
-                <span className="absolute inset-0 blur-[20px] bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] opacity-30" />
-                <span className="relative bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
-                  Yan Ribeiro
-                </span>
-              </span>
-            </motion.h1>
-            
-            <motion.h2 
-              className="text-3xl lg:text-4xl font-bold text-white/80 mb-6"
-              initial={{ opacity: 0, rotateX: -20 }}
-              animate={{ opacity: 1, rotateX: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              Engenheiro, Matemático e Educador
-            </motion.h2>
+            {/* Vertical gold lines */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+              {[...Array(15)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-[1px] bg-gradient-to-b from-transparent via-[#D4AF37] to-transparent"
+                  style={{
+                    height: `${Math.random() * 30 + 20}%`,
+                    left: `${i * 7}%`,
+                    top: `${Math.random() * 70}%`,
+                    opacity: 0.2 + (Math.random() * 0.4)
+                  }}
+                  initial={{ opacity: 0, scaleY: 0 }}
+                  animate={{ opacity: 0.3, scaleY: 1 }}
+                  transition={{ duration: 1.8, delay: 0.07 * i, ease: "easeOut" }}
+                />
+              ))}
+            </div>
           </div>
 
-          {/* Luxury animated divider */}
-          <motion.div 
-            className="relative h-[2px] w-32 my-8 overflow-hidden"
-            initial={{ width: 0 }}
-            animate={{ width: 128 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <motion.div
-              className="absolute inset-0"
-              style={{
-                background: "linear-gradient(90deg, transparent, #D4AF37, #F9E077, #D4AF37, transparent)",
-                backgroundSize: "200% 100%"
-              }}
-              animate={{ backgroundPosition: ["0% center", "200% center"] }}
-              transition={{ duration: 3, repeat: Infinity, repeatDelay: 1 }}
-            />
-          </motion.div>
-
-          <motion.p
-            className="text-xl text-white/80 mb-10 max-w-2xl leading-relaxed"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            Método exclusivo que <span className="text-[#D4AF37] font-medium">transformou a vida de mais de 5.000 alunos</span> em 
-            concursos de alta competitividade. Transformando conceitos complexos em soluções claras e objetivas.
-          </motion.p>
-        </motion.div>
-
-        {/* Premium Call-to-Actions */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-6 mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-        >
-          <motion.button
-            className="group relative px-8 py-5 rounded-lg overflow-hidden"
-            whileHover={{ scale: 1.03, boxShadow: "0 10px 30px -5px rgba(212, 175, 55, 0.5)" }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto]" />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[url('/noise-pattern.svg')] bg-repeat mix-blend-overlay" />
-            
-            <div className="relative flex items-center gap-3">
-              <span className="text-[#080608] font-medium">Conhecer cursos</span>
-              <motion.span
-                className="flex items-center"
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-              >
-                <ArrowRight className="h-5 w-5 text-[#080608]" />
-              </motion.span>
-            </div>
-            
-            <div className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-30 group-hover:animate-shine" />
-          </motion.button>
-          
-          <motion.button
-            className="relative px-8 py-5 rounded-lg border border-[#D4AF37]/30 group overflow-hidden"
-            whileHover={{ 
-              scale: 1.03,
-              backgroundColor: "rgba(212, 175, 55, 0.1)",
-              borderColor: "rgba(212, 175, 55, 0.6)"
-            }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <motion.span
-              className="absolute inset-0 bg-[#D4AF37]/5 rounded-lg"
-              initial={{ scale: 0, opacity: 0 }}
-              whileHover={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-            
-            <div className="relative flex items-center gap-2">
-              <span className="text-[#D4AF37] font-medium">Metodologia exclusiva</span>
-              <motion.div
-                animate={{ x: [0, 3, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-              >
-                <ChevronRight className="h-5 w-5 text-[#D4AF37]" />
-              </motion.div>
-            </div>
-          </motion.button>
-        </motion.div>
-
-        {/* Enhanced Stats */}
-        <motion.div 
-          className="grid grid-cols-2 gap-x-12 gap-y-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.1 }}
-        >
-          {[
-            { value: 5000, suffix: "+", label: "Alunos aprovados", delay: 0 },
-            { value: 95, suffix: "%", label: "Taxa de aprovação", delay: 0.1 },
-            { value: 9, suffix: "+", label: "Anos de experiência", delay: 0.2 },
-            { value: 3, suffix: "+", label: "Formações acadêmicas", delay: 0.3 }
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              className="relative"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 + stat.delay }}
-            >
-              <motion.div 
-                className="absolute -inset-4 rounded-lg bg-[#D4AF37]/5 blur-lg z-0"
-                animate={{ 
-                  opacity: [0.3, 0.5, 0.3],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
-              />
-              
-              <div className="relative z-10">
-                <div className="flex items-baseline">
-                  <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
-                    <Counter from={0} to={stat.value} duration={2 + i * 0.3} delay={1.2 + i * 0.2} />
-                  </div>
-                  <span className="text-2xl lg:text-3xl font-bold text-[#D4AF37] ml-1">{stat.suffix}</span>
-                </div>
-                <span className="text-white/70">{stat.label}</span>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Professor Image with premium effects */}
-      <motion.div className="lg:col-span-5 relative z-10">
-        <div className="relative">
-          {/* Luxury image container */}
+          {/* Dynamic atmospheric glow */}
           <motion.div
-            className="relative mx-auto lg:ml-auto lg:mr-0 w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px]"
-            initial={{ opacity: 0, scale: 0.9, rotateZ: -5 }}
-            animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
-            transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 100 }}
-          >
-            {/* Background glow */}
-            <motion.div
-              className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/30 via-[#F9E077]/20 to-[#D4AF37]/30 blur-xl"
-              animate={{ 
-                scale: [1, 1.05, 1],
-                opacity: [0.4, 0.6, 0.4]
-              }}
-              transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
-            />
-            
-            {/* Premium border with animated scanner effect */}
-            <div className="absolute inset-0 rounded-full overflow-hidden">
-              <div className="absolute inset-0 rounded-full border-[1px] border-[#D4AF37]/40" />
-              
+            className="absolute top-1/4 left-1/4 w-1/2 h-1/2 rounded-full opacity-[0.15] blur-[160px]"
+            style={{
+              background: 'radial-gradient(circle, rgba(212,175,55,0.8) 0%, rgba(212,175,55,0.2) 60%, transparent 100%)',
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.15, 0.22, 0.15],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Content */}
+            <motion.div className="lg:col-span-7 lg:pr-8">
               <motion.div
-                className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent blur-sm"
-                animate={{ 
-                  left: ["-50%", "150%"],
-                }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 3 }}
-              />
-              
-              {/* Secondary animated ring */}
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/0"
-                animate={{ 
-                  scale: [1, 1.05, 1],
-                  borderColor: ["rgba(212,175,55,0)", "rgba(212,175,55,0.3)", "rgba(212,175,55,0)"],
-                  opacity: [0.5, 1, 0.5]
-                }}
-                transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
-              />
-            </div>
-            
-            {/* Main image */}
-            <div className="absolute inset-[6px] rounded-full overflow-hidden border-[8px] border-[#13121A]">
-              <img
-                src="../../images/Yan2.jpeg"
-                alt="Professor Yan Ribeiro - Especialista em Matemática"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080608]/80 via-[#080608]/20 to-transparent mix-blend-multiply"></div>
-            </div>
-            
-            {/* Orbital elements */}
-            <motion.div 
-              className="absolute inset-0 rounded-full"
-              style={{ rotate: 0 }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              {[0, 72, 144, 216, 288].map((degree, i) => (
-                <motion.div 
-                  key={i}
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full"
-                  style={{ rotate: degree }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 + (i * 0.1), duration: 0.6 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                {/* Luxury badge */}
+                <motion.div
+                  className="inline-flex items-center mb-6 overflow-hidden"
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: "auto", opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
                 >
-                  <motion.div 
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#D4AF37]/10 flex items-center justify-center"
-                    whileHover={{ scale: 1.2, backgroundColor: "rgba(212,175,55,0.2)" }}
+                  <div className="flex items-center gap-3 px-4 py-2 bg-[#D4AF37]/10 backdrop-blur-sm border border-[#D4AF37]/20 rounded-full">
+                    <motion.div
+                      className="w-6 h-6 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F9E077] flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.7 }}
+                    >
+                      <Star className="w-3.5 h-3.5 text-[#080608]" />
+                    </motion.div>
+                    <span className="text-sm font-medium bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
+                      Especialista em Matemática e RLM para Concursos
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Title with premium effects */}
+                <div className="perspective">
+                  <motion.h1
+                    className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-4"
+                    initial={{ opacity: 0, rotateX: -20 }}
+                    animate={{ opacity: 1, rotateX: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    <div className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                    Prof. <span className="relative inline-block">
+                      <span className="absolute inset-0 blur-[20px] bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] opacity-30" />
+                      <span className="relative bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
+                        Yan Ribeiro
+                      </span>
+                    </span>
+                  </motion.h1>
+
+                  <motion.h2
+                    className="text-3xl lg:text-4xl font-bold text-white/80 mb-6"
+                    initial={{ opacity: 0, rotateX: -20 }}
+                    animate={{ opacity: 1, rotateX: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                  >
+                    Engenheiro, Matemático e Educador
+                  </motion.h2>
+                </div>
+
+                {/* Luxury animated divider */}
+                <motion.div
+                  className="relative h-[2px] w-32 my-8 overflow-hidden"
+                  initial={{ width: 0 }}
+                  animate={{ width: 128 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  <motion.div
+                    className="absolute inset-0"
+                    style={{
+                      background: "linear-gradient(90deg, transparent, #D4AF37, #F9E077, #D4AF37, transparent)",
+                      backgroundSize: "200% 100%"
+                    }}
+                    animate={{ backgroundPosition: ["0% center", "200% center"] }}
+                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 1 }}
+                  />
+                </motion.div>
+
+                <motion.p
+                  className="text-xl text-white/80 mb-10 max-w-2xl leading-relaxed"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                >
+                  Método exclusivo que <span className="text-[#D4AF37] font-medium">transformou a vida de mais de 5.000 alunos</span> em
+                  concursos de alta competitividade. Transformando conceitos complexos em soluções claras e objetivas.
+                </motion.p>
+              </motion.div>
+
+              {/* Premium Call-to-Actions */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-6 mb-16"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+              >
+                <motion.button
+                  className="group relative px-8 py-5 rounded-lg overflow-hidden"
+                  whileHover={{ scale: 1.03, boxShadow: "0 10px 30px -5px rgba(212, 175, 55, 0.5)" }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto]" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[url('/noise-pattern.svg')] bg-repeat mix-blend-overlay" />
+
+                  <div className="relative flex items-center gap-3">
+                    <span className="text-[#080608] font-medium">Conhecer cursos</span>
+                    <motion.span
+                      className="flex items-center"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    >
+                      <ArrowRight className="h-5 w-5 text-[#080608]" />
+                    </motion.span>
+                  </div>
+
+                  <div className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-30 group-hover:animate-shine" />
+                </motion.button>
+
+                <motion.button
+                  className="relative px-8 py-5 rounded-lg border border-[#D4AF37]/30 group overflow-hidden"
+                  whileHover={{
+                    scale: 1.03,
+                    backgroundColor: "rgba(212, 175, 55, 0.1)",
+                    borderColor: "rgba(212, 175, 55, 0.6)"
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <motion.span
+                    className="absolute inset-0 bg-[#D4AF37]/5 rounded-lg"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileHover={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+
+                  <div className="relative flex items-center gap-2">
+                    <span className="text-[#D4AF37] font-medium">Metodologia exclusiva</span>
+                    <motion.div
+                      animate={{ x: [0, 3, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    >
+                      <ChevronRight className="h-5 w-5 text-[#D4AF37]" />
+                    </motion.div>
+                  </div>
+                </motion.button>
+              </motion.div>
+
+              {/* Enhanced Stats */}
+              <motion.div
+                className="grid grid-cols-2 gap-x-12 gap-y-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.1 }}
+              >
+                {[
+                  { value: 5000, suffix: "+", label: "Alunos aprovados", delay: 0 },
+                  { value: 95, suffix: "%", label: "Taxa de aprovação", delay: 0.1 },
+                  { value: 9, suffix: "+", label: "Anos de experiência", delay: 0.2 },
+                  { value: 3, suffix: "+", label: "Formações acadêmicas", delay: 0.3 }
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    className="relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.2 + stat.delay }}
+                  >
+                    <motion.div
+                      className="absolute -inset-4 rounded-lg bg-[#D4AF37]/5 blur-lg z-0"
+                      animate={{
+                        opacity: [0.3, 0.5, 0.3],
+                        scale: [1, 1.05, 1]
+                      }}
+                      transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+                    />
+
+                    <div className="relative z-10">
+                      <div className="flex items-baseline">
+                        <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
+                          <Counter from={0} to={stat.value} duration={2 + i * 0.3} delay={1.2 + i * 0.2} />
+                        </div>
+                        <span className="text-2xl lg:text-3xl font-bold text-[#D4AF37] ml-1">{stat.suffix}</span>
+                      </div>
+                      <span className="text-white/70">{stat.label}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Professor Image with premium effects */}
+            <motion.div className="lg:col-span-5 relative z-10">
+              <div className="relative">
+                {/* Luxury image container */}
+                <motion.div
+                  className="relative mx-auto lg:ml-auto lg:mr-0 w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px]"
+                  initial={{ opacity: 0, scale: 0.9, rotateZ: -5 }}
+                  animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
+                  transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 100 }}
+                >
+                  {/* Background glow */}
+                  <motion.div
+                    className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/30 via-[#F9E077]/20 to-[#D4AF37]/30 blur-xl"
+                    animate={{
+                      scale: [1, 1.05, 1],
+                      opacity: [0.4, 0.6, 0.4]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+                  />
+
+                  {/* Premium border with animated scanner effect */}
+                  <div className="absolute inset-0 rounded-full overflow-hidden">
+                    <div className="absolute inset-0 rounded-full border-[1px] border-[#D4AF37]/40" />
+
+                    <motion.div
+                      className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent blur-sm"
+                      animate={{
+                        left: ["-50%", "150%"],
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, repeatDelay: 3 }}
+                    />
+
+                    {/* Secondary animated ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/0"
+                      animate={{
+                        scale: [1, 1.05, 1],
+                        borderColor: ["rgba(212,175,55,0)", "rgba(212,175,55,0.3)", "rgba(212,175,55,0)"],
+                        opacity: [0.5, 1, 0.5]
+                      }}
+                      transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                  </div>
+
+                  {/* Main image */}
+                  <div className="absolute inset-[6px] rounded-full overflow-hidden border-[8px] border-[#13121A]">
+                    <img
+                      src="../../images/Yan2.jpeg"
+                      alt="Professor Yan Ribeiro - Especialista em Matemática"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#080608]/80 via-[#080608]/20 to-transparent mix-blend-multiply"></div>
+                  </div>
+
+                  {/* Orbital elements */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full"
+                    style={{ rotate: 0 }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    {[0, 72, 144, 216, 288].map((degree, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full"
+                        style={{ rotate: degree }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 + (i * 0.1), duration: 0.6 }}
+                      >
+                        <motion.div
+                          className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#D4AF37]/10 flex items-center justify-center"
+                          whileHover={{ scale: 1.2, backgroundColor: "rgba(212,175,55,0.2)" }}
+                        >
+                          <div className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                        </motion.div>
+                      </motion.div>
+                    ))}
                   </motion.div>
                 </motion.div>
-              ))}
+
+                {/* Info cards */}
+                <motion.div
+                  className="absolute -left-10 top-1/4 bg-[#13121A] rounded-lg shadow-xl p-4 flex items-center gap-3 z-10 border border-[#D4AF37]/20"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 1.3, type: "spring" }}
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-[#D4AF37]" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold text-white">Engenheiro</p>
+                    <p className="text-sm text-white/60">UFU</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="absolute -right-10 bottom-1/4 bg-[#13121A] rounded-lg shadow-xl p-4 flex items-center gap-3 z-10 border border-[#D4AF37]/20"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 1.5, type: "spring" }}
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 flex items-center justify-center">
+                    <Star className="w-5 h-5 text-[#D4AF37]" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold text-white">Desde 2014</p>
+                    <p className="text-sm text-white/60">Educador Apaixonado</p>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
-          </motion.div>
-
-          {/* Info cards */}
-          <motion.div
-            className="absolute -left-10 top-1/4 bg-[#13121A] rounded-lg shadow-xl p-4 flex items-center gap-3 z-10 border border-[#D4AF37]/20"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 1.3, type: "spring" }}
-          >
-            <div className="w-10 h-10 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 flex items-center justify-center">
-              <GraduationCap className="w-5 h-5 text-[#D4AF37]" />
-            </div>
-            <div>
-              <p className="text-lg font-bold text-white">Engenheiro</p>
-              <p className="text-sm text-white/60">UFU</p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="absolute -right-10 bottom-1/4 bg-[#13121A] rounded-lg shadow-xl p-4 flex items-center gap-3 z-10 border border-[#D4AF37]/20"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 1.5, type: "spring" }}
-          >
-            <div className="w-10 h-10 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 flex items-center justify-center">
-              <Star className="w-5 h-5 text-[#D4AF37]" />
-            </div>
-            <div>
-              <p className="text-lg font-bold text-white">Desde 2014</p>
-              <p className="text-sm text-white/60">Educador Apaixonado</p>
-            </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
-    </div>
-  </div>
 
-  {/* Premium scroll indicator */}
-  <motion.div
-    className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10"
-    style={{ opacity: heroOpacity }}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 2, duration: 1 }}
-  >
-    <motion.span 
-      className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-2 font-medium"
-      animate={{ opacity: [0.7, 1, 0.7] }}
-      transition={{ duration: 2, repeat: Infinity }}
-    >
-      Explore
-    </motion.span>
-    <motion.div
-      className="flex flex-col items-center"
-      animate={{ y: [0, 6, 0] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-    >
-      <div className="w-[1px] h-6 bg-gradient-to-b from-[#D4AF37]/0 via-[#D4AF37] to-[#D4AF37]/0 mb-2"></div>
-      <div className="h-10 w-10 rounded-full flex items-center justify-center border border-[#D4AF37]/30">
-        <ArrowDown className="h-5 w-5 text-[#D4AF37]" />
-      </div>
-    </motion.div>
-  </motion.div>
-</section>
+        {/* Premium scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10"
+          style={{ opacity: heroOpacity }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+        >
+          <motion.span
+            className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-2 font-medium"
+            animate={{ opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            Explore
+          </motion.span>
+          <motion.div
+            className="flex flex-col items-center"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="w-[1px] h-6 bg-gradient-to-b from-[#D4AF37]/0 via-[#D4AF37] to-[#D4AF37]/0 mb-2"></div>
+            <div className="h-10 w-10 rounded-full flex items-center justify-center border border-[#D4AF37]/30">
+              <ArrowDown className="h-5 w-5 text-[#D4AF37]" />
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
 
       {/* MATEMÁTICA E RLM SECTION */}
       <section id="matematica" className="py-24 bg-gradient-to-b from-[#0B0A0D] to-[#080608] relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
         <div className="absolute -left-64 -bottom-64 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
+          <motion.div
             className="max-w-3xl mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -836,7 +1040,7 @@ const ProfYan = () => {
               gerando resultados extraordinários em concursos de alta competitividade.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
               {
@@ -869,36 +1073,36 @@ const ProfYan = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * i }}
-                whileHover={{ 
-                  y: -8, 
+                whileHover={{
+                  y: -8,
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6)",
                   borderColor: "rgba(212,175,55,0.3)"
                 }}
               >
                 {/* Premium top accent */}
                 <div className="h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] w-full"></div>
-                
+
                 {/* Interior glow effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-300"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 />
-                
+
                 {/* Card content */}
                 <div className="p-8">
                   <div className="w-16 h-16 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/20 transition-all duration-300">
                     {React.cloneElement(item.icon as React.ReactElement, { className: "w-8 h-8 text-[#D4AF37]" })}
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#D4AF37] transition-colors duration-300">
                     {item.title}
                   </h3>
-                  
+
                   <p className="text-white/70 mb-6">
                     {item.description}
                   </p>
-                  
+
                   {item.items && (
                     <ul className="space-y-3">
                       {item.items.map((subitem: string, j: number) => (
@@ -912,7 +1116,6 @@ const ProfYan = () => {
                     </ul>
                   )}
                 </div>
-                
                 {/* Premium footer with animation */}
                 <div className="border-t border-[#D4AF37]/10 p-4 bg-[#0F0E13] group-hover:bg-[#0F0E13]/80 flex justify-between items-center transition-colors duration-300">
                   <span className="text-[#D4AF37] text-sm font-medium">{item.ctaText || "Ver mais"}</span>
@@ -923,7 +1126,7 @@ const ProfYan = () => {
                     <ArrowRight className="w-5 h-5 text-[#D4AF37]" />
                   </motion.div>
                 </div>
-                
+
                 {/* Subtle corner accent */}
                 <div className="absolute bottom-0 right-0 w-12 h-12 overflow-hidden">
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#D4AF37]/10 transform rotate-45 translate-x-1/2 translate-y-1/2"></div>
@@ -931,9 +1134,9 @@ const ProfYan = () => {
               </motion.div>
             ))}
           </div>
-          
+
           {/* Methodology diagram with animations */}
-          <motion.div 
+          <motion.div
             className="bg-[#13121A] rounded-2xl shadow-xl border border-[#D4AF37]/10 overflow-hidden max-w-5xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -943,7 +1146,7 @@ const ProfYan = () => {
               <div className="md:w-2/5 bg-gradient-to-br from-[#D4AF37] to-[#F9E077] p-10 text-[#080608]">
                 <h3 className="text-2xl font-bold mb-6">Ciclo de Aprendizagem Avançada</h3>
                 <p className="mb-8 text-[#080608]/90">
-                  Nossa metodologia circular garante que cada etapa reforce a anterior, 
+                  Nossa metodologia circular garante que cada etapa reforce a anterior,
                   criando um ciclo virtuoso de aprendizagem e evolução constante.
                 </p>
                 <div className="hidden md:block">
@@ -965,17 +1168,17 @@ const ProfYan = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="md:w-3/5 p-10 bg-[#13121A]">
                 <div className="relative h-full flex items-center justify-center">
                   <div className="w-64 h-64 rounded-full border-8 border-[#0F0E13] relative flex items-center justify-center">
-                    <motion.div 
+                    <motion.div
                       className="w-full h-full absolute"
                       animate={{ rotate: 360 }}
                       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     >
                       {[0, 90, 180, 270].map((rotation, i) => (
-                        <motion.div 
+                        <motion.div
                           key={i}
                           className="absolute top-0 left-1/2 -translate-x-1/2 -mt-8"
                           style={{ rotate: rotation }}
@@ -992,7 +1195,7 @@ const ProfYan = () => {
                         </motion.div>
                       ))}
                     </motion.div>
-                    
+
                     <div className="w-40 h-40 rounded-full bg-[#080608] border-4 border-[#D4AF37]/20 shadow-md flex items-center justify-center">
                       <div className="text-center">
                         <GraduationCap className="w-10 h-10 text-[#D4AF37] mx-auto mb-2" />
@@ -1012,9 +1215,9 @@ const ProfYan = () => {
       <section id="sobre" className="py-24 bg-[#0A090C] relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
         <div className="absolute -right-64 top-64 w-[30rem] h-[30rem] bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
+          <motion.div
             className="max-w-3xl mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1028,7 +1231,7 @@ const ProfYan = () => {
               ao ensino e à transformação de vidas através da educação de qualidade.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -1044,7 +1247,7 @@ const ProfYan = () => {
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080608] to-transparent opacity-70"></div>
-                
+
                 {/* Experience badges positioned over the image */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <div className="grid grid-cols-3 gap-4">
@@ -1053,8 +1256,8 @@ const ProfYan = () => {
                       { number: "5000+", label: "Alunos aprovados" },
                       { number: "3+", label: "Formações" }
                     ].map((item, i) => (
-                      <motion.div 
-                        key={i} 
+                      <motion.div
+                        key={i}
                         className="bg-[#13121A]/80 backdrop-blur-sm border border-[#D4AF37]/20 rounded-lg p-4 text-center"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -1071,7 +1274,7 @@ const ProfYan = () => {
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -1092,7 +1295,7 @@ const ProfYan = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
                     <span className="w-8 h-8 rounded-full bg-[#D4AF37]/20 flex items-center justify-center mr-3">
@@ -1106,7 +1309,7 @@ const ProfYan = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
                     <span className="w-8 h-8 rounded-full bg-[#D4AF37]/20 flex items-center justify-center mr-3">
@@ -1132,9 +1335,9 @@ const ProfYan = () => {
       <section id="conteudos" className="py-24 bg-gradient-to-b from-[#0B0A0D] to-[#080608] relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
         <div className="absolute -left-64 top-64 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
+          <motion.div
             className="max-w-3xl mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1144,13 +1347,13 @@ const ProfYan = () => {
             <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider">Material Exclusivo</span>
             <h2 className="text-4xl font-bold text-white mt-3 mb-5">Conteúdos</h2>
             <p className="text-xl text-white/70">
-              Acesse artigos, videoaulas e materiais desenvolvidos para maximizar seu desempenho 
+              Acesse artigos, videoaulas e materiais desenvolvidos para maximizar seu desempenho
               em concursos públicos com foco na matemática e raciocínio lógico.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        
+
             {[
               {
                 title: "Artigos Especializados",
@@ -1179,36 +1382,36 @@ const ProfYan = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * i }}
-                whileHover={{ 
-                  y: -8, 
+                whileHover={{
+                  y: -8,
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6)",
                   borderColor: "rgba(212,175,55,0.3)"
                 }}
               >
                 {/* Premium top accent */}
                 <div className="h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] w-full"></div>
-                
+
                 {/* Interior glow effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-300"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 />
-                
+
                 {/* Card content */}
                 <div className="p-8">
                   <div className="w-16 h-16 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/20 transition-all duration-300">
-                    {React.cloneElement(item.icon, { className: "w-8 h-8 text-[#D4AF37]" })}
+                    {item.icon && React.cloneElement(item.icon, { className: "w-8 h-8 text-[#D4AF37]" })}
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#D4AF37] transition-colors duration-300">
                     {item.title}
                   </h3>
-                  
+
                   <p className="text-white/70 mb-6">
                     {item.description}
                   </p>
-                  
+
                   {item.items && (
                     <ul className="space-y-3">
                       {item.items.map((subitem, j) => (
@@ -1222,7 +1425,7 @@ const ProfYan = () => {
                     </ul>
                   )}
                 </div>
-                
+
                 {/* Premium footer with animation */}
                 <div className="border-t border-[#D4AF37]/10 p-4 bg-[#0F0E13] group-hover:bg-[#0F0E13]/80 flex justify-between items-center transition-colors duration-300">
                   <span className="text-[#D4AF37] text-sm font-medium">{item.ctaText || "Ver mais"}</span>
@@ -1233,7 +1436,7 @@ const ProfYan = () => {
                     <ArrowRight className="w-5 h-5 text-[#D4AF37]" />
                   </motion.div>
                 </div>
-                
+
                 {/* Subtle corner accent */}
                 <div className="absolute bottom-0 right-0 w-12 h-12 overflow-hidden">
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#D4AF37]/10 transform rotate-45 translate-x-1/2 translate-y-1/2"></div>
@@ -1241,9 +1444,9 @@ const ProfYan = () => {
               </motion.div>
             ))}
           </div>
-          
+
           {/* Featured content */}
-          <motion.div 
+          <motion.div
             className="bg-[#13121A] rounded-2xl shadow-xl border border-[#D4AF37]/10 overflow-hidden max-w-5xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1253,13 +1456,13 @@ const ProfYan = () => {
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="w-full md:w-2/5 relative">
                   <div className="aspect-video bg-[#0F0E13] rounded-xl overflow-hidden relative">
-                    <img 
-                      src="/api/placeholder/400/320" 
-                      alt="Aula destaque" 
+                    <img
+                      src="/api/placeholder/400/320"
+                      alt="Aula destaque"
                       className="w-full h-full object-cover opacity-80"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div 
+                      <motion.div
                         className="w-16 h-16 rounded-full bg-[#D4AF37] flex items-center justify-center cursor-pointer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -1269,7 +1472,7 @@ const ProfYan = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="w-full md:w-3/5">
                   <h3 className="text-2xl font-bold text-white mb-4">Conteúdo em Destaque</h3>
                   <h4 className="text-[#D4AF37] text-lg mb-4">Raciocínio Lógico para Concursos: Técnicas Avançadas de Resolução Rápida</h4>
@@ -1277,13 +1480,13 @@ const ProfYan = () => {
                     Nesta aula exclusiva, apresento métodos inéditos para resolver questões de lógica em até 50% menos tempo,
                     utilizando padrões visuais e técnicas de simplificação que desenvolvi ao longo de minha experiência.
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-3 mb-6">
                     <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Raciocínio Lógico</span>
                     <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Técnicas Avançadas</span>
                     <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Resolução Rápida</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-6">
                     <motion.button
                       className="px-5 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] rounded-lg text-[#080608] font-medium text-sm flex items-center gap-2"
@@ -1293,7 +1496,7 @@ const ProfYan = () => {
                       <Play className="w-4 h-4" />
                       Assistir agora
                     </motion.button>
-                    
+
                     <motion.button
                       className="px-5 py-3 border border-[#D4AF37]/30 rounded-lg text-[#D4AF37] font-medium text-sm"
                       whileHover={{ scale: 1.03, backgroundColor: 'rgba(212,175,55,0.1)' }}
@@ -1313,9 +1516,9 @@ const ProfYan = () => {
       <section id="cursos" className="py-24 bg-[#0A090C] relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
         <div className="absolute -right-64 bottom-64 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
+          <motion.div
             className="max-w-3xl mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1328,7 +1531,7 @@ const ProfYan = () => {
               Cursos estruturados para maximizar seu desempenho, com metodologia exclusiva e materiais didáticos premium.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
               {
@@ -1361,36 +1564,36 @@ const ProfYan = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * i }}
-                whileHover={{ 
-                  y: -8, 
+                whileHover={{
+                  y: -8,
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6)",
                   borderColor: "rgba(212,175,55,0.3)"
                 }}
               >
                 {/* Premium top accent */}
                 <div className="h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] w-full"></div>
-                
+
                 {/* Interior glow effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-300"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 />
-                
+
                 {/* Card content */}
                 <div className="p-8">
                   <div className="w-16 h-16 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/20 transition-all duration-300">
                     {React.cloneElement(item.icon, { className: "w-8 h-8 text-[#D4AF37]" })}
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#D4AF37] transition-colors duration-300">
                     {item.title}
                   </h3>
-                  
+
                   <p className="text-white/70 mb-6">
                     {item.description}
                   </p>
-                  
+
                   {item.features && (
                     <ul className="space-y-3">
                       {item.features.map((feature, j) => (
@@ -1404,7 +1607,7 @@ const ProfYan = () => {
                     </ul>
                   )}
                 </div>
-                
+
                 {/* Premium footer with animation */}
                 <div className="border-t border-[#D4AF37]/10 p-4 bg-[#0F0E13] group-hover:bg-[#0F0E13]/80 flex justify-between items-center transition-colors duration-300">
                   <span className="text-[#D4AF37] text-sm font-medium">{item.ctaText || "Ver mais"}</span>
@@ -1415,7 +1618,7 @@ const ProfYan = () => {
                     <ArrowRight className="w-5 h-5 text-[#D4AF37]" />
                   </motion.div>
                 </div>
-                
+
                 {/* Subtle corner accent */}
                 <div className="absolute bottom-0 right-0 w-12 h-12 overflow-hidden">
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#D4AF37]/10 transform rotate-45 translate-x-1/2 translate-y-1/2"></div>
@@ -1423,9 +1626,9 @@ const ProfYan = () => {
               </motion.div>
             ))}
           </div>
-          
+
           {/* CTA banner */}
-          <motion.div 
+          <motion.div
             className="relative overflow-hidden rounded-2xl"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1433,7 +1636,7 @@ const ProfYan = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#F9E077]"></div>
             <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-10"></div>
-            
+
             <div className="relative p-8 md:p-12">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div>
@@ -1442,7 +1645,7 @@ const ProfYan = () => {
                     Junte-se a milhares de alunos que já estão aprovados em concursos públicos utilizando
                     nosso método exclusivo de ensino de matemática e raciocínio lógico.
                   </p>
-                  
+
                   <motion.button
                     className="px-8 py-4 bg-[#080608] rounded-lg text-[#D4AF37] font-medium flex items-center gap-2"
                     whileHover={{ scale: 1.03 }}
@@ -1452,11 +1655,11 @@ const ProfYan = () => {
                     <ArrowRight className="w-5 h-5" />
                   </motion.button>
                 </div>
-                
+
                 <div className="hidden md:block">
-                  <img 
-                    src="/api/placeholder/400/320" 
-                    alt="Cursos Prof. Yan" 
+                  <img
+                    src="/api/placeholder/400/320"
+                    alt="Cursos Prof. Yan"
                     className="max-h-56"
                   />
                 </div>
@@ -1470,9 +1673,9 @@ const ProfYan = () => {
       <section id="materiais" className="py-24 bg-gradient-to-b from-[#0B0A0D] to-[#080608] relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
         <div className="absolute -left-64 -bottom-64 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
+          <motion.div
             className="max-w-3xl mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1485,7 +1688,7 @@ const ProfYan = () => {
               Acesse materiais de estudo exclusivos, desenvolvidos para maximizar seu desempenho em concursos públicos.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
               {
@@ -1515,36 +1718,36 @@ const ProfYan = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * i }}
-                whileHover={{ 
-                  y: -8, 
+                whileHover={{
+                  y: -8,
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6)",
                   borderColor: "rgba(212,175,55,0.3)"
                 }}
               >
                 {/* Premium top accent */}
                 <div className="h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] w-full"></div>
-                
+
                 {/* Interior glow effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-300"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 />
-                
+
                 {/* Card content */}
                 <div className="p-8">
                   <div className="w-16 h-16 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/20 transition-all duration-300">
                     {React.cloneElement(item.icon, { className: "w-8 h-8 text-[#D4AF37]" })}
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#D4AF37] transition-colors duration-300">
                     {item.title}
                   </h3>
-                  
+
                   <p className="text-white/70 mb-6">
                     {item.description}
                   </p>
-                  
+
                   {item.items && (
                     <ul className="space-y-3">
                       {item.items.map((subitem, j) => (
@@ -1558,7 +1761,7 @@ const ProfYan = () => {
                     </ul>
                   )}
                 </div>
-                
+
                 {/* Premium footer with animation */}
                 <div className="border-t border-[#D4AF37]/10 p-4 bg-[#0F0E13] group-hover:bg-[#0F0E13]/80 flex justify-between items-center transition-colors duration-300">
                   <span className="text-[#D4AF37] text-sm font-medium">{item.ctaText || "Ver mais"}</span>
@@ -1569,7 +1772,7 @@ const ProfYan = () => {
                     <ArrowRight className="w-5 h-5 text-[#D4AF37]" />
                   </motion.div>
                 </div>
-                
+
                 {/* Subtle corner accent */}
                 <div className="absolute bottom-0 right-0 w-12 h-12 overflow-hidden">
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#D4AF37]/10 transform rotate-45 translate-x-1/2 translate-y-1/2"></div>
@@ -1577,72 +1780,96 @@ const ProfYan = () => {
               </motion.div>
             ))}
           </div>
-          
-          {/* Featured material */}
-          <motion.div 
-            className="bg-[#13121A] rounded-2xl shadow-xl border border-[#D4AF37]/10 overflow-hidden max-w-5xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+
+        
+        </div>
+      </section>
+
+      {/* CASES DE SUCESSO SHOWCASE SECTION */}
+      <section id="cases" className="py-24 bg-gradient-to-b from-[#0B0A0D] to-[#080608] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
+        <div className="absolute -right-64 top-64 w-[30rem] h-[30rem] bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            className="max-w-3xl mx-auto text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="p-8 md:p-12">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-full md:w-2/5 relative">
-                  <div className="aspect-video bg-[#0F0E13] rounded-xl overflow-hidden relative">
-                    <img 
-                      src="/api/placeholder/400/320" 
-                      alt="Material destaque" 
-                      className="w-full h-full object-cover opacity-80"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div 
-                        className="w-16 h-16 rounded-full bg-[#D4AF37] flex items-center justify-center cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Download className="w-6 h-6 text-[#080608] ml-1" />
-                      </motion.div>
-                    </div>
+            <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider">Histórias de sucesso</span>
+            <h2 className="text-4xl font-bold text-white mt-3 mb-5">Cases de Aprovação</h2>
+            <p className="text-xl text-white/70">
+              Veja alguns dos alunos que transformaram seus estudos e conquistaram a aprovação com nosso método exclusivo de ensino.
+            </p>
+          </motion.div>
+
+          {/* Case Study Carousel */}
+          <CaseStudyCarousel />
+
+          {/* Stats Display */}
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {[
+              { value: 98, suffix: "%", label: "Taxa de aprovação" },
+              { value: 120, suffix: "+", label: "Primeiros lugares" },
+              { value: 300, suffix: "+", label: "Aprovações em 2024" },
+              { value: 5000, suffix: "+", label: "Alunos aprovados" }
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                className="bg-[#13121A] rounded-xl p-6 border border-[#D4AF37]/10 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 * i }}
+                whileHover={{
+                  y: -5,
+                  boxShadow: "0 20px 40px -15px rgba(0,0,0,0.7)",
+                  borderColor: "rgba(212,175,55,0.3)"
+                }}
+              >
+                <div className="flex flex-col items-center">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent mb-2 flex items-baseline">
+                    <Counter from={0} to={stat.value} duration={2} delay={0.3} />
+                    <span className="ml-1">{stat.suffix}</span>
                   </div>
+                  <p className="text-white/60">{stat.label}</p>
                 </div>
-                
-                <div className="w-full md:w-3/5">
-                  <h3 className="text-2xl font-bold text-white mb-4">Material em Destaque</h3>
-                  <h4 className="text-[#D4AF37] text-lg mb-4">Apostila Completa de Matemática para Concursos</h4>
-                  <p className="text-white/70 mb-6">
-                    Esta apostila completa aborda todos os tópicos de matemática cobrados em concursos públicos, com teoria detalhada, exercícios resolvidos e dicas de estudo.
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Matemática</span>
-                    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Concursos</span>
-                    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Apostila</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-6">
-                    <motion.button
-                      className="px-5 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] rounded-lg text-[#080608] font-medium text-sm flex items-center gap-2"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <Download className="w-4 h-4" />
-                      Baixar agora
-                    </motion.button>
-                    
-                    <motion.button
-                      className="px-5 py-3 border border-[#D4AF37]/30 rounded-lg text-[#D4AF37] font-medium text-sm"
-                      whileHover={{ scale: 1.03, backgroundColor: 'rgba(212,175,55,0.1)' }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      Ver todos materiais
-                    </motion.button>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.a
+              href="#cursos"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] text-[#080608] font-semibold rounded-lg relative overflow-hidden group"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(212,175,55,0.4)" }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <motion.div
+                className="absolute top-0 -left-full h-full w-full bg-white/20 skew-x-12"
+                animate={{ left: ['100%', '-100%'] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+              />
+              <Trophy className="w-5 h-5" />
+              <span className="relative z-10">Seja o próximo caso de sucesso</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.a>
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 };
