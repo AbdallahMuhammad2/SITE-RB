@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 // Import the articles from separate file
-import { articles } from '../data/articles';
+import { articles } from '../data/articles.tsx';
 
 const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();

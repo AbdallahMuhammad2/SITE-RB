@@ -16,7 +16,9 @@ interface Article {
     name: string;
     role: string;
     avatar: string;
+    bio: string;
   };
+  image: string;
   category: string;
   slug: string;
   readTime?: string;
@@ -43,203 +45,151 @@ const Blog = () => {
 
   // Hardcoded article data - eventually should be fetched from API or CMS
   const articles: Article[] = [
+  
+    
     {
-      id: '1',
-      title: 'Técnicas avançadas para resolução de equações diferenciais',
-      excerpt: 'Descubra métodos eficientes para solucionar problemas complexos de equações diferenciais em concursos públicos.',
-      date: '15 Mar 2025',
-      author: {
-        id: 'prof-yan',
-        name: 'Prof. Yan',
-        role: 'Especialista em Matemática',
-        avatar: yan // Using path instead of direct import
-      },
-      category: 'Matemática',
-      slug: 'tecnicas-avancadas-equacoes',
-      readTime: '8 min',
-      views: '2.4K',
-      content: `
-      <h2>Introdução às Equações Diferenciais em Concursos</h2>
-      <p>As equações diferenciais representam um dos tópicos mais desafiadores em provas de concursos da área de exatas. Muitos candidatos encontram dificuldades ao se depararem com problemas que envolvem taxas de variação e relações entre funções e suas derivadas.</p>
-      
-      <p>Neste artigo, vamos explorar técnicas avançadas que podem ser aplicadas para resolver esses problemas de maneira eficiente, economizando tempo precioso durante a prova.</p>
-      
-      <h3>Por que equações diferenciais são importantes em concursos?</h3>
-      <p>Além de serem frequentes em provas de concursos para áreas de engenharia, economia e ciências exatas, as equações diferenciais testam a capacidade do candidato de modelar problemas reais e aplicar conhecimentos matemáticos de forma integrada.</p>
-      
-      <div class="article-highlight">
-        <p><strong>Dica importante:</strong> As bancas examinadoras geralmente valorizam mais a compreensão do método de resolução do que apenas a resposta final. Mostrar o passo a passo de forma clara pode garantir pontuação parcial mesmo em caso de erro no resultado.</p>
-      </div>
-      
-      <h2>Método 1: Separação de Variáveis Simplificada</h2>
-      <p>A técnica de separação de variáveis é fundamental para resolver equações diferenciais de primeira ordem. Vamos ver como aplicá-la de forma otimizada:</p>
-      
-      <ol>
-        <li>Identifique os termos que contêm x e y</li>
-        <li>Reorganize a equação para isolar os termos em x de um lado e os termos em y do outro</li>
-        <li>Integre ambos os lados separadamente</li>
-      </ol>
-      
-      <div class="article-formula">
-        <p>Considerando uma equação na forma:</p>
-        <p class="formula">M(x) + N(y)y' = 0</p>
-        <p>Podemos reorganizá-la como:</p>
-        <p class="formula">N(y)dy = -M(x)dx</p>
-        <p>Integrando ambos os lados:</p>
-        <p class="formula">∫N(y)dy = -∫M(x)dx + C</p>
-      </div>
-      
-      <p>Esta abordagem permite transformar uma equação diferencial em uma equação algébrica, facilitando sua resolução.</p>
-      
-      <h2>Método 2: Fator Integrante para Equações Lineares</h2>
-      <p>Para equações lineares de primeira ordem na forma padrão, o método do fator integrante é extremamente eficaz:</p>
-      
-      <div class="article-formula">
-        <p class="formula">y' + P(x)y = Q(x)</p>
-      </div>
-      
-      <p>O fator integrante é dado por:</p>
-      
-      <div class="article-formula">
-        <p class="formula">μ(x) = e^{∫P(x)dx}</p>
-      </div>
-      
-      <p>Multiplicando toda a equação por μ(x), obtemos:</p>
-      
-      <div class="article-formula">
-        <p class="formula">μ(x)y' + μ(x)P(x)y = μ(x)Q(x)</p>
-      </div>
-      
-      <p>Que simplifica para:</p>
-      
-      <div class="article-formula">
-        <p class="formula">d/dx[μ(x)y] = μ(x)Q(x)</p>
-      </div>
-      
-      <p>Integrando ambos os lados:</p>
-      
-      <div class="article-formula">
-        <p class="formula">μ(x)y = ∫μ(x)Q(x)dx + C</p>
-      </div>
-      
-      <div class="article-highlight">
-        <p><strong>Exemplo prático:</strong> Em uma prova da banca CESPE, foi solicitada a resolução da equação <span class="formula">y' + 2xy = x</span>. Utilizando o método do fator integrante:</p>
-        <p>P(x) = 2x, então μ(x) = e^{∫2xdx} = e^{x²}</p>
-        <p>Multiplicando a equação original por e^{x²}:</p>
-        <p>e^{x²}y' + 2xe^{x²}y = xe^{x²}</p>
-        <p>Que é equivalente a: d/dx[e^{x²}y] = xe^{x²}</p>
-        <p>Integrando: e^{x²}y = ∫xe^{x²}dx + C</p>
-        <p>Usando integração por partes: e^{x²}y = (1/2)e^{x²} + C</p>
-        <p>Portanto: y = 1/2 + Ce^{-x²}</p>
-      </div>
-      
-      <h2>Método 3: Equações de Segunda Ordem com Coeficientes Constantes</h2>
-      <p>Para equações homogêneas de segunda ordem com coeficientes constantes:</p>
-      
-      <div class="article-formula">
-        <p class="formula">ay'' + by' + cy = 0</p>
-      </div>
-      
-      <p>Podemos utilizar a equação característica:</p>
-      
-      <div class="article-formula">
-        <p class="formula">ar² + br + c = 0</p>
-      </div>
-      
-      <p>As soluções dependem das raízes da equação característica:</p>
-      
-      <ul>
-        <li>Se r₁ e r₂ são raízes reais distintas: y = C₁e^{r₁x} + C₂e^{r₂x}</li>
-        <li>Se r₁ = r₂: y = (C₁ + C₂x)e^{r₁x}</li>
-        <li>Se r = α ± βi são raízes complexas: y = e^{αx}[C₁cos(βx) + C₂sin(βx)]</li>
-      </ul>
-      
-      <h3>Aplicação em Problemas de Valor Inicial</h3>
-      <p>Em concursos, frequentemente são dados problemas de valor inicial (PVI), onde além da equação diferencial, são fornecidas condições iniciais. A estratégia consiste em:</p>
-      
-      <ol>
-        <li>Encontrar a solução geral da equação diferencial</li>
-        <li>Aplicar as condições iniciais para determinar as constantes</li>
-        <li>Verificar a solução obtida</li>
-      </ol>
-      
-      <h2>Dicas para Otimizar o Tempo de Resolução</h2>
-      <p>Durante a prova, cada segundo conta. Aqui estão algumas dicas para otimizar seu tempo:</p>
-      
-      <ul>
-        <li>Identifique o tipo de equação antes de iniciar a resolução</li>
-        <li>Memorize os padrões de soluções para os tipos mais comuns de equações</li>
-        <li>Pratique a aplicação dos métodos em diferentes contextos</li>
-        <li>Desenvolva intuição para escolher o método mais eficiente para cada problema</li>
-        <li>Mantenha um repertório de soluções de equações comuns memorizadas</li>
-      </ul>
-      
-      <p>Lembre-se de que a prática consistente é a chave para desenvolver intuição e velocidade na resolução de equações diferenciais. Resolver diversos exercícios usando os métodos apresentados ajudará a consolidar o conhecimento e preparará você para enfrentar desafios em provas de concursos com confiança.</p>
-      
-      <h2>Conclusão</h2>
-      <p>As técnicas apresentadas neste artigo fornecem um arsenal poderoso para abordar equações diferenciais em concursos públicos. Dominar esses métodos não apenas aumentará suas chances de acerto, mas também reduzirá significativamente o tempo necessário para resolver questões complexas.</p>
-      
-      <p>Continue praticando e aprimorando suas habilidades. Com dedicação e a aplicação sistemática dessas técnicas, você estará melhor preparado para enfrentar os desafios das provas de concursos na área de matemática.</p>
-      
-      <div class="article-references">
-        <h3>Referências recomendadas</h3>
-        <ul>
-          <li>Boyce, W. E., DiPrima, R. C. (2012). <em>Equações Diferenciais Elementares e Problemas de Valores de Contorno</em>. 10ª ed. Rio de Janeiro: LTC.</li>
-          <li>Zill, D. G. (2016). <em>Equações Diferenciais com Aplicações em Modelagem</em>. 3ª ed. São Paulo: Cengage Learning.</li>
-          <li>Simmons, G. F. (2007). <em>Equações Diferenciais: Teoria, Técnica e Prática</em>. São Paulo: McGraw-Hill.</li>
-        </ul>
-      </div>
-    `
-        },
-        
-        {
       id: '2',
-      title: 'Como desenvolver raciocínio lógico para provas',
-      excerpt: 'Estratégias práticas para aprimorar seu pensamento lógico e melhorar seu desempenho em questões complexas.',
-      date: '10 Mar 2025',
+      title: 'A Importância da Gramática na Redação',
+      excerpt: 'Como o domínio das regras gramaticais pode ser a chave para o sucesso no ENEM e concursos.',
+      date: '18 Mar 2025',
       author: {
         id: 'prof-paula',
-        name: 'Profa. Paula',
-        role: 'Especialista em Português',
-        avatar: paula
+        name: 'Profa. Paula Barreto',
+        role: 'Especialista em Língua Portuguesa',
+        avatar: paula,
+        bio: 'Mestre em Letras: Cultura, Educação e Linguagens e Especialista em Teoria e Método de Ensino da Língua Portuguesa.'
       },
-      category: 'Raciocínio Lógico',
-      slug: 'desenvolvimento-raciocinio-logico',
-      readTime: '6 min',
-      views: '1.8K'
+      category: 'Gramática',
+      image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3',
+      slug: 'importancia-gramatica-redacao',
+      readTime: '4 min',
+      views: '1.2K',
+      content: `
+        <h2>A Importância da Gramática na Redação: Chave para o Sucesso no ENEM e Concursos</h2>
+        <p>A gramática desempenha um papel fundamental na escrita de uma boa redação em exames como o ENEM, vestibulares e concursos. O domínio das regras gramaticais é essencial para garantir clareza, coesão e coerência no texto, permitindo que o autor expresse suas ideias de forma precisa e organizada.</p>
+        
+        <h3>Clareza e precisão nas ideias</h3>
+        <p>Ao compreender os recursos linguísticos, como a concordância verbal e nominal, a regência, a pontuação e a correta utilização dos pronomes, o candidato evita ambiguidades e erros que podem comprometer a compreensão do texto. Um texto bem estruturado e gramaticalmente correto facilita a leitura e transmite credibilidade, demonstrando o preparo do candidato para expressar-se de maneira clara e objetiva.</p>
+        
+        <div class="article-highlight">
+          <p><strong>Atenção:</strong> Nos concursos públicos e no ENEM, erros gramaticais graves podem reduzir significativamente a pontuação da redação, mesmo que o conteúdo seja relevante e bem argumentado.</p>
+        </div>
+        
+        <h3>Coesão e fluidez textual</h3>
+        <p>Além disso, o conhecimento da gramática auxilia na coesão textual, que se refere à conexão entre as partes do texto. O uso adequado de conectivos e referências pronominais, por exemplo, contribui para a fluidez da argumentação, evitando repetições desnecessárias e tornando o texto mais sofisticado.</p>
+        
+        <h3>Avaliação da competência linguística</h3>
+        <p>Nos exames e concursos, a capacidade de redigir um texto bem estruturado é um diferencial. A avaliação considera aspectos como a organização das ideias, a argumentação consistente e o uso adequado da norma culta da língua portuguesa. Dessa forma, estudar gramática não significa apenas memorizar regras, mas compreender como aplicá-las para construir textos claros e coesos.</p>
+        
+        <div class="article-image">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Estudante revisando gramática" />
+          <p class="caption">O domínio das regras gramaticais é fundamental para a produção de textos de qualidade</p>
+        </div>
+        
+        <h2>Aspectos gramaticais mais avaliados em redações</h2>
+        <p>Entre os principais aspectos gramaticais observados pelos avaliadores, destacam-se:</p>
+        
+        <ul>
+          <li>Concordância verbal e nominal</li>
+          <li>Regência verbal e nominal</li>
+          <li>Colocação pronominal</li>
+          <li>Pontuação</li>
+          <li>Ortografia</li>
+          <li>Acentuação</li>
+          <li>Paralelismo sintático</li>
+          <li>Uso adequado dos tempos verbais</li>
+        </ul>
+        
+        <h3>Exercícios para aprimorar seus conhecimentos gramaticais</h3>
+        <div class="article-exercise">
+          <p>Identifique e corrija os erros gramaticais nas frases abaixo:</p>
+          <p>1. "Os candidatos chegaram na sala e fizeram a prova com tranquilidade."</p>
+          <p>2. "Haviam muitas questões difíceis no exame."</p>
+          <p>3. "Se eu ver o resultado hoje, te aviso."</p>
+        </div>
+        
+        <h2>Conclusão</h2>
+        <p>Portanto, investir no estudo da gramática é essencial para quem deseja obter uma boa nota na redação do ENEM, vestibulares e concursos. O domínio da língua permite que o candidato se expresse com segurança e eficácia, aumentando suas chances de sucesso nas avaliações e na vida acadêmica e profissional.</p>
+        
+        <div class="article-references">
+          <h3>Material complementar recomendado</h3>
+          <ul>
+            <li>Bechara, E. (2019). <em>Moderna Gramática Portuguesa</em>. 39ª ed. Rio de Janeiro: Nova Fronteira.</li>
+            <li>Cunha, C., Cintra, L. (2017). <em>Nova Gramática do Português Contemporâneo</em>. 7ª ed. Rio de Janeiro: Lexikon.</li>
+            <li>Garcia, O. M. (2010). <em>Comunicação em Prosa Moderna</em>. 27ª ed. Rio de Janeiro: FGV.</li>
+          </ul>
+        </div>
+      `
     },
+    
     {
       id: '3',
-      title: 'Matemática financeira simplificada para concursos',
-      excerpt: 'Um guia completo sobre juros, amortização e demais temas frequentes em provas de concursos públicos.',
-      date: '05 Mar 2025',
-      author: {
-        id: 'prof-yan',
-        name: 'Prof. Yan',
-        role: 'Especialista em Matemática',
-        avatar: yan
-      },
-      category: 'Matemática Financeira',
-      slug: 'matematica-financeira-simplificada',
-      readTime: '10 min',
-      views: '3.2K'
-    },
-    {
-      id: '4',
-      title: 'Geometria espacial: visualização e resolução rápida',
-      excerpt: 'Técnicas para visualizar problemas tridimensionais e resolvê-los com eficiência em provas de tempo limitado.',
-      date: '28 Feb 2025',
+      title: '5 Razões para Estudar Português',
+      excerpt: 'Descubra por que o estudo da língua portuguesa vai muito além de regras gramaticais e pode transformar seu pensamento.',
+      date: '22 Mar 2025',
       author: {
         id: 'prof-paula',
-        name: 'Profa. Paula',
-        role: 'Especialista em Português',
-        avatar: paula
+        name: 'Profa. Paula Barreto',
+        role: 'Especialista em Língua Portuguesa',
+        avatar: paula,
+        bio: 'Mestre em Letras: Cultura, Educação e Linguagens e Especialista em Teoria e Método de Ensino da Língua Portuguesa.'
       },
-      category: 'Geometria',
-      slug: 'geometria-espacial-visualizacao',
-      readTime: '7 min',
-      views: '1.5K'
-    },
+      category: 'Língua Portuguesa',
+      image: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3',
+      slug: 'razoes-para-estudar-portugues',
+      readTime: '4 min',
+      views: '980',
+      content: `
+        <h2>5 Razões para Estudar Português</h2>
+        <p>A língua portuguesa é um dos elementos fundamentais da nossa comunicação e cultura. No entanto, muitas pessoas questionam a necessidade de estudar gramática e aprofundar-se nas regras do idioma. Baseando-nos na reflexão do texto "Dominar a gramática para quê?", exploramos cinco razões essenciais para investir no aprendizado do português.</p>
+        
+        <h3>1. Aprimoramento do Pensamento Crítico</h3>
+        <p>O estudo da gramática desenvolve o pensamento ordenado e estruturado. Quando entendemos a construção de frases e a função das palavras, passamos a formular argumentos mais claros e convincentes. Por exemplo, ao optar entre uma oração adversativa ("Neymar é bom jogador, mas indisciplinado") e uma concessiva ("Embora seja indisciplinado, Neymar é bom jogador"), direcionamos a ênfase do nosso discurso, o que impacta diretamente na nossa capacidade argumentativa.</p>
+        
+        <div class="article-highlight">
+          <p><strong>Reflexão:</strong> A escolha das estruturas gramaticais não é aleatória. Ela reflete nossa intenção comunicativa e revela nossa capacidade de organizar o pensamento.</p>
+        </div>
+        
+        <h3>2. Maior Compreensão de Textos</h3>
+        <p>A gramática não é um fim em si mesma, mas uma ferramenta para a compreensão e fruição de textos. Um exemplo disso é a dificuldade de muitos brasileiros em interpretar o Hino Nacional, que possui estrutura sintática complexa. Ao estudar a gramática, somos capazes de identificar construções como o hipérbato ("Ouviram do Ipiranga as margens plácidas de um povo heroico o brado retumbante"), facilitando a compreensão e apreciação da obra.</p>
+        
+        <h3>3. Melhoria na Escrita e na Comunicação</h3>
+        <p>Conhecer bem o idioma permite que expressemos nossas ideias de forma mais eficiente e impactante. Escolher conscientemente entre voz ativa ("João matou Pedro") e voz passiva ("Pedro foi morto por João") pode mudar completamente a ênfase de um texto. Além disso, a organização dos advérbios pode realçar informações cruciais, como em "Ontem, eu estive nesta casa", onde a posição do advérbio dá maior destaque ao tempo da ação.</p>
+        
+        <div class="article-image">
+          <img src="https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pessoa escrevendo em um caderno" />
+          <p class="caption">O estudo da gramática aprimora nossa capacidade de comunicação escrita e oral</p>
+        </div>
+        
+        <h3>4. Construção de Textos Mais Coesos e Coerentes</h3>
+        <p>O uso adequado de pronomes e conjunções é essencial para a coesão textual. Pronomes anafóricos e catafóricos ajudam a conectar as ideias de forma natural. Por exemplo, em "Fui à faculdade. Isso me tomou muito tempo", o pronome "isso" faz referência à primeira oração, garantindo um texto mais fluido e bem estruturado.</p>
+        
+        <h3>5. Desenvolvimento de uma Visão Mais Crítica da Língua e da Sociedade</h3>
+        <p>Dominar o português nos torna leitores mais atentos e capazes de identificar nuances do discurso. Esse conhecimento é útil tanto na interpretação de textos literários quanto na análise crítica de discursos políticos e midiáticos. Compreender as estruturas linguísticas nos permite perceber como a linguagem pode ser usada para persuadir, influenciar ou manipular opiniões.</p>
+        
+        <div class="article-exercise">
+          <h4>Atividade de reflexão:</h4>
+          <p>Compare as seguintes frases e analise como a estrutura gramatical altera o sentido:</p>
+          <ol>
+            <li>"Os manifestantes foram dispersados pela polícia."</li>
+            <li>"A polícia dispersou os manifestantes."</li>
+          </ol>
+          <p>Que diferença de foco e responsabilidade cada estrutura sugere?</p>
+        </div>
+        
+        <h2>Conclusão</h2>
+        <p>Em resumo, estudar português não se trata apenas de aprender regras gramaticais, mas de adquirir ferramentas para melhor expressar ideias, compreender textos e desenvolver uma visão mais ampla do mundo. O conhecimento da língua é um instrumento de empoderamento que nos ajuda a transitar melhor pela sociedade e a tomar decisões mais informadas.</p>
+        
+        <div class="article-references">
+          <h3>Para saber mais:</h3>
+          <ul>
+            <li>Bagno, M. (2007). <em>Preconceito linguístico: o que é, como se faz</em>. São Paulo: Loyola.</li>
+            <li>Possenti, S. (2011). <em>Por que (não) ensinar gramática na escola</em>. Campinas: Mercado de Letras.</li>
+            <li>Neves, M. H. M. (2018). <em>A gramática passada a limpo</em>. São Paulo: Parábola.</li>
+          </ul>
+        </div>
+      `
+    }
   ];
 
   // Get all unique categories

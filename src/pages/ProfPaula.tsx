@@ -8,7 +8,7 @@ import {
   CheckCircle, ArrowRight, Star, BookOpen, Download, Play,
   GraduationCap, Target, FileCheck, TrendingUp, Brain,
   BookText, Medal, Glasses, User, FileText, ShieldCheck,
-  MessageSquare, HeartHandshake, Pen, Quote, Trophy, ChevronRight, ChevronLeft, Plus
+  MessageSquare, HeartHandshake, Pen, Quote, Trophy, ChevronRight, ChevronLeft, Plus, Menu, Clock
 } from 'lucide-react';
 
 // Import your images
@@ -292,6 +292,137 @@ const FeatureBox: React.FC<FeatureBoxProps> = ({ icon, title, description, index
   </motion.div>
 );
 
+// Componente de Navegação Premium para a página da Professora Paula
+const PremiumNavigation: React.FC = () => {
+  const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  // Detecta scroll para aplicar efeitos de transparência
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > 80);
+      
+      // Detecta seção ativa baseada no scroll
+      const sections = ["home", "sobre", "cursos", "depoimentos", "faq"];
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= element.offsetTop - 100) {
+          setActiveSection(section);
+          break;
+        }
+      }
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const menuItems = [
+    { id: "home", label: "Início" },
+    { id: "sobre", label: "Sobre" },
+    { id: "cursos", label: "Cursos" },
+    { id: "depoimentos", label: "Depoimentos" },
+    { id: "faq", label: "FAQ" },
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 80,
+        behavior: "smooth",
+      });
+    }
+    setActiveSection(sectionId);
+  };
+
+  return (
+    <motion.nav
+      ref={navRef}
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
+        scrolled
+          ? "py-3 bg-[#080608]/95 backdrop-blur-lg border-b border-[#D4AF37]/10"
+          : "py-6 bg-transparent"
+      }`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        {/* Logo */}
+        <motion.div 
+          className="flex items-center gap-3"
+          whileHover={{ scale: 1.03 }}
+        >
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F9E077] flex items-center justify-center shadow-lg">
+              <Pen className="w-5 h-5 text-[#080608]" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-white">Profa. <span className="text-[#D4AF37]">Paula</span></h1>
+              <p className="text-xs text-white/60">Português & Redação</p>
+            </div>
+          </Link>
+        </motion.div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-2">
+          {menuItems.map((item) => (
+            <motion.button
+              key={item.id}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all relative ${
+                activeSection === item.id
+                  ? "text-[#D4AF37]"
+                  : "text-white/70 hover:text-white"
+              }`}
+              onClick={() => scrollToSection(item.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {item.label}
+              {activeSection === item.id && (
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37]"
+                  layoutId="activeIndicator"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              )}
+            </motion.button>
+          ))}
+          
+          {/* Botão CTA */}
+          <motion.a
+            href="https://pay.kiwify.com.br/aAsUbOm" 
+            className="ml-4 px-5 py-2 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] text-[#080608] rounded-lg text-sm font-semibold flex items-center gap-2 shadow-lg relative overflow-hidden group"
+            whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(212, 175, 55, 0.4)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <motion.div
+              className="absolute -left-full top-0 w-full h-full bg-white/20 skew-x-12"
+              animate={{ left: ["100%", "-100%"] }}
+              transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+            />
+            <span className="relative z-10">Matricule-se</span>
+            <ArrowRight className="w-4 h-4 relative z-10" />
+          </motion.a>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <motion.button
+          className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-[#D4AF37]/10 text-[#D4AF37]"
+          whileTap={{ scale: 0.9 }}
+        >
+          <Menu className="w-5 h-5" />
+        </motion.button>
+      </div>
+    </motion.nav>
+  );
+};
+
 // Main Home Component
 const Home = () => {
   // For parallax scroll effects
@@ -318,8 +449,79 @@ const Home = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
+  // Substitua o useEffect existente com este código mais robusto
+
+useEffect(() => {
+  // Seletores mais abrangentes para encontrar o navbar principal
+  const possibleNavbars = [
+    document.querySelector('header'),
+    document.querySelector('nav:not([class*="z-[60]"])'),
+    document.querySelector('.navbar'),
+    document.querySelector('#main-navbar'),
+    document.querySelector('header nav'),
+    // Seletor mais genérico como último recurso
+    ...Array.from(document.querySelectorAll('nav')).filter(nav => 
+      !nav.className.includes('z-[60]') && 
+      nav !== document.querySelector('nav[class*="z-[60]"]')
+    )
+  ];
+  
+  // Array para armazenar elementos que foram modificados para restauração futura
+  const modifiedElements: Array<{element: HTMLElement, display: string}> = [];
+  
+  // Tenta ocultar cada possível navbar
+  possibleNavbars.forEach(element => {
+    if (element instanceof HTMLElement) {
+      // Guarda o estilo display original
+      const originalDisplay = element.style.display;
+      // Oculta o elemento
+      element.style.display = 'none';
+      // Adiciona à lista para restauração
+      modifiedElements.push({element, display: originalDisplay});
+    }
+  });
+  
+  // Aumenta o z-index do navbar da Prof. Paula para garantir precedência
+  const profPaulaNav = document.querySelector('nav[class*="z-[60]"]');
+  if (profPaulaNav instanceof HTMLElement) {
+    profPaulaNav.style.zIndex = '1000';
+  }
+  
+  // Adiciona CSS global para maior garantia
+  const style = document.createElement('style');
+  style.textContent = `
+    body > header, 
+    body > nav:not([class*="z-[60]"]), 
+    .navbar, 
+    #main-navbar {
+      display: none !important;
+    }
+    nav[class*="z-[60]"] {
+      z-index: 1000 !important;
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Limpa tudo ao desmontar o componente
+  return () => {
+    // Restaura os elementos modificados
+    modifiedElements.forEach(({element, display}) => {
+      element.style.display = display;
+    });
+    
+    // Remove o estilo global
+    document.head.removeChild(style);
+    
+    // Restaura o z-index
+    if (profPaulaNav instanceof HTMLElement) {
+      profPaulaNav.style.zIndex = '60';
+    }
+  };
+}, []);
+
   return (
     <div className="relative overflow-hidden bg-[#080608] text-white">
+      <PremiumNavigation />
       {/* ULTRA-PREMIUM CINEMATIC HERO SECTION */}
       <section className="relative min-h-screen pt-20 pb-20 flex items-center overflow-hidden bg-[#080608]">
       {/* Cinematic Background Layers */}
@@ -638,6 +840,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <SobreProfPaula />
 
       {/* TESTIMONIALS SECTION */}
 <section id="depoimentos" className="py-24 bg-[#0A090C] relative overflow-hidden">
@@ -931,7 +1134,246 @@ const Home = () => {
     </div>
   );
 };
+// Seção "Sobre" Premium para a página da Professora Paula
+const SobreProfPaula: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: false, margin: "-100px" });
+  
+  const achievements = [
+    { icon: <GraduationCap />, text: "Licenciada em Letras" },
+    { icon: <BookOpen />, text: "Bacharel em Administração" },
+    { icon: <Medal />, text: "Especialista em Teoria e Método de ensino" },
+    { icon: <Trophy />, text: "Mestre em Letras" },
+    { icon: <Brain />, text: "Mestranda em Linguística" },
+    { icon: <FileCheck />, text: "Revisora de textos especializada" }
+  ];
 
+  return (
+    <section id="sobre" className="py-32 bg-gradient-to-b from-[#080608] to-[#0A090C] relative overflow-hidden">
+      {/* Animated background elements */}
+      <motion.div 
+        className="absolute left-0 top-1/4 w-96 h-96 rounded-full bg-[#D4AF37]/5 blur-3xl"
+        animate={{
+          x: [0, 20, 0],
+          y: [0, -30, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+      />
+      
+      <motion.div 
+        className="absolute right-0 bottom-1/4 w-80 h-80 rounded-full bg-[#D4AF37]/5 blur-3xl"
+        animate={{
+          x: [0, -20, 0],
+          y: [0, 30, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      
+      {/* Decorative elements */}
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div ref={containerRef} className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Left Content: Photo & Stats */}
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            {/* Main photo with premium frame effect */}
+            <div className="relative max-w-md mx-auto">
+              {/* Glow effect */}
+              <div className="absolute -inset-4 bg-[#D4AF37]/10 rounded-3xl blur-2xl"></div>
+              
+              {/* Photo frame with golden border */}
+              <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#D4AF37]/30">
+                <img 
+                  src={heroImage} 
+                  alt="Professora Paula Barreto" 
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                
+                {/* Quote overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                  <blockquote className="text-white italic text-lg font-light">
+                    "Quem aprende não depende"
+                  </blockquote>
+                  <p className="text-[#D4AF37] text-sm mt-2">— Lema de vida</p>
+                </div>
+              </div>
+              
+              {/* Achievement badges around the photo */}
+              <motion.div 
+                className="absolute -right-16 top-20 bg-black/70 backdrop-blur-md rounded-xl p-4 border border-[#D4AF37]/30 shadow-lg"
+                initial={{ opacity: 0, x: 30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.7 }}
+              >
+                <div className="flex items-center gap-3">
+                  <GraduationCap className="w-8 h-8 text-[#D4AF37]" />
+                  <div>
+                    <p className="text-white font-bold">Mestre em Letras</p>
+                    <p className="text-white/50 text-xs">Cultura e Educação em Linguagens</p>
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="absolute -left-16 top-1/3 bg-black/70 backdrop-blur-md rounded-xl p-4 border border-[#D4AF37]/30 shadow-lg"
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.9 }}
+              >
+                <div className="flex items-center gap-3">
+                  <FileText className="w-8 h-8 text-[#D4AF37]" />
+                  <div>
+                    <p className="text-white font-bold">Especialista</p>
+                    <p className="text-white/50 text-xs">Teoria e Método da Língua Portuguesa</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+            
+            {/* Experience Stats */}
+            <motion.div 
+              className="grid grid-cols-2 gap-4 mt-12"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 1.1 }}
+            >
+              {/* Anos de experiência */}
+              <div className="bg-[#13121A] border border-[#D4AF37]/10 rounded-xl p-5 shadow-lg flex flex-col items-center justify-center text-center hover:border-[#D4AF37]/30 transition-colors group">
+                <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mb-3 group-hover:bg-[#D4AF37]/20 transition-colors">
+                  <Clock className="w-6 h-6 text-[#D4AF37]" />
+                </div>
+                <h3 className="text-3xl font-bold text-white">10+</h3>
+                <p className="text-white/60 text-sm mt-1">Anos de experiência</p>
+              </div>
+              
+              {/* Alunos aprovados */}
+              <div className="bg-[#13121A] border border-[#D4AF37]/10 rounded-xl p-5 shadow-lg flex flex-col items-center justify-center text-center hover:border-[#D4AF37]/30 transition-colors group">
+                <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mb-3 group-hover:bg-[#D4AF37]/20 transition-colors">
+                  <User className="w-6 h-6 text-[#D4AF37]" />
+                </div>
+                <h3 className="text-3xl font-bold text-white">3000+</h3>
+                <p className="text-white/60 text-sm mt-1">Alunos aprovados</p>
+              </div>
+            </motion.div>
+          </motion.div>
+          
+          {/* Right Content: Bio & Qualifications */}
+          <motion.div 
+            className="space-y-8"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            {/* Section heading */}
+            <div>
+              <motion.span 
+                className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider relative inline-block"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.6 }}
+              >
+                Conheça sua professora
+                <motion.span
+                  className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
+                  initial={{ scaleX: 0 }}
+                  animate={isInView ? { scaleX: 1 } : {}}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
+              </motion.span>
+              
+              <motion.h2 
+                className="text-4xl md:text-5xl font-bold text-white mt-3 mb-5"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Profa. Paula Barreto
+              </motion.h2>
+            </div>
+            
+            {/* Bio text */}
+            <motion.div 
+              className="space-y-6 text-lg text-white/70"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <p>
+                Sou a Professora Paula Barreto, especialista no ensino de Língua Portuguesa e Redação para concursos públicos, vestibulares e ENEM. Com mais de uma década de experiência, desenvolvi métodos que transformam conteúdos complexos em aprendizado eficiente.
+              </p>
+              
+              <p>
+                Minha formação acadêmica inclui licenciatura em Letras, bacharelado em Administração, especialização em Teoria e Método de ensino da Língua Portuguesa, mestrado em Letras (cultura, educação e Linguagens) e estou cursando mestrado em Linguística.
+              </p>
+              
+              <p>
+                Além da docência, atuo como revisora de textos e elaboro recursos para provas e seleções, o que me mantém sempre atualizada sobre as exigências das bancas examinadoras.
+              </p>
+              
+              <blockquote className="border-l-4 border-[#D4AF37] pl-6 py-2 italic">
+                "Com o lema de vida <span className="text-[#D4AF37] font-medium">Quem aprende não depende</span>, procuro desenvolver a autonomia dos alunos para que possam utilizar bem os recursos linguísticos para uma boa comunicação e para conseguir a tão sonhada aprovação."
+              </blockquote>
+            </motion.div>
+            
+            {/* Qualifications grid */}
+            <motion.div 
+              className="grid grid-cols-2 gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              {achievements.map((item, i) => (
+                <motion.div 
+                  key={i}
+                  className="flex items-start gap-4 p-4 rounded-lg border border-[#D4AF37]/10 bg-[#13121A]/50"
+                  whileHover={{ y: -5, borderColor: "rgba(212,175,55,0.3)" }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                    {React.cloneElement(item.icon, { className: "w-5 h-5 text-[#D4AF37]" })}
+                  </div>
+                  <p className="text-white text-sm">{item.text}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+            
+            {/* CTA */}
+            <motion.div 
+              className="pt-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              <a 
+                href="https://pay.kiwify.com.br/aAsUbOm" 
+                className="group bg-gradient-to-r from-[#D4AF37] to-[#F9E077] text-black px-8 py-4 rounded-lg font-semibold hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-shadow flex items-center gap-2 relative overflow-hidden w-max"
+              >
+                <motion.div
+                  className="absolute -left-full top-0 w-full h-full bg-white/20 skew-x-12"
+                  animate={{ left: ['100%', '-100%'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                />
+                <BookText className="w-5 h-5" />
+                <span className="relative z-10">Aprenda com a Profa. Paula</span>
+                <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity relative z-10" />
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
 // Animated FAQ Component
 const AnimatedFAQSection = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);

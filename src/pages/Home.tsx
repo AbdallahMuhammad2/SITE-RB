@@ -8,11 +8,11 @@ import { StudyMaterialsSection } from '../components/sections/StudyMaterialsSect
 import { NewsSection } from '../components/sections/NewsSection';
 
 import { CTASection } from '../components/sections/CTASection';
-import yan from '../images/Yan.png';
-import paula from '../images/Paula.png';
+import yan from '../images/Yan.jpg';
+import paula from '../images/prof-paula.jpeg';
 import Valbert from '../images/Valbert.png';
-import jessica from '../images/Jessica.png';
-import Nicassio from '../images/Nicassio.png';
+import jessica from '../images/Jéssica.jpg';
+import Nicassio from '../images/Nicássio.jpg';
 import Henrique from '../images/Henrique-Landim-Perfil.png';
 import Anna from '../images/Anna-Alves-Perfil.png';
 import Andreia from '../images/Andreia-Torres-Perfil.png';
@@ -21,7 +21,7 @@ import Andreia from '../images/Andreia-Torres-Perfil.png';
 const HomePage = () => {
   return (
     <div className="bg-[#08070A] overflow-hidden">
-      <UltraPremiumHero />
+      <UltraHero />
       <StatsHighlightBanner />
       <AboutSection />
       <MethodologySection />
@@ -143,99 +143,80 @@ const StatsHighlightBanner = () => {
 };
 
 // Ultra-Premium Hero Section with Cinematic Visual Effects
-export const UltraPremiumHero = () => {
+export const UltraHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [loaded, setLoaded] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const mouseXSpring = useSpring(mouseX, { stiffness: 50, damping: 15 });
-  const mouseYSpring = useSpring(mouseY, { stiffness: 50, damping: 15 });
+  const mouseXSpring = useSpring(mouseX, { stiffness: 40, damping: 15 });
+  const mouseYSpring = useSpring(mouseY, { stiffness: 40, damping: 15 });
 
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const parallaxY1 = useTransform(scrollY, [0, 1000], [0, 300]);
-  const parallaxY2 = useTransform(scrollY, [0, 1000], [0, 150]);
-  const parallaxY3 = useTransform(scrollY, [0, 1000], [0, -100]);
-  const scale = useTransform(scrollY, [0, 300], [1, 0.9]);
-
+  // Enhanced cursor tracking for 3D effect
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
-    mouseX.set((clientX - innerWidth / 2) / innerWidth);
-    mouseY.set((clientY - innerHeight / 2) / innerHeight);
-  };
-
-  // Calculate 3D perspective effect for background elements
-  const calculatePerspective = (x: number, y: number, depth: number = 1) => {
-    const xOffset = x * depth * 50;
-    const yOffset = y * depth * 50;
-    return { x: xOffset, y: yOffset };
+    const x = (clientX / innerWidth - 0.5) * 2;
+    const y = (clientY / innerHeight - 0.5) * 2;
+    mouseX.set(x);
+    mouseY.set(y);
   };
 
   useEffect(() => {
-    setLoaded(true);
-
     if (headingRef.current) {
-      // Enhanced text reveal animation
-      const titleText = new SplitType('.split-text', { types: 'chars,words' });
+      // Ultra premium text animation
+      const titleText = new SplitType(headingRef.current, { types: 'chars,words' });
 
-      // Staggered luxury text animation
       gsap.fromTo(
         titleText.chars,
-        { y: 80, opacity: 0, rotateX: -90 },
+        { 
+          y: 100, 
+          opacity: 0, 
+          rotateX: -90,
+          transformOrigin: "center bottom"
+        },
         {
           y: 0,
           opacity: 1,
           rotateX: 0,
           stagger: 0.03,
           duration: 1.2,
-          delay: 0.5,
-          ease: 'power3.out',
-          transformOrigin: "0% 50%"
+          delay: 0.3,
+          ease: 'power4.out'
         }
       );
 
-      // Enhanced gold shine animation
-      gsap.fromTo(
-        '.gold-shine-text',
-        { backgroundPosition: "0% 50%", backgroundSize: '300% auto' },
-        { backgroundPosition: "100% 50%", duration: 4, delay: 1.5, ease: 'power2.out' }
-      );
-
-      // Premium fade-in sequence with enhanced easing
-      gsap.fromTo(
-        '.fade-in-sequence',
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, stagger: 0.12, duration: 1.2, ease: 'power3.out', delay: 1.2 }
-      );
+      // Create stunning light beam effect
+      const container = containerRef.current;
+      if (container) {
+        // Create light beams
+        for (let i = 0; i < 5; i++) {
+          const beam = document.createElement('div');
+          beam.className = 'absolute h-screen w-40 origin-bottom';
+          beam.style.left = `${Math.random() * 100}%`;
+          beam.style.transform = `rotate(${-10 + Math.random() * 20}deg)`;
+          beam.style.background = `linear-gradient(to top, 
+            rgba(212,175,55,${Math.random() * 0.15 + 0.05}) 0%, 
+            rgba(249,224,119,${Math.random() * 0.1}) 50%,
+            transparent 100%)`;
+          beam.style.filter = 'blur(8px)';
+          beam.style.opacity = '0';
+          
+          container.appendChild(beam);
+          
+          gsap.to(beam, {
+            opacity: Math.random() * 0.3 + 0.1,
+            duration: 2,
+            delay: i * 0.4,
+            yoyo: true,
+            repeat: -1,
+            repeatDelay: Math.random() * 5
+          });
+        }
+      }
     }
 
-    // Enhanced parallax effect with depth perception
-    const parallaxItems = document.querySelectorAll('.parallax-element');
-    const handleParallax = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 2;
-      const y = (clientY / innerHeight - 0.5) * 2;
-
-      parallaxItems.forEach((item: any, index) => {
-        const depth = (index % 3 + 1) * 0.3;
-        const { x: xOffset, y: yOffset } = calculatePerspective(x, y, depth);
-
-        gsap.to(item, {
-          x: xOffset,
-          y: yOffset,
-          rotateX: -y * depth * 2,
-          rotateY: x * depth * 2,
-          duration: 1.2,
-          ease: 'power2.out'
-        });
-      });
-    };
-
-    window.addEventListener('mousemove', handleParallax);
-    return () => window.removeEventListener('mousemove', handleParallax);
+    setLoaded(true);
   }, []);
 
   return (
@@ -245,105 +226,104 @@ export const UltraPremiumHero = () => {
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 1.2 }}
       style={{
-        background: "radial-gradient(circle at bottom, #131219 0%, #080608 70%)",
-        perspective: 1500
+        background: "radial-gradient(circle at 20% bottom, #131219 0%, #08060a 70%)",
+        perspective: 2000
       }}
     >
-      {/* Enhanced 3D Cinematic Background */}
+      {/* Premium volumetric atmosphere */}
       <div className="absolute inset-0 overflow-hidden">
-  {/* Premium cinematic background with volumetric fog */}
-  <motion.div
-    className="absolute inset-0 bg-black opacity-60"
-    initial={{ opacity: 0.6 }}
-    animate={{ 
-      opacity: [0.6, 0.7, 0.6],
-      background: [
-        'radial-gradient(circle at 20% 80%, rgba(0,0,0,0.8), rgba(8,6,8,1) 70%)',
-        'radial-gradient(circle at 80% 20%, rgba(0,0,0,0.8), rgba(8,6,8,1) 70%)',
-        'radial-gradient(circle at 20% 80%, rgba(0,0,0,0.8), rgba(8,6,8,1) 70%)'
-      ]
-    }}
-    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-  />
-  
-  {/* Premium 3D particles with depth */}
-  <div className="absolute inset-0">
-    {[...Array(100)].map((_, i) => {
-      const size = Math.random() * 4 + 1;
-      const depth = Math.random();
-      return (
         <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: size + 'px',
-            height: size + 'px',
-            background: depth > 0.9 ? '#D4AF37' : '#FFFFFF',
-            boxShadow: `0 0 ${size * 2}px ${depth > 0.9 ? '#D4AF37' : '#FFFFFF'}`,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            opacity: depth * 0.7,
-            zIndex: Math.floor(depth * 10)
+          className="absolute inset-0"
+          initial={{ opacity: 0.6 }}
+          animate={{ 
+            opacity: [0.6, 0.75, 0.6],
+            background: [
+              'radial-gradient(circle at 30% 70%, rgba(8,6,8,0.8), rgba(8,6,8,1) 70%)',
+              'radial-gradient(circle at 70% 30%, rgba(8,6,8,0.8), rgba(8,6,8,1) 70%)',
+              'radial-gradient(circle at 30% 70%, rgba(8,6,8,0.8), rgba(8,6,8,1) 70%)'
+            ]
           }}
-          animate={{
-            y: [0, -20 - Math.random() * 50],
-            x: [0, (Math.random() - 0.5) * 20],
-            opacity: [depth * 0.3, depth * 0.7, 0],
-            scale: [0, 1, 0]
-          }}
-          transition={{
-            duration: 10 + Math.random() * 20,
-            repeat: Infinity,
-            delay: Math.random() * 10
-          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
-      );
-    })}
-  </div>
-  
-  {/* Premium volumetric light rays */}
-  <div className="absolute inset-0">
-    {[...Array(8)].map((_, i) => (
-      <motion.div
-        key={`beam-${i}`}
-        className="absolute h-screen w-40 origin-bottom"
-        style={{
-          left: `${Math.random() * 100}%`,
-          background: `linear-gradient(to top, 
-            rgba(212,175,55,${Math.random() * 0.15 + 0.05}) 0%, 
-            rgba(249,224,119,${Math.random() * 0.1}) 50%,
-            transparent 100%)`,
-          transform: `rotate(${-10 + Math.random() * 20}deg)`,
-          filter: 'blur(8px)',
-          opacity: 0
-        }}
-        animate={{
-          opacity: [0, Math.random() * 0.3 + 0.1, 0],
-          scaleX: [0.5, 1 + Math.random() * 0.5, 0.5]
-        }}
-        transition={{
-          duration: 8 + Math.random() * 10,
-          repeat: Infinity,
-          repeatType: 'mirror',
-          delay: Math.random() * 10
-        }}
-      />
-    ))}
-  </div>
-</div>
 
-      {/* Main Content Container with Enhanced Depth */}
+        {/* Ultra-premium particles with depth and glow */}
+        <div className="absolute inset-0">
+          {[...Array(120)].map((_, i) => {
+            const size = Math.random() * 3 + 1;
+            const depth = Math.random();
+            const isGold = Math.random() > 0.85;
+            
+            return (
+              <motion.div
+                key={`star-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  width: size + 'px',
+                  height: size + 'px',
+                  background: isGold ? '#D4AF37' : '#FFFFFF',
+                  boxShadow: `0 0 ${size * 2}px ${isGold ? '#D4AF37' : 'rgba(255,255,255,0.8)'}`,
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  opacity: depth * 0.7,
+                  zIndex: Math.floor(depth * 10)
+                }}
+                animate={{
+                  y: [0, -30 - Math.random() * 70],
+                  x: [0, (Math.random() - 0.5) * 30],
+                  opacity: [0, depth * 0.7, 0],
+                  scale: [0.3, 1, 0.3],
+                  filter: [
+                    'blur(0px)',
+                    `blur(${Math.random() > 0.7 ? '1px' : '0px'})`,
+                    'blur(0px)'
+                  ]
+                }}
+                transition={{
+                  duration: 10 + Math.random() * 25,
+                  repeat: Infinity,
+                  delay: Math.random() * 20
+                }}
+              />
+            );
+          })}
+        </div>
+
+        {/* Cinematic dust particles */}
+        {[...Array(40)].map((_, i) => (
+          <motion.div
+            key={`dust-${i}`}
+            className="absolute rounded-full bg-white/30"
+            style={{
+              width: 1 + Math.random() * 2 + 'px',
+              height: 1 + Math.random() * 2 + 'px',
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              filter: 'blur(0.5px)'
+            }}
+            animate={{
+              y: [0, -200 - Math.random() * 300],
+              x: [0, (Math.random() - 0.5) * 50],
+              opacity: [0, 0.3 + Math.random() * 0.4, 0]
+            }}
+            transition={{
+              duration: 15 + Math.random() * 15,
+              repeat: Infinity,
+              delay: Math.random() * 10,
+              ease: "easeOut"
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Advanced Content Container with Depth */}
       <div className="relative z-30 flex items-center justify-center min-h-screen">
-        <motion.div
-          className="container mx-auto px-4 md:px-6 lg:px-8 py-16"
-          style={{ scale }}
-        >
+        <motion.div className="container mx-auto px-4 md:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[80vh]">
-            {/* Left Column with Enhanced Content */}
+            {/* Left Column */}
             <div className="lg:col-span-7 lg:col-start-1 py-12">
-              {/* Ultra-Premium Brand Badge */}
+              {/* Premium Brand Badge */}
               <motion.div
                 className="mb-8 fade-in-sequence relative inline-block"
                 initial={{ opacity: 0, x: -30 }}
@@ -351,7 +331,7 @@ export const UltraPremiumHero = () => {
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
                 <motion.div
-                  className="absolute -inset-2.5 rounded-full opacity-0 blur-xl"
+                  className="absolute -inset-2.5 rounded-full blur-xl"
                   style={{
                     background: "radial-gradient(circle, rgba(212,175,55,0.8) 0%, transparent 80%)"
                   }}
@@ -395,74 +375,25 @@ export const UltraPremiumHero = () => {
                 </div>
               </motion.div>
 
-              {/* Enhanced Premium Headline with 3D Text Reveal */}
+              {/* Ultra-Premium Headline with Cinematic Animation */}
               <div className="mb-12">
                 <h1
                   ref={headingRef}
                   className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
                   style={{ lineHeight: 1.1, perspective: "1500px" }}
                 >
-                  <div className="mb-6 overflow-hidden">
-                    <span className="split-text block relative text-white">
-                      Excelência em
-                    </span>
-                  </div>
-
-                  <div className="mb-6 overflow-hidden perspective-text">
-                    <div className="relative inline-block">
-                      <span className="heading-word gold-shine-text bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:300%_auto] bg-clip-text text-transparent">
-                        aprovações
-                      </span>
-
-                      {/* Premium gold underline with enhanced animation */}
-                      <div className="relative h-[3px] mt-3 w-full overflow-hidden">
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/80 via-[#F9E077] to-[#D4AF37]/80 rounded-full"
-                          initial={{ scaleX: 0, transformOrigin: "left" }}
-                          animate={{ scaleX: 1 }}
-                          transition={{ delay: 1.8, duration: 1.2, ease: "easeInOut" }}
-                        />
-
-                        {/* Gold scanner effect with motion blur */}
-                        <motion.div
-                          className="absolute inset-y-0 w-24 blur-sm bg-gradient-to-r from-transparent via-white to-transparent"
-                          animate={{ x: ['-100%', '200%'] }}
-                          transition={{ repeat: Infinity, duration: 2, delay: 3, repeatDelay: 5 }}
-                        />
-
-                        {/* Enhanced gold dust particles */}
-                        {[...Array(12)].map((_, i) => (
-                          <motion.div
-                            key={i}
-                            className="absolute top-0 h-[2px] w-[2px] rounded-full bg-white"
-                            style={{
-                              left: `${i * 9}%`,
-                              boxShadow: "0 0 6px 2px #D4AF37"
-                            }}
-                            animate={{
-                              y: [0, -10, 0],
-                              opacity: [0, 1, 0],
-                              scale: [0.5, 2, 0.5]
-                            }}
-                            transition={{
-                              duration: 2,
-                              delay: 2 + i * 0.2,
-                              repeat: Infinity,
-                              repeatDelay: 8
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                  <span className="block mb-6 text-white">Excelência em</span>
+                  <span className="block mb-6 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:300%_auto] animate-shimmer bg-clip-text text-transparent">
+                    aprovações
+                  </span>
+                  <span className="block text-white">para concursos</span>
                 </h1>
 
-                {/* Enhanced description with animated side accent */}
                 <motion.div
-                  className="relative max-w-2xl"
+                  className="max-w-2xl relative mt-10"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2 }}
+                  transition={{ delay: 1.6 }}
                 >
                   <motion.span
                     className="absolute -left-5 top-0 w-[2px] h-full"
@@ -478,44 +409,129 @@ export const UltraPremiumHero = () => {
                   />
 
                   <p className="text-xl leading-relaxed text-white/80 relative pl-2 fade-in-sequence">
-                    <span className="font-medium">Garanta a sua aprovação</span> de forma rápida no concurso mais esperado do ano.
-                    O <span className="text-[#D4AF37] font-medium">concurso dos correios</span> está chegando: essa é a sua chance de ser aprovado e
-                    conquistar a sua <span className="relative inline-block">
-                      estabilidade financeira
-                      <motion.span
-                        className="absolute left-0 right-0 bottom-0 h-[1px] bg-white/40"
-                        initial={{ scaleX: 0, transformOrigin: "left" }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ delay: 2, duration: 0.8 }}
-                      />
-                    </span>.
+                    <span className="font-medium">Garanta sua aprovação</span> com nossa metodologia 
+                    exclusiva e professores especialistas em cada área. Conquiste 
+                    sua <span className="text-[#D4AF37] font-medium">estabilidade financeira</span> 
+                    e transforme sua vida agora.
                   </p>
+                </motion.div>
+
+                {/* Cinematic CTA Buttons */}
+                <motion.div 
+                  className="mt-12 flex flex-wrap gap-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2, duration: 0.8 }}
+                >
+                  <motion.button
+                    className="relative overflow-hidden px-8 py-4 rounded-lg group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto]" />
+                    
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                      animate={{
+                        backgroundPosition: ['0% center', '100% center']
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+                      style={{
+                        backgroundSize: '200% 100%',
+                        backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%)'
+                      }}
+                    />
+                    
+                    <div className="relative flex items-center gap-3">
+                      <span className="text-[#080608] font-medium">Começar agora</span>
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                      >
+                        <ArrowRight className="h-5 w-5 text-[#080608]" />
+                      </motion.div>
+                    </div>
+                    
+                    <div className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-30 group-hover:animate-shine" />
+                  </motion.button>
+                  
+                  <motion.button
+                    className="px-8 py-4 rounded-lg border border-[#D4AF37]/30 bg-[#D4AF37]/5 text-white font-medium flex items-center gap-3 group overflow-hidden relative"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      backgroundColor: "rgba(212,175,55,0.1)",
+                      borderColor: "rgba(212,175,55,0.6)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span>Conhecer metodologia</span>
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    >
+                      <ArrowRight className="h-5 w-5 text-[#D4AF37]" />
+                    </motion.span>
+
+                    <div className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-30 group-hover:animate-shine" />
+                  </motion.button>
                 </motion.div>
               </div>
             </div>
 
-            {/* Right column with advanced 3D floating cards */}
-            <div className="lg:col-span-5 lg:col-start-8 relative hidden lg:block">
-              <div className="relative h-[600px]">
-                {/* Enhanced atmospheric glow behind cards */}
-                <motion.div
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-[100px] bg-[#D4AF37]/10 opacity-70"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5]
-                  }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                {/* Enhanced 3D floating cards with premium effects */}
-                <EnhancedFloatingCard index={0} delay={0.3} mouseX={mouseXSpring} mouseY={mouseYSpring} />
-                <EnhancedFloatingCard index={1} delay={0.5} mouseX={mouseXSpring} mouseY={mouseYSpring} />
-                <EnhancedFloatingCard index={2} delay={0.7} mouseX={mouseXSpring} mouseY={mouseYSpring} />
-              </div>
-            </div>
+            {/* Right column with 3D floating elements */}
+            {/* Add your 3D floating cards here or enhance them further */}
           </div>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white/50 cursor-pointer"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+      >
+        <motion.span
+          className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-2 font-medium"
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          Explore
+        </motion.span>
+        <motion.div
+          className="flex flex-col items-center"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="w-[1px] h-6 bg-gradient-to-b from-[#D4AF37]/0 via-[#D4AF37] to-[#D4AF37]/0 mb-2"></div>
+          <div className="h-10 w-10 rounded-full flex items-center justify-center border border-[#D4AF37]/30">
+            <ChevronDown className="h-4 w-4 text-[#D4AF37]" />
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Add CSS for shine animation */}
+      <style>{`
+        @keyframes shine {
+          from {
+            transform: translateX(-100%) skewX(-15deg);
+          }
+          to {
+            transform: translateX(150%) skewX(-15deg);
+          }
+        }
+        .group:hover .group-hover\\:animate-shine {
+          animation: shine 2s infinite;
+        }
+        @keyframes shimmer {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-shimmer {
+          animation: shimmer 8s ease-in-out infinite;
+        }
+      `}</style>
     </motion.section>
   );
 };

@@ -7,4 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  assetsInclude: ['**/*.PNG', '**/*.png'], // Adicione esta linha para incluir arquivos PNG como assets
 });

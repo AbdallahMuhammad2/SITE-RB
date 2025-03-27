@@ -1,50 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight, Clock, ArrowUpRight, ChevronRight, Bookmark, Star, Eye, Users, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+// Importar os artigos reais
+import { articles } from '../../data/articles';
 
 export const NewsSection = () => {
   const [hoveredNews, setHoveredNews] = useState<number | null>(null);
 
-  // Enhanced news data with more metadata and featured flag
-  const news = [
-    {
-      id: 1,
-      title: "Novo curso intensivo de Direito Constitucional preparado para o Edital",
-      category: "Lançamentos",
-      date: "15/03/2023",
-      name: "tecnicas-avancadas-equacoes",
-      readTime: "4 min",
-      views: "2.4K",
-      featured: true,
-      image: "https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3",
-      excerpt: "Preparamos um curso intensivo focado nas principais questões de Direito Constitucional que serão cobradas no próximo edital com base em nossa análise exclusiva.",
-      tags: ["Direito Constitucional", "Curso Intensivo", "Edital"]
-    },
-    {
-      id: 2,
-      title: "RB Cursos celebra 90% de aprovação em concursos públicos federais",
-      category: "Resultados",
-      date: "02/02/2023",
-      readTime: "3 min",
-      name: "tecnicas-avancadas-equacoes",
-      views: "3.8K",
-      image: "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?ixlib=rb-4.0.3",
-      excerpt: "Nosso método exclusivo alcançou mais uma vez resultados excepcionais nas aprovações dos principais concursos federais realizados no último trimestre.",
-      tags: ["Aprovações", "Resultados", "Concursos Federais"]
-    },
-    {
-      id: 3,
-      title: "Estratégias avançadas para resolver questões de RLM em tempo recorde",
-      category: "Metodologia",
-      date: "28/01/2023",
-      name: "tecnicas-avancadas-equacoes",
-      readTime: "5 min",
-      views: "1.9K",
-      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3",
-      excerpt: "Conheça as técnicas desenvolvidas pelo Prof. Yan Ribeiro para solucionar questões complexas de Raciocínio Lógico-Matemático com rapidez e precisão.",
-      tags: ["RLM", "Técnicas Avançadas", "Economia de Tempo"]
-    }
-  ];
+  // Use os primeiros 3 artigos reais da coleção de artigos
+  const featuredArticles = articles.slice(0, 3);
+  
+  // Define o primeiro artigo como destaque
+  const firstArticle = featuredArticles[0];
+  // Os outros artigos serão exibidos na coluna lateral
+  const otherArticles = featuredArticles.slice(1);
 
   return (
     <section className="py-32 relative overflow-hidden bg-gradient-to-b from-[#0A090C] to-[#080608]">
@@ -143,7 +114,7 @@ export const NewsSection = () => {
                 <TrendingUp className="w-3 h-3 text-[#080608]" />
               </motion.div>
               <span className="text-sm font-medium bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
-                NOVIDADES & ARTIGOS
+                BLOG & ARTIGOS
               </span>
             </div>
           </motion.div>
@@ -204,162 +175,146 @@ export const NewsSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
           {/* Featured Article - Takes up first 8 columns on large screens */}
-          {news.filter(item => item.featured).map(featuredItem => (
-            <motion.div
-              key={featuredItem.id}
-              className="lg:col-span-8 group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              onMouseEnter={() => setHoveredNews(featuredItem.id)}
-              onMouseLeave={() => setHoveredNews(null)}
-            >
-              <div className="bg-[#13121A] rounded-2xl overflow-hidden border border-white/5 shadow-xl h-full">
-                {/* Premium card glow effect */}
-                <motion.div
-                  className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D4AF37]/20 to-transparent opacity-0 blur-xl -z-10"
-                  animate={{ 
-                    opacity: hoveredNews === featuredItem.id ? 0.2 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
-                  {/* Image side */}
-                  <div className="relative h-64 lg:h-full overflow-hidden">
-                    {/* Featured badge */}
-                    <div className="absolute top-4 left-4 z-20">
-                      <div className="px-3 py-1.5 bg-[#D4AF37] rounded-full text-[#080608] text-xs font-medium flex items-center gap-1.5">
-                        <Star className="w-3.5 h-3.5 fill-[#080608] text-[#080608]" />
-                        Em Destaque
-                      </div>
-                    </div>
-                    
-                    {/* Category tag */}
-                    <div className="absolute top-4 right-4 z-20">
-                      <div className="px-3 py-1.5 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-medium">
-                        {featuredItem.category}
-                      </div>
-                    </div>
-                    
-                    {/* Image with premium hover effect */}
-                    <div className="relative w-full h-full overflow-hidden">
-                      <motion.div
-                        className="w-full h-full"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#13121A] via-[#13121A]/40 to-transparent z-10"></div>
-                        <img 
-                          src={featuredItem.image} 
-                          alt={featuredItem.title} 
-                          className="w-full h-full object-cover"
-                        />
-                      </motion.div>
-                      
-                      {/* Scan line effect */}
-                      <motion.div
-                        className="absolute inset-x-0 h-[30%] bg-gradient-to-b from-[#D4AF37]/10 to-transparent z-10 pointer-events-none"
-                        animate={{
-                          top: ['0%', '70%', '0%'],
-                        }}
-                        transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
-                      />
+          <motion.div
+            key={firstArticle.id}
+            className="lg:col-span-8 group"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            onMouseEnter={() => setHoveredNews(Number(firstArticle.id))}
+            onMouseLeave={() => setHoveredNews(null)}
+          >
+            <div className="bg-[#13121A] rounded-2xl overflow-hidden border border-white/5 shadow-xl h-full">
+              {/* Premium card glow effect */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D4AF37]/20 to-transparent opacity-0 blur-xl -z-10"
+                animate={{ 
+                  opacity: hoveredNews === Number(firstArticle.id) ? 0.2 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+                {/* Image side */}
+                <div className="relative h-64 lg:h-full overflow-hidden">
+                  {/* Featured badge */}
+                  <div className="absolute top-4 left-4 z-20">
+                    <div className="px-3 py-1.5 bg-[#D4AF37] rounded-full text-[#080608] text-xs font-medium flex items-center gap-1.5">
+                      <Star className="w-3.5 h-3.5 fill-[#080608] text-[#080608]" />
+                      Em Destaque
                     </div>
                   </div>
                   
-                  {/* Content side */}
-                  <div className="p-8 lg:p-10 flex flex-col">
-                    {/* Metadata */}
-                    <div className="flex items-center text-xs text-white/60 mb-6 gap-5">
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {featuredItem.date}
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        {featuredItem.readTime} de leitura
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Eye className="w-3.5 h-3.5" />
-                        {featuredItem.views} visualizações
-                      </div>
+                  {/* Category tag */}
+                  <div className="absolute top-4 right-4 z-20">
+                    <div className="px-3 py-1.5 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-medium">
+                      {firstArticle.category}
                     </div>
+                  </div>
+                  
+                  {/* Image with premium hover effect */}
+                  <div className="relative w-full h-full overflow-hidden">
+                    <motion.div
+                      className="w-full h-full"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#13121A] via-[#13121A]/40 to-transparent z-10"></div>
+                      <img 
+                        src={firstArticle.image} 
+                        alt={firstArticle.title} 
+                        className="w-full h-full object-cover"
+                      />
+                    </motion.div>
                     
-                    {/* Title */}
-                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-[#D4AF37] transition-colors duration-300">
-                      {featuredItem.title}
-                    </h3>
-                    
-                    {/* Fancy divider */}
-                    <div className="h-px w-16 bg-gradient-to-r from-[#D4AF37] to-transparent mb-4"></div>
-                    
-                    {/* Excerpt */}
-                    <p className="text-white/70 mb-6 leading-relaxed">
-                      {featuredItem.excerpt}
-                    </p>
-                    
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {featuredItem.tags.map((tag, i) => (
-                        <span 
-                          key={i}
-                          className="px-3 py-1 text-xs bg-white/5 rounded-full text-white/70 hover:bg-[#D4AF37]/10 hover:text-[#D4AF37] transition-colors cursor-pointer"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                    {/* Scan line effect */}
+                    <motion.div
+                      className="absolute inset-x-0 h-[30%] bg-gradient-to-b from-[#D4AF37]/10 to-transparent z-10 pointer-events-none"
+                      animate={{
+                        top: ['0%', '70%', '0%'],
+                      }}
+                      transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
+                    />
+                  </div>
+                </div>
+                
+                {/* Content side */}
+                <div className="p-8 lg:p-10 flex flex-col">
+                  {/* Metadata */}
+                  <div className="flex items-center text-xs text-white/60 mb-6 gap-5">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5" />
+                      {firstArticle.date}
                     </div>
-                    
-                    <div className="mt-auto">
-                      {/* Premium CTA */}
-                      <motion.a
-                        href={`/article/${featuredItem.name}`}
-                        className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white overflow-hidden relative group"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <motion.span
-                          className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#D4AF37]/80 opacity-0 group-hover:opacity-100"
-                          transition={{ duration: 0.3 }}
-                        />
-                        <span className="absolute inset-0 bg-white/5 border border-white/10 group-hover:border-[#D4AF37]/50 rounded-lg transition-colors"></span>
-                        <span className="relative font-medium group-hover:text-[#080608] transition-colors">Ler artigo completo</span>
-                        <ArrowRight className="w-4 h-4 relative group-hover:text-[#080608] group-hover:translate-x-1 transition-all" />
-                        
-                        {/* Shine effect */}
-                        <motion.span
-                          className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white to-transparent opacity-10 group-hover:animate-shine"
-                        />
-                      </motion.a>
+                    <div className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      {firstArticle.readTime} de leitura
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5" />
+                      {firstArticle.views} visualizações
+                    </div>
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-[#D4AF37] transition-colors duration-300">
+                    {firstArticle.title}
+                  </h3>
+                  
+                  {/* Fancy divider */}
+                  <div className="h-px w-16 bg-gradient-to-r from-[#D4AF37] to-transparent mb-4"></div>
+                  
+                  {/* Excerpt */}
+                  <p className="text-white/70 mb-6 leading-relaxed">
+                    {firstArticle.excerpt}
+                  </p>
+                  
+                  <div className="mt-auto">
+                    {/* Premium CTA */}
+                    <Link
+                      to={`/article/${firstArticle.slug}`}
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white overflow-hidden relative group"
+                    >
+                      <motion.span
+                        className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#D4AF37]/80 opacity-0 group-hover:opacity-100"
+                        transition={{ duration: 0.3 }}
+                      />
+                      <span className="absolute inset-0 bg-white/5 border border-white/10 group-hover:border-[#D4AF37]/50 rounded-lg transition-colors"></span>
+                      <span className="relative font-medium group-hover:text-[#080608] transition-colors">Ler artigo completo</span>
+                      <ArrowRight className="w-4 h-4 relative group-hover:text-[#080608] group-hover:translate-x-1 transition-all" />
                       
-                      {/* Bookmark button */}
-                      <motion.button
-                        className="ml-2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5 transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Bookmark className="w-4 h-4" />
-                      </motion.button>
-                    </div>
+                      {/* Shine effect */}
+                      <motion.span
+                        className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white to-transparent opacity-10 group-hover:animate-shine"
+                      />
+                    </Link>
+                    
+                    {/* Bookmark button */}
+                    <motion.button
+                      className="ml-2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5 transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Bookmark className="w-4 h-4" />
+                    </motion.button>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
           
           {/* Regular news column - Takes up remaining 4 columns */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            {news.filter(item => !item.featured).map((item, index) => (
+            {otherArticles.map((article, index) => (
               <motion.div 
-                key={item.id}
+                key={article.id}
                 className="bg-[#13121A] rounded-xl overflow-hidden border border-white/5 relative h-full group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + (index * 0.2), duration: 0.6 }}
-                onMouseEnter={() => setHoveredNews(item.id)}
+                onMouseEnter={() => setHoveredNews(Number(article.id))}
                 onMouseLeave={() => setHoveredNews(null)}
                 whileHover={{ y: -4 }}
               >
@@ -367,7 +322,7 @@ export const NewsSection = () => {
                 <motion.div
                   className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#D4AF37]/20 to-transparent opacity-0 blur-lg -z-10"
                   animate={{ 
-                    opacity: hoveredNews === item.id ? 0.15 : 0,
+                    opacity: hoveredNews === Number(article.id) ? 0.15 : 0,
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -377,7 +332,7 @@ export const NewsSection = () => {
                     {/* Category tag */}
                     <div className="absolute top-3 left-3 z-20">
                       <div className="px-2.5 py-1 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-medium">
-                        {item.category}
+                        {article.category}
                       </div>
                     </div>
                     
@@ -385,8 +340,8 @@ export const NewsSection = () => {
                     <div className="w-full h-full">
                       <div className="absolute inset-0 bg-gradient-to-t from-[#13121A] via-transparent to-transparent z-10"></div>
                       <motion.img 
-                        src={item.image} 
-                        alt={item.title} 
+                        src={article.image} 
+                        alt={article.title} 
                         className="w-full h-full object-cover"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.5 }}
@@ -408,28 +363,27 @@ export const NewsSection = () => {
                     <div className="flex items-center justify-between text-xs text-white/60 mb-3">
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-3 h-3" />
-                        {item.date}
+                        {article.date}
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Eye className="w-3 h-3" />
-                        {item.views}
+                        {article.views}
                       </div>
                     </div>
                     
                     {/* Title with hover effect */}
                     <h3 className="text-lg font-bold text-white mb-3 leading-tight group-hover:text-[#D4AF37] transition-colors duration-300">
-                      {item.title}
+                      {article.title}
                     </h3>
                     
                     {/* Excerpt */}
-                    <p className="text-sm text-white/70 mb-4 line-clamp-2">{item.excerpt}</p>
+                    <p className="text-sm text-white/70 mb-4 line-clamp-2">{article.excerpt}</p>
                     
                     {/* Read more link with premium styling */}
                     <div className="mt-auto">
-                      <motion.a 
-                        href={`/noticias/${item.id}`}
+                      <Link 
+                        to={`/article/${article.slug}`}
                         className="inline-flex items-center gap-1.5 text-sm font-medium text-[#D4AF37] group/link"
-                        whileHover={{ x: 3 }}
                       >
                         <span>Ler artigo</span>
                         <motion.div
@@ -438,7 +392,7 @@ export const NewsSection = () => {
                         >
                           <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                         </motion.div>
-                      </motion.a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -466,14 +420,14 @@ export const NewsSection = () => {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             />
-            <a 
-              href="/noticias"
+            <Link 
+              to="/blog"
               className="relative flex items-center gap-3 px-8 py-4 bg-[#13121A] rounded-lg border border-[#D4AF37]/30 text-white"
             >
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F9E077] flex items-center justify-center">
                 <ArrowUpRight className="w-5 h-5 text-[#080608]" />
               </div>
-              <span className="font-medium">Ver todas as notícias e artigos</span>
+              <span className="font-medium">Ver todos os artigos do blog</span>
               <motion.div
                 className="absolute inset-0 rounded-lg"
                 style={{ boxShadow: "inset 0 0 0 1px rgba(212,175,55,0.3)" }}
@@ -483,7 +437,7 @@ export const NewsSection = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
