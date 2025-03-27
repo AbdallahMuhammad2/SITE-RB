@@ -7,6 +7,7 @@ import ProfPaula from './pages/ProfPaula';
 import ProfYan from './pages/ProfYan';
 import Blog from './pages/Blog';
 import ArticlePage from './pages/ArticlePage';
+import FloatingWhatsApp from './components/shared/FloatingWhatsApp';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/prof-yan" element={<ProfYan />} />
           </Routes>
         </main>
+        <FloatingWhatsApp />
         <Footer />
       </div>
     </Router>

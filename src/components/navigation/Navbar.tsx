@@ -260,9 +260,9 @@ export const Navbar = () => {
                     <span>Entrar</span>
                   </button>
                   
-                  <button className="w-full py-3 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium hover:bg-[#F9E077] transition-colors">
+                  <a href='' className="w-full py-3 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium hover:bg-[#F9E077] transition-colors">
                     Começar Agora
-                  </button>
+                  </a>
                 </div>
               </div>
             </motion.div>

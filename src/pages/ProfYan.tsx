@@ -9,7 +9,7 @@ import {
   Download, ChevronRight, ChevronLeft, Clock, Users, Play, Sparkles,
   GraduationCap, Target, FileCheck, Zap, TrendingUp, ShieldCheck, Brain,
   ArrowUpRight, BookText, Medal, ArrowDown, BookMarked, Bookmark, Glasses,
-  Mail, User, FileText, X, Menu, MessageSquare, Eye, MapPin, HeartHandshake, Heart, Trophy, Plus
+  Mail, User, FileText, X, Menu, MessageSquare, Eye, MapPin, HeartHandshake, Heart, Trophy, Plus, ShoppingCart
 } from 'lucide-react';
 import case1 from '../images/case1.jpg';
 import case2 from '../images/case2.jpg';
@@ -20,6 +20,7 @@ import case6 from '../images/case6.jpg';
 import case7 from '../images/case7.jpg';
 import case8 from '../images/case8.jpg';
 
+import yan2 from '../images/yan2.jpeg';
 import yan from '../images/Yan.jpg';
 // ProfYanNavigation component with black and gold luxury theme
 const ProfYanNavigation = () => {
@@ -923,7 +924,7 @@ const ProfYan = () => {
                   {/* Main image */}
                   <div className="absolute inset-[6px] rounded-full overflow-hidden border-[8px] border-[#13121A]">
                     <img
-                      src="../../images/Yan2.jpeg"
+                      src={yan}
                       alt="Professor Yan Ribeiro - Especialista em Matemática"
                       className="w-full h-full object-cover"
                     />
@@ -1242,7 +1243,7 @@ const ProfYan = () => {
             >
               <div className="rounded-2xl overflow-hidden shadow-2xl relative">
                 <img
-                  src="../../images/yan.jpg"
+                  src={yan2}
                   alt="Professor Yan Ribeiro ensinando"
                   className="w-full h-auto object-cover"
                 />
@@ -1512,162 +1513,114 @@ const ProfYan = () => {
         </div>
       </section>
 
-      {/* CURSOS SECTION */}
-      <section id="cursos" className="py-24 bg-[#0A090C] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.03]"></div>
-        <div className="absolute -right-64 bottom-64 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            className="max-w-3xl mx-auto text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider">Preparação Completa</span>
-            <h2 className="text-4xl font-bold text-white mt-3 mb-5">Cursos</h2>
-            <p className="text-xl text-white/70">
-              Cursos estruturados para maximizar seu desempenho, com metodologia exclusiva e materiais didáticos premium.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                title: "Matemática para Concursos",
-                description: "Domine os fundamentos matemáticos mais cobrados em concursos públicos com técnicas exclusivas.",
-                icon: <BookOpen className="w-6 h-6" />,
-                price: "R$ 697",
-                ctaText: "Ver mais"
-              },
-              {
-                title: "Raciocínio Lógico Avançado",
-                description: "Desenvolva habilidades avançadas para resolver questões complexas de raciocínio lógico.",
-                icon: <Brain className="w-6 h-6" />,
-                price: "R$ 797",
-                highlight: "Mais Popular",
-                features: ["50 horas de videoaulas", "Simulados exclusivos", "Plantão de dúvidas"]
-              },
-              {
-                title: "Preparatório Completo",
-                description: "Preparação intensiva que combina matemática e raciocínio lógico para aprovação garantida.",
-                icon: <CheckCircle className="w-6 h-6" />,
-                price: "R$ 997",
-                features: ["80 horas de videoaulas", "Material completo + bônus", "Acompanhamento personalizado"]
-              }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                className="group bg-[#13121A] rounded-xl overflow-hidden shadow-lg border border-[#D4AF37]/10 relative"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 * i }}
-                whileHover={{
-                  y: -8,
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6)",
-                  borderColor: "rgba(212,175,55,0.3)"
-                }}
-              >
-                {/* Premium top accent */}
-                <div className="h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] w-full"></div>
-
-                {/* Interior glow effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-0 transition-opacity duration-300"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                />
-
-                {/* Card content */}
-                <div className="p-8">
-                  <div className="w-16 h-16 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/20 transition-all duration-300">
-                    {React.cloneElement(item.icon, { className: "w-8 h-8 text-[#D4AF37]" })}
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#D4AF37] transition-colors duration-300">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-white/70 mb-6">
-                    {item.description}
-                  </p>
-
-                  {item.features && (
-                    <ul className="space-y-3">
-                      {item.features.map((feature, j) => (
-                        <li key={j} className="flex items-center">
-                          <div className="w-5 h-5 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mr-3">
-                            <CheckCircle className="w-3 h-3 text-[#D4AF37]" />
-                          </div>
-                          <span className="text-white/80 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-
-                {/* Premium footer with animation */}
-                <div className="border-t border-[#D4AF37]/10 p-4 bg-[#0F0E13] group-hover:bg-[#0F0E13]/80 flex justify-between items-center transition-colors duration-300">
-                  <span className="text-[#D4AF37] text-sm font-medium">{item.ctaText || "Ver mais"}</span>
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
-                    <ArrowRight className="w-5 h-5 text-[#D4AF37]" />
-                  </motion.div>
-                </div>
-
-                {/* Subtle corner accent */}
-                <div className="absolute bottom-0 right-0 w-12 h-12 overflow-hidden">
-                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#D4AF37]/10 transform rotate-45 translate-x-1/2 translate-y-1/2"></div>
-                </div>
-              </motion.div>
-            ))}
+  {/* Featured Course Section based on the text message */}
+  <motion.div 
+        className="bg-[#13121A] rounded-2xl border border-[#D4AF37]/20 overflow-hidden shadow-xl mt-20"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="flex flex-col lg:flex-row">
+          <div className="lg:w-2/5 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/30 via-[#D4AF37]/10 to-transparent mix-blend-overlay z-10"></div>
+            <motion.div
+              className="absolute inset-0 bg-[url('/math-patterns.svg')] bg-repeat opacity-10"
+              animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+              transition={{ duration: 50, repeat: Infinity, repeatType: "reverse" }}
+            ></motion.div>
+            <img 
+              src="/math-course-image.jpg" 
+              alt="Curso de Matemática para Concursos" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://via.placeholder.com/600x800?text=Curso+de+Matematica";
+              }}
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#080608] to-transparent h-40 z-10"></div>
+            <div className="absolute bottom-4 left-4 z-20">
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D4AF37] text-[#080608] text-xs font-semibold">
+                <Star className="w-3.5 h-3.5 mr-1" /> 
+                Curso Destaque
+              </span>
+            </div>
           </div>
-
-          {/* CTA banner */}
-          <motion.div
-            className="relative overflow-hidden rounded-2xl"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#F9E077]"></div>
-            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-10"></div>
-
-            <div className="relative p-8 md:p-12">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#080608] mb-4">Pronto para transformar seu aprendizado?</h3>
-                  <p className="text-[#080608]/80 mb-6 max-w-lg">
-                    Junte-se a milhares de alunos que já estão aprovados em concursos públicos utilizando
-                    nosso método exclusivo de ensino de matemática e raciocínio lógico.
-                  </p>
-
-                  <motion.button
-                    className="px-8 py-4 bg-[#080608] rounded-lg text-[#D4AF37] font-medium flex items-center gap-2"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Quero garantir minha vaga
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+          <div className="lg:w-3/5 p-8 lg:p-10">
+            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">Curso de Matemática para Concursos Públicos</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[#D4AF37]">Professor especializado</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/50"></span>
+              <span className="text-white/70">Conteúdo completo</span>
+            </div>
+            
+            <p className="text-white/80 mb-6">
+              Um programa abrangente e especializado projetado para preparar os estudantes para dominar os desafios 
+              matemáticos encontrados nas provas de concursos públicos.
+            </p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
                 </div>
-
-                <div className="hidden md:block">
-                  <img
-                    src="/api/placeholder/400/320"
-                    alt="Cursos Prof. Yan"
-                    className="max-h-56"
-                  />
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Professor especializado:</span> Instrutor altamente qualificado, com expertise específica em matemática para concursos públicos.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
                 </div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Conteúdo completo:</span> Abrange todo o espectro da matemática cobrada em concursos: aritmética, álgebra, geometria, estatística e raciocínio lógico.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
+                </div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Estratégias e técnicas:</span> Métodos práticos para otimizar tempo de resposta, identificar padrões e evitar armadilhas comuns.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
+                </div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Exercícios e práticas:</span> Ampla variedade de exercícios que refletem a complexidade das questões encontradas em concursos públicos.
+                </p>
               </div>
             </div>
-          </motion.div>
+            
+            <div className="flex flex-wrap items-center gap-4">
+              <motion.a
+                href="https://pay.hotmart.com/F83685898D?bid=1742817343922"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] text-[#080608] font-semibold rounded-lg flex items-center gap-2"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(212,175,55,0.4)" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <ShoppingCart className="w-5 h-5" />
+                <span>Comprar Agora</span>
+              </motion.a>
+              
+              <motion.a
+                href="#"
+                className="px-6 py-3 border border-[#D4AF37]/30 text-[#D4AF37] font-medium rounded-lg"
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(212,175,55,0.1)" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Mais informações
+              </motion.a>
+            </div>
+          </div>
         </div>
-      </section>
+      </motion.div>
 
       {/* MATERIAIS DE ESTUDO SECTION */}
       <section id="materiais" className="py-24 bg-gradient-to-b from-[#0B0A0D] to-[#080608] relative overflow-hidden">
@@ -1869,6 +1822,115 @@ const ProfYan = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Featured Course Section based on the text message */}
+      <motion.div 
+        className="bg-[#13121A] rounded-2xl border border-[#D4AF37]/20 overflow-hidden shadow-xl mt-20"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="flex flex-col lg:flex-row">
+          <div className="lg:w-2/5 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/30 via-[#D4AF37]/10 to-transparent mix-blend-overlay z-10"></div>
+            <motion.div
+              className="absolute inset-0 bg-[url('/math-patterns.svg')] bg-repeat opacity-10"
+              animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+              transition={{ duration: 50, repeat: Infinity, repeatType: "reverse" }}
+            ></motion.div>
+            <img 
+              src="/math-course-image.jpg" 
+              alt="Curso de Matemática para Concursos" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://via.placeholder.com/600x800?text=Curso+de+Matematica";
+              }}
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#080608] to-transparent h-40 z-10"></div>
+            <div className="absolute bottom-4 left-4 z-20">
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D4AF37] text-[#080608] text-xs font-semibold">
+                <Star className="w-3.5 h-3.5 mr-1" /> 
+                Curso Destaque
+              </span>
+            </div>
+          </div>
+          <div className="lg:w-3/5 p-8 lg:p-10">
+            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">Curso de Matemática para Concursos Públicos</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[#D4AF37]">Professor especializado</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/50"></span>
+              <span className="text-white/70">Conteúdo completo</span>
+            </div>
+            
+            <p className="text-white/80 mb-6">
+              Um programa abrangente e especializado projetado para preparar os estudantes para dominar os desafios 
+              matemáticos encontrados nas provas de concursos públicos.
+            </p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
+                </div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Professor especializado:</span> Instrutor altamente qualificado, com expertise específica em matemática para concursos públicos.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
+                </div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Conteúdo completo:</span> Abrange todo o espectro da matemática cobrada em concursos: aritmética, álgebra, geometria, estatística e raciocínio lógico.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
+                </div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Estratégias e técnicas:</span> Métodos práticos para otimizar tempo de resposta, identificar padrões e evitar armadilhas comuns.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
+                </div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-medium">Exercícios e práticas:</span> Ampla variedade de exercícios que refletem a complexidade das questões encontradas em concursos públicos.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-4">
+              <motion.a
+                href="https://pay.hotmart.com/F83685898D?bid=1742817343922"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] text-[#080608] font-semibold rounded-lg flex items-center gap-2"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(212,175,55,0.4)" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <ShoppingCart className="w-5 h-5" />
+                <span>Comprar Agora</span>
+              </motion.a>
+              
+              <motion.a
+                href="#"
+                className="px-6 py-3 border border-[#D4AF37]/30 text-[#D4AF37] font-medium rounded-lg"
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(212,175,55,0.1)" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Mais informações
+              </motion.a>
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
     </div>
   );

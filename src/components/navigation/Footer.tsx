@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ArrowRight, ChevronRight } from 'lucide-react';
-
+import logo from '../../images/p.png';
 export const Footer = () => {
   return (
     <footer className="bg-[#0A090C] border-t border-white/5 pt-16 pb-8">
@@ -54,9 +54,8 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 pt-12 border-t border-white/5">
           {/* Column 1: About */}
           <div>
-            <div className="mb-5">
-              <img src="/logo-rb.svg" alt="RB Cursos" className="h-10" />
-            </div>
+            <div className="mb-5 flex items-center gap-4 w-max"> 
+            <img src={logo} alt="RB Cursos" className="h-20" />            </div>
             
             <p className="text-white/70 text-sm mb-6">
               Excelência em aprovações para concursos jurídicos através de metodologia exclusiva e materiais de estudo de alta qualidade.
@@ -148,17 +147,14 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-5">Contato</h4>
             <ul className="space-y-4">
-              <li className="flex gap-3">
-                <MapPin className="h-5 w-5 text-[#D4AF37] shrink-0" />
-                <span className="text-white/70">Av. Paulista, 1000, São Paulo - SP</span>
-              </li>
+              
               <li className="flex gap-3">
                 <Phone className="h-5 w-5 text-[#D4AF37] shrink-0" />
-                <span className="text-white/70">(11) 9999-9999</span>
+                <span className="text-white/70">(77)  7400-9165</span>
               </li>
               <li className="flex gap-3">
                 <Mail className="h-5 w-5 text-[#D4AF37] shrink-0" />
-                <span className="text-white/70">contato@rbcursos.com.br</span>
+                <span className="text-white/70">ribeiroebarretocursos@gmail.com</span>
               </li>
             </ul>
           </div>
