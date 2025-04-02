@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useState, Suspense } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence, MotionValue } from 'framer-motion';
-import { ArrowRight, ChevronDown, ArrowUpRight, Calendar, Clock, CheckCircle2, BarChart3, BookOpen, Star, Mail, Phone, Trophy, Users, Sparkles, ShieldCheck, Instagram, Play, Quote, User, Newspaper, ExternalLink } from 'lucide-react';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion,  useTransform, useMotionValue, AnimatePresence, MotionValue } from 'framer-motion';
+import { ArrowRight,  ArrowUpRight, Calendar, Clock, CheckCircle2, BarChart3, BookOpen, Star, Mail, Phone, Trophy, Users, ShieldCheck,  Play, Quote,  Newspaper, ExternalLink } from 'lucide-react';
 import { gsap } from 'gsap';
 import SplitType from 'split-type';
 
-import { StudyMaterialsSection } from '../components/sections/StudyMaterialsSection';
 import { NewsSection } from '../components/sections/NewsSection';
 
 import { CTASection } from '../components/sections/CTASection';
@@ -16,10 +15,9 @@ import Nicassio from '../images/Nicássio.jpg';
 import Henrique from '../images/Henrique-Landim-Perfil.png';
 import Anna from '../images/Anna-Alves-Perfil.png';
 import Andreia from '../images/Andreia-Torres-Perfil.png';
-import Paula1 from '../images/equipe1.png';
-import Stella from '../images/equipe2.png';
+import Paula1 from '../images/yure.png';
+import stella from '../images/stella.png';
 import Yure from '../images/equipe3.png';
-import test from 'node:test';
 // Componente de bloco de notícias atuais de concursos
 const CurrentNewsBlock = () => {
   // Array com os dados das notícias
@@ -143,7 +141,7 @@ const CurrentNewsBlock = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Notícias de <span className="text-[#D4AF37] relative inline-block">
+            Notícias de <span className="text-[#D4AF37] relative inline-block ml-2">
               Concursos
               <motion.span
                 className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37]/80 to-[#D4AF37]/20"
@@ -162,7 +160,7 @@ const CurrentNewsBlock = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Fique por dentro das últimas notícias sobre concursos públicos 
+            Fique por dentro das últimas notícias sobre concursos públicos
             e mantenha-se atualizado com as informações mais relevantes.
           </motion.p>
         </motion.div>
@@ -183,7 +181,7 @@ const CurrentNewsBlock = () => {
               }}
             >
               <div className="h-2 bg-gradient-to-r from-[#D4AF37]/80 via-[#D4AF37]/40 to-[#D4AF37]/10"></div>
-              
+
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4 text-xs text-white/60">
                   <div className="flex items-center gap-1.5">
@@ -195,18 +193,18 @@ const CurrentNewsBlock = () => {
                     {news.source}
                   </div>
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-[#D4AF37] transition-colors duration-300">
                   {news.title}
                 </h3>
-                
+
                 <div className="h-px w-16 bg-gradient-to-r from-[#D4AF37] to-transparent mb-4"></div>
-                
+
                 <p className="text-white/70 mb-6 line-clamp-3">{news.excerpt}</p>
-                
-                <a 
-                  href={news.link} 
-                  target="_blank" 
+
+                <a
+                  href={news.link}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F9E077] transition-colors group/link"
                 >
@@ -274,8 +272,11 @@ const HomePage = () => {
       <UltraHero />
       <StatsHighlightBanner />
       <AboutSection />
+      <PastExamsSection /> {/* Adicione esta linha */}
+
       <CurrentNewsBlock /> {/* Adicionando o bloco de notícias aqui */}
       <ProfessorsSection />
+
       <TestimonialsSection />
       <NewsSection />
       <div id="matricula">
@@ -286,7 +287,242 @@ const HomePage = () => {
 };
 
 export default HomePage;
+const PastExamsSection = () => {
+  return (
+    <section className="py-28 bg-gradient-to-b from-[#0A090C] to-[#120F19] relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 right-0 w-full h-64 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-50" />
+      <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-repeat opacity-5" />
+      
+      {/* Animated orbs/lights */}
+      <motion.div
+        className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-[#D4AF37]/5 blur-[100px]"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full bg-[#D4AF37]/3 blur-[120px]"
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.2, 0.3, 0.2],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
 
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Section header */}
+          <motion.div
+            className="max-w-3xl mx-auto text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Premium label */}
+            <div className="flex items-center justify-center mb-3">
+              <motion.div
+                className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#D4AF37]"
+                initial={{ width: 0 }}
+                whileInView={{ width: 48 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              />
+              <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-[0.2em] mx-4 notranslate">
+                cursos
+                <motion.span 
+                  className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
+              </span>
+              <motion.div
+                className="h-[1px] w-12 bg-gradient-to-r from-[#D4AF37] to-transparent"
+                initial={{ width: 0 }}
+                whileInView={{ width: 48 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              />
+            </div>
+
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mt-6 mb-8 leading-tight">
+              Cursos <span className="text-[#D4AF37] notranslate">finalizados</span> 
+            </h2>
+
+            <motion.p
+              className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Preparamos candidatos para diversos concursos com excelentes resultados.
+              Conheça alguns dos certames onde nossos alunos foram aprovados:
+            </motion.p>
+          </motion.div>
+
+          {/* Exams grid/showcase */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                title: "Concurso de Vitória da Conquista",
+                icon: "building",
+                color: "#D4AF37",
+                details: "Alunos aprovados em múltiplas áreas da administração municipal",
+                year: "2023",
+                stats: "32 aprovados",
+              },
+              {
+                title: "Processo Seletivo",
+                subtitle: "Vitória da Conquista e Barra do Choça",
+                icon: "users",
+                color: "#D4AF37",
+                details: "Preparação completa para todas as fases do processo seletivo",
+                year: "2023/2024",
+                stats: "27 aprovados",
+              },
+              {
+                title: "Prefeitura de Caraíbas",
+                icon: "landmark",
+                color: "#D4AF37",
+                details: "Excelentes resultados em diversos cargos no município",
+                year: "2023",
+                stats: "18 aprovados",
+              },
+              {
+                title: "SESAB",
+                subtitle: "Secretaria de Saúde da Bahia",
+                icon: "stethoscope",
+                color: "#D4AF37",
+                details: "Preparação específica para área de saúde com alto índice de aprovação",
+                year: "2022",
+                stats: "45 aprovados",
+              },
+              {
+                title: "Correios",
+                icon: "mail",
+                color: "#D4AF37",
+                details: "Curso direcionado para as especificidades do concurso nacional",
+                year: "2023",
+                stats: "23 aprovados",
+              },
+              {
+                title: "Outros Concursos",
+                icon: "award",
+                color: "#D4AF37",
+                details: "Diversos outros concursos federais, estaduais e municipais",
+                year: "2022-2024",
+                stats: "150+ aprovados",
+              },
+            ].map((exam, index) => (
+              <motion.div
+                key={index}
+                className="bg-[#13121A] border border-[#D4AF37]/10 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-[#D4AF37]/5 transition-all duration-300 group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                whileHover={{ y: -5, scale: 1.02 }}
+              >
+                <div className="px-6 py-8">
+                  {/* Icon */}
+                  <div className="mb-5 w-14 h-14 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors">
+                    <motion.svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-7 w-7 text-[#D4AF37]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                      whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {exam.icon === "building" && <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />}
+                      {exam.icon === "users" && <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />}
+                      {exam.icon === "landmark" && <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />}
+                      {exam.icon === "mail" && <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />}
+                      {exam.icon === "stethoscope" && <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />}
+                      {exam.icon === "award" && <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />}
+                    </motion.svg>
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-white mb-1 notranslate">{exam.title}</h3>
+                  {exam.subtitle && (
+                    <p className="text-[#D4AF37] text-sm mb-3 notranslate">{exam.subtitle}</p>
+                  )}
+                  
+                  {/* Details */}
+                  <p className="text-white/60 mb-6 h-12 line-clamp-2">{exam.details}</p>
+                  
+                  {/* Stats */}
+                  <div className="flex justify-between items-center pt-4 border-t border-white/10">
+                    <div className="flex items-center">
+                      <span className="text-xs text-white/40">Edição:</span>
+                      <span className="ml-2 text-sm font-medium text-white">{exam.year}</span>
+                    </div>
+                    <div>
+                      <span className="text-sm font-semibold text-[#D4AF37]">{exam.stats}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Hover effect gradient line */}
+                <motion.div
+                  className="h-1 w-0 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] group-hover:w-full transition-all duration-500"
+                  initial={{ width: "0%" }}
+                  whileHover={{ width: "100%" }}
+                />
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* CTA Button */}
+          <motion.div
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <motion.a
+              href="https://api.whatsapp.com/send/?phone=557774009165&text=Ol%C3%A1%21+Quero+saber+mais+sobre+os+concursos+com+aprovados.&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] rounded-lg text-[#080608] font-medium relative overflow-hidden group"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span>Seja o próximo aprovado</span>
+              <ArrowRight className="w-5 h-5" />
+              
+              <motion.div
+                className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-40 group-hover:animate-shine"
+                transition={{ duration: 0.3 }}
+              />
+            </motion.a>
+          </motion.div>
+        </div>
+      </div>
+      
+      {/* CSS animations */}
+      <style>{`
+        @keyframes shine {
+          from { transform: translateX(-100%) skewX(-15deg); }
+          to { transform: translateX(150%) skewX(-15deg); }
+        }
+        .group:hover .group-hover\\:animate-shine {
+          animation: shine 2s infinite;
+        }
+      `}</style>
+    </section>
+  );
+};
 // Stats Highlight Banner
 const StatsHighlightBanner = () => {
   return (
@@ -400,8 +636,7 @@ export const UltraHero = () => {
   const [loaded, setLoaded] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const mouseXSpring = useSpring(mouseX, { stiffness: 40, damping: 15 });
-  const mouseYSpring = useSpring(mouseY, { stiffness: 40, damping: 15 });
+ 
 
   // Enhanced cursor tracking for 3D effect
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -420,9 +655,9 @@ export const UltraHero = () => {
 
       gsap.fromTo(
         titleText.chars,
-        { 
-          y: 100, 
-          opacity: 0, 
+        {
+          y: 100,
+          opacity: 0,
           rotateX: -90,
           transformOrigin: "center bottom"
         },
@@ -452,9 +687,9 @@ export const UltraHero = () => {
             transparent 100%)`;
           beam.style.filter = 'blur(8px)';
           beam.style.opacity = '0';
-          
+
           container.appendChild(beam);
-          
+
           gsap.to(beam, {
             opacity: Math.random() * 0.3 + 0.1,
             duration: 2,
@@ -545,15 +780,15 @@ export const UltraHero = () => {
                   />
 
                   <p className="text-xl leading-relaxed text-white/80 relative pl-2 fade-in-sequence notranslate">
-                    <span className="font-medium">Garanta sua aprovação</span> com nossa metodologia 
-                    exclusiva e professores especialistas em cada área. Conquiste 
-                    sua <span className="text-[#D4AF37] font-medium">estabilidade financeira</span> 
+                    <span className="font-medium">Garanta sua aprovação</span> com nossa metodologia
+                    exclusiva e professores especialistas em cada área. Conquiste
+                    sua <span className="text-[#D4AF37] font-medium">estabilidade financeira</span>
                     e transforme sua vida agora.
                   </p>
                 </motion.div>
 
                 {/* Botões CTA */}
-                <motion.div 
+                <motion.div
                   className="mt-12 flex flex-wrap gap-5"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -566,7 +801,7 @@ export const UltraHero = () => {
                     onClick={() => scrollToSection('matricula')}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto]" />
-                    
+
                     <div className="relative flex items-center gap-3">
                       <span className="text-[#080608] font-medium">Começar agora</span>
                       <motion.div
@@ -576,14 +811,14 @@ export const UltraHero = () => {
                         <ArrowRight className="h-5 w-5 text-[#080608]" />
                       </motion.div>
                     </div>
-                    
+
                     <div className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-30 group-hover:animate-shine" />
                   </motion.button>
-                  
+
                   <motion.button
                     className="px-8 py-4 rounded-lg border border-[#D4AF37]/30 bg-[#D4AF37]/5 text-white font-medium flex items-center gap-3 group overflow-hidden relative notranslate"
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       backgroundColor: "rgba(212,175,55,0.1)",
                       borderColor: "rgba(212,175,55,0.6)"
                     }}
@@ -992,17 +1227,6 @@ const ProfessorsSection = () => {
       specialization: "Especialista em Direito Administrativo",
       approvalRate: "94%"
     },
-  ];
-
-  // Dados da equipe interna - Atualização com membros reais
-  const internalTeam = [
-    {
-      name: "Paula Portugal",
-      role: "Gerente Administrativa",
-      image: Yure,
-      specialization: "Suporte ao Aluno",
-      achievement: "Gestão de equipes e processos"
-    },
     {
       name: "Yure Oliveira",
       role: "Professor de Conhecimentos Pedagógicos",
@@ -1013,9 +1237,33 @@ const ProfessorsSection = () => {
     {
       name: "Stella Renathe",
       role: "Professora de Políticas Públicas de Saúde",
-      image: Stella,
+      image: stella,
       specialization: "Especialista em Saúde Pública",
       achievement: "Consultora em concursos da área"
+    },
+  ];
+
+  // Dados da equipe interna - Atualização com membros reais
+  const internalTeam = [
+    {
+      name: "Paula Portugal",
+      role: "Gerente Administrativa",
+      image: Yure,
+      specialization: "Suporte ao Aluno",
+    },
+    {
+      name: "Profª Paula Barreto",
+      role: "Língua Portuguesa e Redação",
+      image: paula,
+      specialization: "Professora",
+      approvalRate: "97%"
+    },
+    {
+      name: "Profº Yan Ribeiro",
+      role: "Matemática",
+      image: yan,
+      specialization: "Professor",
+      approvalRate: "95%"
     },
   ];
 
@@ -1052,9 +1300,9 @@ const ProfessorsSection = () => {
 
             <h2 className="text-4xl lg:text-6xl font-bold text-white mt-6 mb-8 leading-tight">
               Conheça os <span className="relative inline-block">
-                <span className="relative z-10 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] bg-clip-text text-transparent">especialistas</span>
+                <span className="relative z-10 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] bg-clip-text text-transparent ml-2">professores</span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] rounded-full opacity-50"></span>
-              </span> em aprovações
+              </span>
             </h2>
 
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
@@ -1070,7 +1318,8 @@ const ProfessorsSection = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <motion.button
+              <motion.a
+                href='https://api.whatsapp.com/send/?phone=557774009165&text=Ol%C3%A1%21+Tenho+interesse+nos+cursos.&type=phone_number&app_absent=0'
                 className="px-8 py-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] text-[#080608] font-medium flex items-center gap-2 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
@@ -1079,7 +1328,7 @@ const ProfessorsSection = () => {
               >
                 Conhecer metodologia
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </motion.button>
+              </motion.a>
 
               <motion.button
                 className="px-8 py-3 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 text-white font-medium flex items-center gap-2 group"
@@ -1116,13 +1365,13 @@ const ProfessorsSection = () => {
                       alt={professor.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 image-enhanced"
                     />
-                    
+
                     {/* Sobreposição de gradiente aprimorada para melhorar a visibilidade */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A090C] via-[#0A090C]/70 to-transparent"></div>
-                    
+
                     {/* Adicionar uma sutil correção de cor para melhorar a qualidade da foto */}
                     <div className="absolute inset-0 mix-blend-soft-light bg-gradient-to-br from-[#D4AF37]/10 to-transparent"></div>
-                    
+
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <div className="flex justify-between items-end">
                         <div>
@@ -1141,7 +1390,7 @@ const ProfessorsSection = () => {
                     <p className="text-white/70 text-sm mb-4">{professor.specialization}</p>
 
                     <div className="flex items-center justify-between">
-                      <motion.button 
+                      <motion.button
                         className="text-[#D4AF37] text-sm flex items-center gap-1 group/btn hover:text-[#F5D76E] transition-colors"
                         whileHover={{ x: 3 }}
                       >
@@ -1156,7 +1405,7 @@ const ProfessorsSection = () => {
           </div>
 
           {/* Separador elegante */}
-          <motion.div 
+          <motion.div
             className="my-24 flex items-center justify-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1185,7 +1434,9 @@ const ProfessorsSection = () => {
 
             <h2 className="text-4xl lg:text-5xl font-bold text-white mt-6 mb-8 leading-tight">
               Quem <span className="relative inline-block">
-                <span className="relative z-10 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] bg-clip-text text-transparent">transforma</span>
+                <span className="relative z-10 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] bg-clip-text text-transparent ml-2 mr-2 notranslate">
+                  transforma
+                </span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] rounded-full opacity-50"></span>
               </span> sua jornada
             </h2>
@@ -1230,25 +1481,12 @@ const ProfessorsSection = () => {
                         </div>
                         <p className="text-white/80 text-sm">{member.specialization}</p>
                       </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
-                          <Trophy className="w-4 h-4 text-[#D4AF37]" />
-                        </div>
-                        <p className="text-white/80 text-sm">{member.achievement}</p>
-                      </div>
+
+                     
                     </div>
                   </div>
-                  
-                  <div className="px-6 pb-6 flex justify-center">
-                    <motion.button 
-                      className="text-[#D4AF37] text-sm flex items-center gap-1 group/btn hover:text-[#F5D76E] transition-colors"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      Conhecer mais
-                      <ArrowRight className="w-3.5 h-3.5 transition-all group-hover/btn:translate-x-1" />
-                    </motion.button>
-                  </div>
+
+                 
                 </div>
               </motion.div>
             ))}
@@ -1290,7 +1528,7 @@ const TestimonialsSection = () => {
   const [category, setCategory] = useState("all");
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState("");
-  
+
   // Definição completa dos testimonials com todas as propriedades necessárias
   const testimonials = [
     {
@@ -1330,10 +1568,10 @@ const TestimonialsSection = () => {
       videoUrl: "https://www.youtube.com/embed/video3"
     }
   ];
-  
+
   // Filtered testimonials based on selected category
-  const filteredTestimonials = category === "all" 
-    ? testimonials 
+  const filteredTestimonials = category === "all"
+    ? testimonials
     : testimonials.filter(t => t.category === category);
 
   // Ensure active testimonial is within range of filtered results
@@ -1394,7 +1632,7 @@ const TestimonialsSection = () => {
             );
           })}
         </div>
-        
+
         {/* Premium gradient orbs */}
         <motion.div
           className="absolute top-0 left-1/3 w-[50vw] h-[50vh] rounded-full bg-gradient-to-br from-[#D4AF37]/5 to-transparent blur-[120px]"
@@ -1415,7 +1653,7 @@ const TestimonialsSection = () => {
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
-        
+
         {/* Enhanced grid pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(rgba(212,175,55,0.03)_1px,transparent_1px)] bg-[length:20px_20px] opacity-30" />
       </div>
@@ -1441,7 +1679,7 @@ const TestimonialsSection = () => {
               />
               <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-[0.2em] mx-4 relative">
                 Depoimentos
-                <motion.span 
+                <motion.span
                   className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
@@ -1472,9 +1710,9 @@ const TestimonialsSection = () => {
                   animate={{ rotateX: [0, 5, 0], rotateY: [0, -3, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  Histórias de 
+                  Histórias de
                 </motion.span>{' '}
-                <motion.span 
+                <motion.span
                   className="text-[#D4AF37] relative inline-block"
                   animate={{ rotateX: [0, -5, 0], rotateY: [0, 3, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
@@ -1498,7 +1736,7 @@ const TestimonialsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Conheça relatos reais de alunos que transformaram suas vidas através de nossa metodologia exclusiva 
+              Conheça relatos reais de alunos que transformaram suas vidas através de nossa metodologia exclusiva
               e conquistaram suas aprovações em concursos de alta competitividade.
             </motion.p>
           </motion.div>
@@ -1514,11 +1752,10 @@ const TestimonialsSection = () => {
             {["all", "bancário", "policial", "judiciário"].map((cat) => (
               <motion.button
                 key={cat}
-                className={`px-4 py-2 rounded-full text-sm transition-all ${
-                  category === cat 
-                    ? "bg-[#D4AF37] text-black font-medium" 
+                className={`px-4 py-2 rounded-full text-sm transition-all ${category === cat
+                    ? "bg-[#D4AF37] text-black font-medium"
                     : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setCategory(cat)}
@@ -1529,7 +1766,7 @@ const TestimonialsSection = () => {
           </motion.div>
 
           {/* Key stats with 3D hover effect */}
-          <motion.div 
+          <motion.div
             className="flex flex-wrap justify-center gap-8 mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1545,7 +1782,7 @@ const TestimonialsSection = () => {
                 key={i}
                 className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl relative group overflow-hidden"
                 style={{ perspective: '1000px' }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   rotateY: 5,
                   rotateX: -5,
@@ -1554,14 +1791,14 @@ const TestimonialsSection = () => {
                 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ 
+                transition={{
                   delay: 0.2 + (i * 0.1),
                   type: "spring",
                   stiffness: 200,
                   damping: 15
                 }}
               >
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
                 />
@@ -1569,12 +1806,12 @@ const TestimonialsSection = () => {
                   {/* Icon with 3D floating effect */}
                   <motion.div
                     className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center"
-                    animate={{ 
+                    animate={{
                       boxShadow: [
                         "0 0 0 rgba(212,175,55,0.1)",
                         "0 0 15px rgba(212,175,55,0.3)",
                         "0 0 0 rgba(212,175,55,0.1)"
-                      ] 
+                      ]
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                   >
@@ -1583,7 +1820,7 @@ const TestimonialsSection = () => {
                   <div>
                     {/* Dynamic text reveal animation */}
                     <div className="overflow-hidden">
-                      <motion.p 
+                      <motion.p
                         className="text-xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#F9E077] bg-clip-text text-transparent"
                         initial={{ y: 20 }}
                         whileInView={{ y: 0 }}
@@ -1598,7 +1835,7 @@ const TestimonialsSection = () => {
                 </div>
 
                 {/* Premium light reflection effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 opacity-0 group-hover:opacity-1"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
@@ -1614,13 +1851,12 @@ const TestimonialsSection = () => {
             {/* Carousel indicators with progress animation */}
             <div className="flex justify-center items-center gap-3 mb-10">
               {filteredTestimonials.map((_, index) => (
-                <button 
+                <button
                   key={index}
-                  className={`relative h-3 overflow-hidden rounded-full transition-all ${
-                    index === activeTestimonial 
-                      ? "w-16 bg-[#D4AF37]/20" 
+                  className={`relative h-3 overflow-hidden rounded-full transition-all ${index === activeTestimonial
+                      ? "w-16 bg-[#D4AF37]/20"
                       : "w-3 bg-white/20 hover:bg-white/40"
-                  }`}
+                    }`}
                   onClick={() => {
                     setActiveTestimonial(index);
                     setAutoplay(false);
@@ -1628,11 +1864,11 @@ const TestimonialsSection = () => {
                   aria-label={`Ver depoimento ${index + 1}`}
                 >
                   {index === activeTestimonial && (
-                    <motion.div 
+                    <motion.div
                       className="absolute left-0 top-0 h-full bg-[#D4AF37]"
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}
-                      transition={{ 
+                      transition={{
                         duration: 6,
                         repeat: autoplay ? Infinity : 0,
                         repeatType: "loop"
@@ -1642,7 +1878,7 @@ const TestimonialsSection = () => {
                 </button>
               ))}
             </div>
-            
+
             {/* Dynamic 3D testimonial showcase */}
             <div className="relative overflow-visible" style={{ perspective: '2000px' }}>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -1652,8 +1888,8 @@ const TestimonialsSection = () => {
                   initial={{ opacity: 0, y: 20, rotateY: -5 }}
                   whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
                   viewport={{ once: true }}
-                  transition={{ 
-                    delay: 0.3, 
+                  transition={{
+                    delay: 0.3,
                     duration: 0.7,
                     type: "spring",
                     stiffness: 100
@@ -1674,7 +1910,7 @@ const TestimonialsSection = () => {
                       transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                     />
                   </div>
-                  
+
                   {/* Quote decoration */}
                   <div className="absolute top-6 left-6 text-9xl text-[#D4AF37]/5 font-serif leading-none">"</div>
                   <div className="absolute bottom-6 right-6 text-9xl text-[#D4AF37]/5 font-serif leading-none transform rotate-180">"</div>
@@ -1688,7 +1924,7 @@ const TestimonialsSection = () => {
                     />
                     <span className="text-xs text-white/70">Depoimento Verificado</span>
                   </div>
-                  
+
                   {/* Dynamic content with animations */}
                   <div className="mb-8 relative">
                     <AnimatePresence mode="wait">
@@ -1709,7 +1945,7 @@ const TestimonialsSection = () => {
                         >
                           <Quote className="w-10 h-10 text-[#D4AF37]/30" />
                         </motion.div>
-                        
+
                         {/* Testimonial highlight tag */}
                         {filteredTestimonials[activeTestimonial]?.highlight && (
                           <motion.div
@@ -1723,12 +1959,12 @@ const TestimonialsSection = () => {
                             </p>
                           </motion.div>
                         )}
-                        
+
                         {/* Dynamic text reveal */}
                         <p className="text-xl md:text-2xl text-white/90 leading-relaxed italic mb-6">
                           {filteredTestimonials[activeTestimonial]?.content.split(' ').map((word, i) => (
-                            <motion.span 
-                              key={i} 
+                            <motion.span
+                              key={i}
                               className="inline-block mr-1.5"
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -1738,7 +1974,7 @@ const TestimonialsSection = () => {
                             </motion.span>
                           ))}
                         </p>
-                        
+
                         <motion.div
                           className="absolute -bottom-1 right-0 transform rotate-180"
                           initial={{ scale: 0 }}
@@ -1750,7 +1986,7 @@ const TestimonialsSection = () => {
                       </motion.div>
                     </AnimatePresence>
                   </div>
-                  
+
                   {/* Profile info with animated elements */}
                   <div className="flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-6 mt-6">
                     <div className="flex items-center">
@@ -1775,7 +2011,7 @@ const TestimonialsSection = () => {
                               />
                             </AnimatePresence>
                           </div>
-                          
+
                           {/* Play button for video testimonials */}
                           {filteredTestimonials[activeTestimonial]?.hasVideo && (
                             <motion.button
@@ -1788,15 +2024,15 @@ const TestimonialsSection = () => {
                             </motion.button>
                           )}
                         </div>
-                        
+
                         {/* Animated ring */}
-                        <motion.div 
-                          className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/50 border-t-transparent border-l-transparent" 
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/50 border-t-transparent border-l-transparent"
                           animate={{ rotate: 360 }}
                           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                         />
                       </div>
-                      
+
                       {/* Animated name and role */}
                       <div>
                         <AnimatePresence mode="wait">
@@ -1813,7 +2049,7 @@ const TestimonialsSection = () => {
                         </AnimatePresence>
                       </div>
                     </div>
-                    
+
                     {/* Rating info with stars */}
                     <div className="flex flex-col items-end">
                       <div className="flex items-center mb-1">
@@ -1835,7 +2071,7 @@ const TestimonialsSection = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Year badge */}
                   <div className="absolute bottom-8 left-8 flex items-center gap-2">
                     <div className="w-5 h-5 rounded-full bg-[#D4AF37]/20 flex items-center justify-center">
@@ -1852,11 +2088,10 @@ const TestimonialsSection = () => {
                     {filteredTestimonials.map((testimonial, i) => (
                       <motion.div
                         key={i}
-                        className={`p-4 bg-white/5 backdrop-blur-sm border rounded-xl cursor-pointer transition-all relative overflow-hidden ${
-                          activeTestimonial === i 
-                            ? "border-[#D4AF37]/50 bg-[#D4AF37]/5" 
+                        className={`p-4 bg-white/5 backdrop-blur-sm border rounded-xl cursor-pointer transition-all relative overflow-hidden ${activeTestimonial === i
+                            ? "border-[#D4AF37]/50 bg-[#D4AF37]/5"
                             : "border-white/10 hover:border-white/20"
-                        }`}
+                          }`}
                         whileHover={{ y: -3, boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.3)" }}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -1868,27 +2103,26 @@ const TestimonialsSection = () => {
                       >
                         {/* Hover animation effect */}
                         {activeTestimonial !== i && (
-                          <motion.div 
+                          <motion.div
                             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full"
                             whileHover={{ translateX: '100%' }}
                             transition={{ duration: 0.7 }}
                           />
                         )}
-                        
+
                         <div className="flex items-center gap-3 mb-2">
                           {/* Profile picture with border glow on active */}
-                          <div className={`w-10 h-10 rounded-full overflow-hidden relative ${
-                            activeTestimonial === i ? "ring-2 ring-[#D4AF37]/50" : "border border-white/20"
-                          }`}>
+                          <div className={`w-10 h-10 rounded-full overflow-hidden relative ${activeTestimonial === i ? "ring-2 ring-[#D4AF37]/50" : "border border-white/20"
+                            }`}>
                             {/* Video indicator */}
                             {testimonial.hasVideo && (
                               <div className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-[#D4AF37] flex items-center justify-center">
                                 <Play fill="#000" className="w-2 h-2 text-black ml-px" />
                               </div>
                             )}
-                            <img 
-                              src={testimonial.image} 
-                              alt={testimonial.name} 
+                            <img
+                              src={testimonial.image}
+                              alt={testimonial.name}
                               className="w-full h-full object-cover"
                             />
                           </div>
@@ -1900,10 +2134,10 @@ const TestimonialsSection = () => {
                         <p className="text-xs text-white/70 line-clamp-2">
                           {testimonial.content.substring(0, 80)}...
                         </p>
-                        
+
                         {/* Active indicator with animated gradient */}
                         {activeTestimonial === i && (
-                          <motion.div 
+                          <motion.div
                             className="w-full h-0.5 mt-3 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto]"
                             layoutId="activeIndicator"
                             animate={{ backgroundPosition: ['0%', '100%'] }}
@@ -1916,16 +2150,16 @@ const TestimonialsSection = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Enhanced navigation controls */}
             <div className="flex justify-center mt-10 gap-4">
               {/* Previous button */}
               <motion.button
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group hover:border-[#D4AF37]/30 bg-black/20 backdrop-blur-sm"
-                whileHover={{ 
-                  scale: 1.1, 
+                whileHover={{
+                  scale: 1.1,
                   backgroundColor: "rgba(212,175,55,0.05)",
-                  boxShadow: "0 0 20px rgba(212, 175, 55, 0.15)" 
+                  boxShadow: "0 0 20px rgba(212, 175, 55, 0.15)"
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
@@ -1938,28 +2172,27 @@ const TestimonialsSection = () => {
                 aria-label="Depoimento anterior"
               >
                 <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-[#D4AF37] rotate-180" />
-                
+
                 {/* Button hover animation */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 rounded-full border border-[#D4AF37]/30 scale-125 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
                 />
               </motion.button>
-              
+
               {/* Autoplay toggle with enhanced animations */}
               <motion.button
-                className={`px-4 py-2 rounded-full flex items-center gap-2 ${
-                  autoplay 
-                    ? "bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30" 
+                className={`px-4 py-2 rounded-full flex items-center gap-2 ${autoplay
+                    ? "bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30"
                     : "bg-white/5 text-white/70 border border-white/10"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setAutoplay(prev => !prev)}
               >
                 <AnimatePresence mode="wait">
                   {autoplay ? (
-                    <motion.div 
+                    <motion.div
                       key="pause"
                       className="flex items-center gap-2"
                       initial={{ opacity: 0 }}
@@ -1971,7 +2204,7 @@ const TestimonialsSection = () => {
                       <span className="text-xs">Pausar</span>
                     </motion.div>
                   ) : (
-                    <motion.div 
+                    <motion.div
                       key="play"
                       className="flex items-center gap-2"
                       initial={{ opacity: 0 }}
@@ -1985,14 +2218,14 @@ const TestimonialsSection = () => {
                   )}
                 </AnimatePresence>
               </motion.button>
-              
+
               {/* Next button */}
               <motion.button
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group hover:border-[#D4AF37]/30 bg-black/20 backdrop-blur-sm"
-                whileHover={{ 
-                  scale: 1.1, 
+                whileHover={{
+                  scale: 1.1,
                   backgroundColor: "rgba(212,175,55,0.05)",
-                  boxShadow: "0 0 20px rgba(212,175,55,0.15)" 
+                  boxShadow: "0 0 20px rgba(212,175,55,0.15)"
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
@@ -2002,9 +2235,9 @@ const TestimonialsSection = () => {
                 aria-label="Próximo depoimento"
               >
                 <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-[#D4AF37]" />
-                
+
                 {/* Button hover animation */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 rounded-full border border-[#D4AF37]/30 scale-125 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
                 />
@@ -2023,7 +2256,7 @@ const TestimonialsSection = () => {
             <motion.button
               onClick={() => scrollToSection('matricula')}
               className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto] animate-shimmer px-8 py-4 rounded-full overflow-hidden"
-              whileHover={{ 
+              whileHover={{
                 scale: 1.03,
                 boxShadow: "0 10px 25px -5px rgba(212, 175, 55, 0.3)"
               }}
@@ -2036,14 +2269,14 @@ const TestimonialsSection = () => {
               >
                 <ArrowRight className="h-5 w-5 text-black" />
               </motion.span>
-              
+
               {/* Enhanced shine effect */}
               <div className="absolute -inset-full h-full w-1/4 z-5 block transform -skew-x-12 bg-white opacity-40 group-hover:animate-shine" />
-              
+
               {/* Dynamic glow effect */}
               <motion.div
                 className="absolute -inset-1 rounded-full opacity-0 group-hover:opacity-100 blur-md bg-gradient-to-r from-[#D4AF37]/30 to-[#F5CC4D]/30 -z-10"
-                animate={{ 
+                animate={{
                   boxShadow: ["0 0 20px 10px rgba(212,175,55,0.2)", "0 0 30px 15px rgba(212,175,55,0.4)", "0 0 20px 10px rgba(212,175,55,0.2)"]
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
@@ -2054,12 +2287,12 @@ const TestimonialsSection = () => {
             <div className="absolute left-1/2 -translate-x-1/2 opacity-30 pointer-events-none">
               <motion.div
                 className="w-40 h-40 rounded-full border border-[#D4AF37]/10"
-                animate={{ 
-                  scale: [1, 1.2, 1], 
+                animate={{
+                  scale: [1, 1.2, 1],
                   opacity: [0.2, 0.3, 0.2],
-                  rotate: 360 
+                  rotate: 360
                 }}
-                transition={{ 
+                transition={{
                   scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
                   opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
                   rotate: { duration: 20, repeat: Infinity, ease: "linear" }
@@ -2067,7 +2300,7 @@ const TestimonialsSection = () => {
               />
             </div>
           </motion.div>
-          
+
           {/* Enhanced text link with animated underline */}
           <div className="flex justify-center mt-8">
             <motion.a
@@ -2075,7 +2308,7 @@ const TestimonialsSection = () => {
               className="text-[#D4AF37]/80 text-sm flex items-center gap-1.5 hover:text-[#F9E077] transition-colors relative group"
               whileHover={{ y: -2 }}
             >
-              Ver todos os depoimentos 
+              Ver todos os depoimentos
               <ArrowUpRight className="w-3.5 h-3.5" />
               <motion.span
                 className="absolute bottom-0 left-0 right-0 h-px bg-[#D4AF37]/50"
@@ -2087,7 +2320,7 @@ const TestimonialsSection = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Video modal for testimonial videos */}
       <AnimatePresence>
         {isVideoModalOpen && (
@@ -2107,7 +2340,7 @@ const TestimonialsSection = () => {
             >
               <div className="p-4 flex justify-between items-center border-b border-white/10">
                 <h3 className="text-white font-medium">Depoimento em vídeo</h3>
-                <button 
+                <button
                   className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center"
                   onClick={() => setIsVideoModalOpen(false)}
                 >
@@ -2117,12 +2350,12 @@ const TestimonialsSection = () => {
                 </button>
               </div>
               <div className="aspect-video w-full">
-                <iframe 
+                <iframe
                   className="w-full h-full"
-                  src={currentVideo} 
-                  title="Video testimonial" 
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  src={currentVideo}
+                  title="Video testimonial"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
@@ -2130,7 +2363,7 @@ const TestimonialsSection = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      
+
       {/* CSS animations */}
       <style>{`
         @keyframes shine {

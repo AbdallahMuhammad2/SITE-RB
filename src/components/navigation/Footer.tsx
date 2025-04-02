@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ArrowRight, ChevronRight } from 'lucide-react';
+import { Facebook,  Instagram, Youtube, Mail, Phone,  ArrowRight, ChevronRight } from 'lucide-react';
 import logo from '../../images/p.png';
 export const Footer = () => {
   return (

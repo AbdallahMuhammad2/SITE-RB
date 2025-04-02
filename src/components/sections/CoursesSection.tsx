@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Book, Calendar, Users, Award, Clock, Check, Star } from 'lucide-react';
+import { ArrowRight, Book,  Users, Clock, Check, Star } from 'lucide-react';
 
 export const CoursesSection = () => {
   const courses = [

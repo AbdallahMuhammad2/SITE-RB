@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, ChevronRight, Check, Sparkles, Award, GraduationCap, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, ChevronRight, Check, Sparkles, Award, GraduationCap, } from 'lucide-react';
 
 export const CTASection = () => {
 

@@ -219,7 +219,7 @@ export const Navbar = () => {
                 </div>
                 
                 <nav className="space-y-6">
-                  {navLinks.map((link, i) => (
+                  {navLinks.map((link) => (
                     <div key={link.label} className="space-y-1">
                       {link.subItems ? (
                         <>
