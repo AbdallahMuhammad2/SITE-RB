@@ -97,7 +97,7 @@ export const Navbar = () => {
                   >
                     {link.subItems ? (
                       <button 
-                        className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors"
+                        className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors text-lg font-medium"
                         onMouseEnter={() => setActiveDropdown(link.label)}
                       >
                         <span>{link.label}</span>
@@ -106,7 +106,7 @@ export const Navbar = () => {
                     ) : (
                       <Link 
                         to={link.href} 
-                        className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors"
+                        className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors text-lg font-medium"
                       >
                         <span>{link.label}</span>
                       </Link>
@@ -129,7 +129,7 @@ export const Navbar = () => {
                               <Link 
                                 key={item.label} 
                                 to={item.href} 
-                                className="block px-4 py-2.5 text-sm text-white hover:bg-[#D4AF37]/10 hover:text-[#D4AF37] transition-colors"
+                                className="block px-4 py-2.5 text-base text-white hover:bg-[#D4AF37]/10 hover:text-[#D4AF37] transition-colors"
                               >
                                 {item.label}
                               </Link>
@@ -146,7 +146,7 @@ export const Navbar = () => {
             {/* Auth buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <motion.button 
-                className="text-white hover:text-[#D4AF37] font-medium flex items-center gap-1"
+                className="text-white hover:text-[#D4AF37] font-medium flex items-center gap-1 text-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
@@ -155,7 +155,7 @@ export const Navbar = () => {
               </motion.button>
               
               <motion.button 
-                className="px-4 py-2 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium text-sm hover:bg-[#F9E077] transition-colors"
+                className="px-5 py-2.5 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium text-base hover:bg-[#F9E077] transition-colors"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -209,7 +209,7 @@ export const Navbar = () => {
             >
               <div className="p-5 space-y-8">
                 <div className="flex justify-between items-center">
-                  <div className="font-bold text-white text-lg">Menu</div>
+                  <div className="font-bold text-white text-xl">Menu</div>
                   <button 
                     className="p-2 rounded-lg hover:bg-white/10 text-white"
                     onClick={() => setMobileMenuOpen(false)}
@@ -225,14 +225,14 @@ export const Navbar = () => {
                         <>
                           <div className="flex items-center text-[#D4AF37] mb-2">
                             {link.icon}
-                            <span className="ml-2 text-sm font-medium uppercase tracking-wider">{link.label}</span>
+                            <span className="ml-2 text-base font-medium uppercase tracking-wider">{link.label}</span>
                           </div>
                           <div className="space-y-1 pl-6">
                             {link.subItems.map(item => (
                               <Link 
                                 key={item.label} 
                                 to={item.href} 
-                                className="block py-2 text-white hover:text-[#D4AF37] text-sm"
+                                className="block py-2.5 text-white hover:text-[#D4AF37] text-base"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
                                 {item.label}
@@ -243,7 +243,7 @@ export const Navbar = () => {
                       ) : (
                         <Link 
                           to={link.href} 
-                          className="flex items-center py-2 text-white hover:text-[#D4AF37]"
+                          className="flex items-center py-2.5 text-white hover:text-[#D4AF37] text-base"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {link.icon}
@@ -255,12 +255,12 @@ export const Navbar = () => {
                 </nav>
                 
                 <div className="pt-4 border-t border-white/10 space-y-4">
-                  <button className="w-full py-3 text-white hover:text-[#D4AF37] font-medium flex items-center justify-center gap-2">
+                  <button className="w-full py-3 text-white hover:text-[#D4AF37] font-medium flex items-center justify-center gap-2 text-base">
                     <User className="h-5 w-5" />
                     <span>Entrar</span>
                   </button>
                   
-                  <a href='' className="w-full py-3 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium hover:bg-[#F9E077] transition-colors">
+                  <a href='' className="block text-center w-full py-3 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium hover:bg-[#F9E077] transition-colors text-base">
                     Começar Agora
                   </a>
                 </div>

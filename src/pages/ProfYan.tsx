@@ -9,7 +9,7 @@ import {
   Download, ChevronRight, ChevronLeft, Clock, Users, Play, Sparkles,
   GraduationCap, Target, FileCheck, Zap, TrendingUp, ShieldCheck, Brain,
   ArrowUpRight, BookText, Medal, ArrowDown, BookMarked, Bookmark, Glasses,
-  Mail, User, FileText, X, Menu, MessageSquare, Eye, MapPin, HeartHandshake, Heart, Trophy, Plus, ShoppingCart
+  Mail, User, FileText, X, Menu, MessageSquare, Eye, MapPin, HeartHandshake, Heart, Trophy, Plus, ShoppingCart, Youtube
 } from 'lucide-react';
 import case1 from '../images/case1.jpg';
 import case2 from '../images/case2.jpg';
@@ -19,7 +19,7 @@ import case5 from '../images/case5.jpg';
 import case6 from '../images/case6.jpg';
 import case7 from '../images/case7.jpg';
 import case8 from '../images/case8.jpg';
-
+import image from '../images/image.png';
 import yan2 from '../images/yan2.jpeg';
 import yan from '../images/Yan.jpg';
 // ProfYanNavigation component with black and gold luxury theme
@@ -494,7 +494,6 @@ const CaseStudyCarousel = () => {
                     <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
                       <div className="space-y-2">
                         <h3 className="text-xl font-bold text-white">Aluno {index + 1}</h3>
-                        <p className="text-[#D4AF37] font-medium">Concurso XYZ</p>
                         <p className="text-white/80 text-sm">Aprovado em 1º lugar</p>
                       </div>
                     </div>
@@ -1458,7 +1457,7 @@ const ProfYan = () => {
                 <div className="w-full md:w-2/5 relative">
                   <div className="aspect-video bg-[#0F0E13] rounded-xl overflow-hidden relative">
                     <img
-                      src="/api/placeholder/400/320"
+                      src= {image}
                       alt="Aula destaque"
                       className="w-full h-full object-cover opacity-80"
                     />
@@ -1475,38 +1474,47 @@ const ProfYan = () => {
                 </div>
 
                 <div className="w-full md:w-3/5">
-                  <h3 className="text-2xl font-bold text-white mb-4">Conteúdo em Destaque</h3>
-                  <h4 className="text-[#D4AF37] text-lg mb-4">Raciocínio Lógico para Concursos: Técnicas Avançadas de Resolução Rápida</h4>
-                  <p className="text-white/70 mb-6">
-                    Nesta aula exclusiva, apresento métodos inéditos para resolver questões de lógica em até 50% menos tempo,
-                    utilizando padrões visuais e técnicas de simplificação que desenvolvi ao longo de minha experiência.
-                  </p>
+  <h3 className="text-2xl font-bold text-white mb-4">Conteúdo em Destaque</h3>
+  <h4 className="text-[#D4AF37] text-lg mb-4">Raciocínio Lógico para Concursos: Técnicas Avançadas de Resolução Rápida</h4>
+  <p className="text-white/70 mb-6">
+    Nesta aula exclusiva, apresento métodos inéditos para resolver questões de lógica em até 50% menos tempo,
+    utilizando padrões visuais e técnicas de simplificação que desenvolvi ao longo de minha experiência.
+  </p>
 
-                  <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Raciocínio Lógico</span>
-                    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Técnicas Avançadas</span>
-                    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Resolução Rápida</span>
-                  </div>
+  <div className="flex flex-wrap gap-3 mb-6">
+    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Raciocínio Lógico</span>
+    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Técnicas Avançadas</span>
+    <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-xs rounded-full">Resolução Rápida</span>
+  </div>
 
-                  <div className="flex items-center gap-6">
-                    <motion.button
-                      className="px-5 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] rounded-lg text-[#080608] font-medium text-sm flex items-center gap-2"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <Play className="w-4 h-4" />
-                      Assistir agora
-                    </motion.button>
+  <div className="flex items-center gap-6">
+    {/* Botão transformado em link para o vídeo específico */}
+    <motion.a
+      href="https://www.youtube.com/watch?v=OtCkEKheBeI"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-5 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] rounded-lg text-[#080608] font-medium text-sm flex items-center gap-2"
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+    >
+      <Play className="w-4 h-4" />
+      Assistir agora
+    </motion.a>
 
-                    <motion.button
-                      className="px-5 py-3 border border-[#D4AF37]/30 rounded-lg text-[#D4AF37] font-medium text-sm"
-                      whileHover={{ scale: 1.03, backgroundColor: 'rgba(212,175,55,0.1)' }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      Ver todos conteúdos
-                    </motion.button>
-                  </div>
-                </div>
+    {/* Botão adicional para o canal */}
+    <motion.a
+      href="https://www.youtube.com/@professoryanribeiro"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-5 py-3 border border-[#D4AF37]/30 rounded-lg text-[#D4AF37] font-medium text-sm flex items-center gap-2"
+      whileHover={{ scale: 1.03, backgroundColor: 'rgba(212,175,55,0.1)' }}
+      whileTap={{ scale: 0.97 }}
+    >
+      <Youtube className="w-4 h-4" />
+      Ver canal completo
+    </motion.a>
+  </div>
+</div>
               </div>
             </div>
           </motion.div>
@@ -1534,7 +1542,7 @@ const ProfYan = () => {
               alt="Curso de Matemática para Concursos" 
               className="w-full h-full object-cover"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://via.placeholder.com/600x800?text=Curso+de+Matematica";
+                (e.target as HTMLImageElement).src = yan; // Fallback image
               }}
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#080608] to-transparent h-40 z-10"></div>
@@ -1823,115 +1831,7 @@ const ProfYan = () => {
         </div>
       </section>
 
-      {/* Featured Course Section based on the text message */}
-      <motion.div 
-        className="bg-[#13121A] rounded-2xl border border-[#D4AF37]/20 overflow-hidden shadow-xl mt-20"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="flex flex-col lg:flex-row">
-          <div className="lg:w-2/5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/30 via-[#D4AF37]/10 to-transparent mix-blend-overlay z-10"></div>
-            <motion.div
-              className="absolute inset-0 bg-[url('/math-patterns.svg')] bg-repeat opacity-10"
-              animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-              transition={{ duration: 50, repeat: Infinity, repeatType: "reverse" }}
-            ></motion.div>
-            <img 
-              src="/math-course-image.jpg" 
-              alt="Curso de Matemática para Concursos" 
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://via.placeholder.com/600x800?text=Curso+de+Matematica";
-              }}
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#080608] to-transparent h-40 z-10"></div>
-            <div className="absolute bottom-4 left-4 z-20">
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D4AF37] text-[#080608] text-xs font-semibold">
-                <Star className="w-3.5 h-3.5 mr-1" /> 
-                Curso Destaque
-              </span>
-            </div>
-          </div>
-          <div className="lg:w-3/5 p-8 lg:p-10">
-            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">Curso de Matemática para Concursos Públicos</h3>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-[#D4AF37]">Professor especializado</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/50"></span>
-              <span className="text-white/70">Conteúdo completo</span>
-            </div>
-            
-            <p className="text-white/80 mb-6">
-              Um programa abrangente e especializado projetado para preparar os estudantes para dominar os desafios 
-              matemáticos encontrados nas provas de concursos públicos.
-            </p>
-            
-            <div className="space-y-4 mb-8">
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
-                </div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-medium">Professor especializado:</span> Instrutor altamente qualificado, com expertise específica em matemática para concursos públicos.
-                </p>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
-                </div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-medium">Conteúdo completo:</span> Abrange todo o espectro da matemática cobrada em concursos: aritmética, álgebra, geometria, estatística e raciocínio lógico.
-                </p>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
-                </div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-medium">Estratégias e técnicas:</span> Métodos práticos para otimizar tempo de resposta, identificar padrões e evitar armadilhas comuns.
-                </p>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#D4AF37]/10 flex-shrink-0 flex items-center justify-center mt-0.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#D4AF37]" />
-                </div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-medium">Exercícios e práticas:</span> Ampla variedade de exercícios que refletem a complexidade das questões encontradas em concursos públicos.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-4">
-              <motion.a
-                href="https://pay.hotmart.com/F83685898D?bid=1742817343922"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] text-[#080608] font-semibold rounded-lg flex items-center gap-2"
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(212,175,55,0.4)" }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <ShoppingCart className="w-5 h-5" />
-                <span>Comprar Agora</span>
-              </motion.a>
-              
-              <motion.a
-                href="#"
-                className="px-6 py-3 border border-[#D4AF37]/30 text-[#D4AF37] font-medium rounded-lg"
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(212,175,55,0.1)" }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Mais informações
-              </motion.a>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
+     
     </div>
   );
 };
