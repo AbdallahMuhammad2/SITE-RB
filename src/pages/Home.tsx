@@ -269,15 +269,27 @@ const HomePage = () => {
 
   return (
     <div className="bg-[#08070A] overflow-hidden">
-      <UltraHero />
-      <StatsHighlightBanner />
-      <AboutSection />
-      <PastExamsSection /> {/* Adicione esta linha */}
-
-      <CurrentNewsBlock /> {/* Adicionando o bloco de notícias aqui */}
-      <ProfessorsSection />
-
-      <TestimonialsSection />
+      <section id="inicio">
+        <UltraHero />
+      </section>
+      <section id="metodologia">
+        <StatsHighlightBanner />
+      </section>
+      <section id="cursos">
+        <AboutSection />
+      </section>
+      <section id="aprovados">
+        <PastExamsSection />
+      </section>
+      <section id="current-news">
+        <CurrentNewsBlock />
+      </section>
+      <section id="professores">
+        <ProfessorsSection />
+      </section>
+      <section id="depoimentos">
+        <TestimonialsSection />
+      </section>
       <NewsSection />
       <div id="matricula">
         <CTASection />
@@ -918,7 +930,7 @@ const EnhancedFloatingCard: React.FC<EnhancedFloatingCardProps> = ({ index, dela
 
         <div className="relative z-10">
           <div className="flex items-center mb-4">
-            <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center mr-3 shadow-inner">
+            <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center mr-3 shadow-inner">
               {card.icon}
             </div>
             <h3 className="text-lg font-medium text-white">{card.title}</h3>

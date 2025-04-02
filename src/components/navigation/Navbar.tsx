@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, User, Book, FileText, Newspaper, Info } from 'lucide-react';
+import { 
+  Menu, X, ChevronDown, User, Book, BookOpen, FileText, 
+  Newspaper, Info, Home, Trophy, GraduationCap, MessageSquare 
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface NavLinkProps {
   href: string;
-  label: string;
+  label: string | React.ReactNode;
   icon?: React.ReactNode;
   subItems?: {label: string; href: string}[];
+  action?: () => void;
 }
 
 export const Navbar = () => {
@@ -24,36 +28,68 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -80;
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   const navLinks: NavLinkProps[] = [
     { 
-      href: "/sobre", 
-      label: "Quem somos nós",
+      href: "/#inicio", 
+      label: "Início",
+      icon: <Home className="h-4 w-4" />,
+      action: () => scrollToSection("inicio")
+    },
+    { 
+      href: "/#cursos", 
+      label: "Quem somos",
       icon: <Info className="h-4 w-4" />,
+      action: () => scrollToSection("cursos"),
       subItems: [
         { label: "Prof. Paula Barreto", href: "/prof-paula" },
         { label: "Prof. Yan Ribeiro", href: "/prof-yan" }
       ]
     },
     { 
-      href: "/blog", 
-      label: "Blog",
-      icon: <Newspaper className="h-4 w-4" /> 
+      href: "/#metodologia", 
+      label: "Metodologia",
+      icon: <BookOpen className="h-4 w-4" />,
+      action: () => scrollToSection("metodologia")
     },
     { 
-      href: "/cursos", 
+      href: "/#cursos", 
       label: "Cursos",
       icon: <Book className="h-4 w-4" />,
-      subItems: [
-        { label: "Português e Redação", href: "/cursos/portugues" },
-        { label: "Matemática e RLM", href: "/cursos/matematica" }
-      ]
+      action: () => scrollToSection("cursos")
     },
     { 
-      href: "/materiais", 
-      label: "Materiais de estudo",
-      icon: <FileText className="h-4 w-4" /> 
+      href: "/#professores", 
+      label: "Professores",
+      icon: <GraduationCap className="h-4 w-4" />,
+      action: () => scrollToSection("professores")
     },
-    
+    { 
+      href: "/#aprovados", 
+      label: "Aprovados",
+      icon: <Trophy className="h-4 w-4" />,
+      action: () => scrollToSection("aprovados")
+    },
+    { 
+      href: "/#depoimentos", 
+      label: "Depoimentos",
+      icon: <MessageSquare className="h-4 w-4" />,
+      action: () => scrollToSection("depoimentos")
+    },
+    { 
+      href: "/blog", 
+      label: <span className="notranslate">Blog</span>,
+      icon: <Newspaper className="h-4 w-4" /> 
+    }
   ];
   
   return (
@@ -68,7 +104,6 @@ export const Navbar = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
             <motion.div 
               className="flex-shrink-0 flex items-center"
               initial={{ opacity: 0 }}
@@ -86,10 +121,9 @@ export const Navbar = () => {
               </Link>
             </motion.div>
 
-            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-1">
               {navLinks.map((link, i) => (
-                <div key={link.label} className="relative" onMouseLeave={() => setActiveDropdown(null)}>
+                <div key={link.href} className="relative" onMouseLeave={() => setActiveDropdown(null)}>
                   <motion.div 
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -98,25 +132,34 @@ export const Navbar = () => {
                     {link.subItems ? (
                       <button 
                         className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors text-lg font-medium"
-                        onMouseEnter={() => setActiveDropdown(link.label)}
+                        onMouseEnter={() => setActiveDropdown(typeof link.label === 'string' ? link.label : 'submenu')}
+                        onClick={link.action}
                       >
                         <span>{link.label}</span>
                         <ChevronDown className="h-4 w-4 ml-1" />
                       </button>
                     ) : (
-                      <Link 
-                        to={link.href} 
-                        className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors text-lg font-medium"
-                      >
-                        <span>{link.label}</span>
-                      </Link>
+                      link.href.startsWith('/') && !link.href.includes('#') ? (
+                        <Link 
+                          to={link.href} 
+                          className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors text-lg font-medium"
+                        >
+                          <span>{link.label}</span>
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={link.action}
+                          className="flex items-center px-4 py-2 text-white hover:text-[#D4AF37] transition-colors text-lg font-medium"
+                        >
+                          <span>{link.label}</span>
+                        </button>
+                      )
                     )}
                   </motion.div>
 
-                  {/* Dropdown Menu */}
                   {link.subItems && (
                     <AnimatePresence>
-                      {activeDropdown === link.label && (
+                      {activeDropdown === (typeof link.label === 'string' ? link.label : 'submenu') && (
                         <motion.div 
                           className="absolute left-0 mt-1 w-56 rounded-md bg-[#0F0E13] shadow-lg shadow-black/40 border border-white/10 overflow-hidden z-20"
                           initial={{ opacity: 0, y: -5, height: 0 }}
@@ -130,6 +173,7 @@ export const Navbar = () => {
                                 key={item.label} 
                                 to={item.href} 
                                 className="block px-4 py-2.5 text-base text-white hover:bg-[#D4AF37]/10 hover:text-[#D4AF37] transition-colors"
+                                onClick={() => setActiveDropdown(null)}
                               >
                                 {item.label}
                               </Link>
@@ -143,18 +187,11 @@ export const Navbar = () => {
               ))}
             </nav>
 
-            {/* Auth buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <motion.button 
-                className="text-white hover:text-[#D4AF37] font-medium flex items-center gap-1 text-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                whileHover={{ scale: 1.05 }}
-              >
-              </motion.button>
-              
-              <motion.button 
+              <motion.a
+                href="https://api.whatsapp.com/send/?phone=557774009165&text=Ol%C3%A1%21+Tenho+interesse+nos+cursos.&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer" 
                 className="px-5 py-2.5 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium text-base hover:bg-[#F9E077] transition-colors"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -162,10 +199,9 @@ export const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 Começar Agora
-              </motion.button>
+              </motion.a>
             </div>
 
-            {/* Mobile menu button */}
             <motion.div 
               className="md:hidden"
               initial={{ opacity: 0 }}
@@ -183,7 +219,6 @@ export const Navbar = () => {
         </div>
       </motion.header>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
@@ -219,13 +254,18 @@ export const Navbar = () => {
                 </div>
                 
                 <nav className="space-y-6">
-                  {navLinks.map((link) => (
-                    <div key={link.label} className="space-y-1">
+                  {navLinks.map((link, i) => (
+                    <div key={link.href} className="space-y-1">
                       {link.subItems ? (
                         <>
                           <div className="flex items-center text-[#D4AF37] mb-2">
                             {link.icon}
-                            <span className="ml-2 text-base font-medium uppercase tracking-wider">{link.label}</span>
+                            <button
+                              onClick={link.action}
+                              className="ml-2 text-base font-medium uppercase tracking-wider"
+                            >
+                              {link.label}
+                            </button>
                           </div>
                           <div className="space-y-1 pl-6">
                             {link.subItems.map(item => (
@@ -241,26 +281,37 @@ export const Navbar = () => {
                           </div>
                         </>
                       ) : (
-                        <Link 
-                          to={link.href} 
-                          className="flex items-center py-2.5 text-white hover:text-[#D4AF37] text-base"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {link.icon}
-                          <span className="ml-2">{link.label}</span>
-                        </Link>
+                        link.href.startsWith('/') && !link.href.includes('#') ? (
+                          <Link 
+                            to={link.href} 
+                            className="flex items-center py-2.5 text-white hover:text-[#D4AF37] text-base"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {link.icon}
+                            <span className="ml-2">{link.label}</span>
+                          </Link>
+                        ) : (
+                          <button 
+                            className="flex items-center py-2.5 text-white hover:text-[#D4AF37] text-base w-full text-left"
+                            onClick={link.action}
+                          >
+                            {link.icon}
+                            <span className="ml-2">{link.label}</span>
+                          </button>
+                        )
                       )}
                     </div>
                   ))}
                 </nav>
                 
                 <div className="pt-4 border-t border-white/10 space-y-4">
-                  <button className="w-full py-3 text-white hover:text-[#D4AF37] font-medium flex items-center justify-center gap-2 text-base">
-                    <User className="h-5 w-5" />
-                    <span>Entrar</span>
-                  </button>
-                  
-                  <a href='' className="block text-center w-full py-3 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium hover:bg-[#F9E077] transition-colors text-base">
+                  <a 
+                    href="https://api.whatsapp.com/send/?phone=557774009165&text=Ol%C3%A1%21+Tenho+interesse+nos+cursos.&type=phone_number&app_absent=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center w-full py-3 rounded-lg bg-[#D4AF37] text-[#08070A] font-medium hover:bg-[#F9E077] transition-colors text-base"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Começar Agora
                   </a>
                 </div>
