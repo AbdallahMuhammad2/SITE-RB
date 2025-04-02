@@ -1492,23 +1492,7 @@ const ProfessorsSection = () => {
             ))}
           </div>
 
-          {/* "Ver todos" button */}
-          <motion.div
-            className="flex justify-center mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-          >
-            <motion.button
-              className="px-8 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white font-medium flex items-center gap-2 group hover:bg-white/10 transition-colors"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212, 175, 55, 0.15)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Conhecer nossa equipe completa
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </motion.button>
-          </motion.div>
+          
         </div>
       </div>
       <style>{`
