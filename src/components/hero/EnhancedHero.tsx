@@ -249,7 +249,7 @@ const EnhancedHero = () => {
                 <span className="block mb-2 text-transparent bg-clip-text" style={{ backgroundImage: gradients.goldPrimary }}>
                   aprovações para
                 </span>
-                <span className="block">concursos jurídicos</span>
+                <span className="block">concursos</span>
               </h1>
               
               {/* Elegant underline */}

@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { motion,  useTransform, useMotionValue, AnimatePresence, MotionValue } from 'framer-motion';
-import { ArrowRight,  ArrowUpRight, Calendar, Clock, CheckCircle2, BarChart3, BookOpen, Star, Mail, Phone, Trophy, Users, ShieldCheck,  Play, Quote,  Newspaper, ExternalLink } from 'lucide-react';
+import { motion, useTransform, useMotionValue, AnimatePresence, MotionValue } from 'framer-motion';
+import { ArrowRight, ArrowUpRight, Calendar, Clock, CheckCircle2, BarChart3, BookOpen, Star, Mail, Phone, Trophy, Users, ShieldCheck, Play, Quote, Newspaper, ExternalLink } from 'lucide-react';
 import { gsap } from 'gsap';
 import SplitType from 'split-type';
+import { Link } from 'react-router-dom';
 
 import { NewsSection } from '../components/sections/NewsSection';
 
@@ -18,6 +19,7 @@ import Andreia from '../images/Andreia-Torres-Perfil.png';
 import Paula1 from '../images/yure.png';
 import stella from '../images/stella.png';
 import Yure from '../images/equipe3.png';
+
 // Componente de bloco de notícias atuais de concursos
 const CurrentNewsBlock = () => {
   // Array com os dados das notícias
@@ -28,7 +30,7 @@ const CurrentNewsBlock = () => {
       excerpt: "Empresa Municipal de Urbanização de Vitória da Conquista já escolheu a banca organizadora para o novo concurso público.",
       source: "pmvc.ba.gov.br",
       date: "30 Mar 2025",
-      link: "https://www.pmvc.ba.gov.br/emurc-autoriza-abertura-de-concurso-publico-banca-organizadora-ja-foi-escolhida/"
+      link: "/blog/emurc-autoriza-concurso-vitoria-conquista"
     },
     {
       id: 2,
@@ -36,7 +38,7 @@ const CurrentNewsBlock = () => {
       excerpt: "Informações sobre o novo concurso da Polícia Militar da Bahia, com previsão de edital ainda em 2025.",
       source: "Gran Cursos Online",
       date: "28 Mar 2025",
-      link: "https://blog.grancursosonline.com.br/concurso-pm-ba/"
+      link: "/blog/concurso-pm-ba-proximo-certame"
     },
     {
       id: 3,
@@ -44,7 +46,7 @@ const CurrentNewsBlock = () => {
       excerpt: "Confira a lista completa dos concursos com previsão de edital para 2025 e organize seus estudos.",
       source: "Estratégia Concursos",
       date: "25 Mar 2025",
-      link: "https://www.estrategiaconcursos.com.br/blog/concursos-2025/"
+      link: "/blog/concursos-mais-esperados-2025"
     },
     {
       id: 4,
@@ -52,7 +54,7 @@ const CurrentNewsBlock = () => {
       excerpt: "Atualizações sobre o novo concurso da Polícia Civil da Bahia que deve ser lançado em breve.",
       source: "Estratégia Concursos",
       date: "22 Mar 2025",
-      link: "https://www.estrategiaconcursos.com.br/blog/concurso-pc-ba/"
+      link: "/blog/concurso-pc-ba-novidades"
     },
     {
       id: 5,
@@ -60,7 +62,7 @@ const CurrentNewsBlock = () => {
       excerpt: "Os temas mais importantes de atualidades que podem cair em provas de concursos neste período.",
       source: "QConcursos",
       date: "18 Mar 2025",
-      link: "https://folha.qconcursos.com/n/atualidades-para-concursos-marco-2025"
+      link: "/blog/atualidades-para-concursos-marco-2025"
     },
     {
       id: 6,
@@ -68,7 +70,7 @@ const CurrentNewsBlock = () => {
       excerpt: "Dicas para candidatos que desejam mudar o foco de estudos para diferentes cargos do concurso.",
       source: "QConcursos",
       date: "15 Mar 2025",
-      link: "https://folha.qconcursos.com/n/concurso-correios-como-adaptar-estudo-de-carteiro-para-atendente-comercial"
+      link: "/blog/concurso-correios-adaptar-estudos-carteiro-atendente"
     }
   ];
 
@@ -165,62 +167,49 @@ const CurrentNewsBlock = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {newsItems.map((news, index) => (
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {newsItems.map((item, i) => (
             <motion.div
-              key={news.id}
-              className="bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden group hover:border-[#D4AF37]/30 transition-all"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{
-                y: -5,
-                boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.5)",
-                scale: 1.02
-              }}
+              key={item.id}
             >
-              <div className="h-2 bg-gradient-to-r from-[#D4AF37]/80 via-[#D4AF37]/40 to-[#D4AF37]/10"></div>
-
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4 text-xs text-white/60">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {news.date}
+              <Link
+                to={item.link}
+                className="block h-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl overflow-hidden transition-all duration-300 group"
+              >
+                <div className="p-6">
+                  <div className="text-sm text-[#D4AF37] mb-2 flex items-center justify-between">
+                    <span>Notícia</span>
+                    <span className="text-white/50 text-xs">{item.date}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#D4AF37]/10 text-[#D4AF37]">
-                    <Newspaper className="w-3 h-3" />
-                    {news.source}
+
+                  <h3 className="text-xl font-medium text-white mb-3 group-hover:text-[#D4AF37] transition-colors">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-white/70 text-sm mb-4 line-clamp-2">
+                    {item.excerpt}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-xs text-white/50">{item.source}</span>
+
+                    <motion.div
+                      className="w-8 h-8 rounded-full bg-[#D4AF37]/10 flex items-center justify-center"
+                      whileHover={{ scale: 1.2, backgroundColor: "rgba(212,175,55,0.2)" }}
+                    >
+                      <ArrowRight className="h-4 w-4 text-[#D4AF37]" />
+                    </motion.div>
                   </div>
                 </div>
-
-                <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-[#D4AF37] transition-colors duration-300">
-                  {news.title}
-                </h3>
-
-                <div className="h-px w-16 bg-gradient-to-r from-[#D4AF37] to-transparent mb-4"></div>
-
-                <p className="text-white/70 mb-6 line-clamp-3">{news.excerpt}</p>
-
-                <a
-                  href={news.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F9E077] transition-colors group/link"
-                >
-                  <span className="font-medium">Ler notícia completa</span>
-                  <div className="relative">
-                    <motion.div
-                      className="absolute -inset-1 rounded-full bg-[#D4AF37]/20 opacity-0 group-hover/link:opacity-100 blur-sm"
-                      transition={{ duration: 0.3 }}
-                    />
-                    <ExternalLink className="w-4 h-4 relative group-hover/link:scale-110 transition-transform" />
-                  </div>
-                </a>
-              </div>
+              </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
           className="text-center mt-16"
@@ -281,9 +270,7 @@ const HomePage = () => {
       <section id="aprovados">
         <PastExamsSection />
       </section>
-      <section id="current-news">
-        <CurrentNewsBlock />
-      </section>
+     
       <section id="professores">
         <ProfessorsSection />
       </section>
@@ -305,7 +292,7 @@ const PastExamsSection = () => {
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-full h-64 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-50" />
       <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-repeat opacity-5" />
-      
+
       {/* Animated orbs/lights */}
       <motion.div
         className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-[#D4AF37]/5 blur-[100px]"
@@ -345,7 +332,7 @@ const PastExamsSection = () => {
               />
               <span className="text-sm font-medium text-[#D4AF37] uppercase tracking-[0.2em] mx-4 notranslate">
                 cursos
-                <motion.span 
+                <motion.span
                   className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
@@ -363,7 +350,7 @@ const PastExamsSection = () => {
             </div>
 
             <h2 className="text-4xl lg:text-5xl font-bold text-white mt-6 mb-8 leading-tight">
-              Cursos <span className="text-[#D4AF37] notranslate">finalizados</span> 
+              Cursos <span className="text-[#D4AF37] notranslate">finalizados</span>
             </h2>
 
             <motion.p
@@ -462,16 +449,16 @@ const PastExamsSection = () => {
                       {exam.icon === "award" && <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />}
                     </motion.svg>
                   </div>
-                  
+
                   {/* Title */}
                   <h3 className="text-xl font-bold text-white mb-1 notranslate">{exam.title}</h3>
                   {exam.subtitle && (
                     <p className="text-[#D4AF37] text-sm mb-3 notranslate">{exam.subtitle}</p>
                   )}
-                  
+
                   {/* Details */}
                   <p className="text-white/60 mb-6 h-12 line-clamp-2">{exam.details}</p>
-                  
+
                   {/* Stats */}
                   <div className="flex justify-between items-center pt-4 border-t border-white/10">
                     <div className="flex items-center">
@@ -483,7 +470,7 @@ const PastExamsSection = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Hover effect gradient line */}
                 <motion.div
                   className="h-1 w-0 bg-gradient-to-r from-[#D4AF37] to-[#F9E077] group-hover:w-full transition-all duration-500"
@@ -493,7 +480,7 @@ const PastExamsSection = () => {
               </motion.div>
             ))}
           </div>
-          
+
           {/* CTA Button */}
           <motion.div
             className="mt-16 text-center"
@@ -512,7 +499,7 @@ const PastExamsSection = () => {
             >
               <span>Seja o próximo aprovado</span>
               <ArrowRight className="w-5 h-5" />
-              
+
               <motion.div
                 className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-40 group-hover:animate-shine"
                 transition={{ duration: 0.3 }}
@@ -521,7 +508,7 @@ const PastExamsSection = () => {
           </motion.div>
         </div>
       </div>
-      
+
       {/* CSS animations */}
       <style>{`
         @keyframes shine {
@@ -648,7 +635,7 @@ export const UltraHero = () => {
   const [loaded, setLoaded] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
- 
+
 
   // Enhanced cursor tracking for 3D effect
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -758,97 +745,62 @@ export const UltraHero = () => {
                 </div>
               </motion.div>
 
-              {/* Ultra-Premium Headline com texto corrigido */}
-              <div className="mb-12">
-                <h1
-                  ref={headingRef}
-                  className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight notranslate"
-                  style={{ lineHeight: 1.1, perspective: "1500px" }}
-                >
-                  <span className="block mb-6 text-white">Excelência em</span>
-                  <span className="block mb-6 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:300%_auto] animate-shimmer bg-clip-text text-transparent">
-                    aprovações
-                  </span>
-                  <span className="block text-white">para concursos</span>
-                </h1>
 
-                <motion.div
-                  className="max-w-2xl relative mt-10"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.6 }}
-                >
-                  <motion.span
-                    className="absolute -left-5 top-0 w-[2px] h-full"
-                    style={{
-                      background: "linear-gradient(to bottom, transparent, #D4AF37, transparent)"
-                    }}
-                    animate={{
-                      opacity: [0.3, 0.8, 0.3],
-                      height: ["40%", "100%", "40%"],
-                      top: ["30%", "0%", "30%"]
-                    }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  />
+<div className="mb-12">
 
-                  <p className="text-xl leading-relaxed text-white/80 relative pl-2 fade-in-sequence notranslate">
-                    <span className="font-medium">Garanta sua aprovação</span> com nossa metodologia
-                    exclusiva e professores especialistas em cada área. Conquiste
-                    sua <span className="text-[#D4AF37] font-medium">estabilidade financeira</span>
-                    e transforme sua vida agora.
-                  </p>
-                </motion.div>
+<div className="heading-container" style={{ lineHeight: 1.1, perspective: "1500px" }}>
+<h1
+    ref={headingRef}
+    className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight notranslate"
+    style={{ lineHeight: 1.1, perspective: "1500px" }}
+  >
+    <span className="block mb-6 text-white" style={{ display: "block", width: "100%" }}>
+      Excelência em
+    </span>
+    <span 
+      className="block mb-6 text-[#D4AF37] font-bold" 
+      style={{ 
+        display: "block", 
+        width: "100%",
+        position: "relative",
+        marginTop: "1.5rem",
+        marginBottom: "1.5rem"
+      }}
+    >
+      aprovações
+    </span>
+    <span className="block text-white" style={{ display: "block", width: "100%" }}>
+      para concursos
+    </span>
+  </h1>
+</div>
+  <motion.div
+    className="max-w-2xl relative mt-10"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 1.6 }}
+  >
+    <motion.span
+      className="absolute -left-5 top-0 w-[2px] h-full"
+      style={{
+        background: "linear-gradient(to bottom, transparent, #D4AF37, transparent)"
+      }}
+      animate={{
+        opacity: [0.3, 0.8, 0.3],
+        height: ["40%", "100%", "40%"],
+        top: ["30%", "0%", "30%"]
+      }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+    />
 
-                {/* Botões CTA */}
-                <motion.div
-                  className="mt-12 flex flex-wrap gap-5"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2, duration: 0.8 }}
-                >
-                  <motion.button
-                    className="relative overflow-hidden px-8 py-4 rounded-lg group notranslate"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => scrollToSection('matricula')}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto]" />
-
-                    <div className="relative flex items-center gap-3">
-                      <span className="text-[#080608] font-medium">Começar agora</span>
-                      <motion.div
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-                      >
-                        <ArrowRight className="h-5 w-5 text-[#080608]" />
-                      </motion.div>
-                    </div>
-
-                    <div className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-30 group-hover:animate-shine" />
-                  </motion.button>
-
-                  <motion.button
-                    className="px-8 py-4 rounded-lg border border-[#D4AF37]/30 bg-[#D4AF37]/5 text-white font-medium flex items-center gap-3 group overflow-hidden relative notranslate"
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: "rgba(212,175,55,0.1)",
-                      borderColor: "rgba(212,175,55,0.6)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => scrollToSection('methodology-section')}
-                  >
-                    <span>Conhecer metodologia</span>
-                    <motion.span
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-                    >
-                      <ArrowRight className="h-5 w-5 text-[#D4AF37]" />
-                    </motion.span>
-
-                    <div className="absolute -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-white opacity-30 group-hover:animate-shine" />
-                  </motion.button>
-                </motion.div>
-              </div>
+    <p className="text-xl leading-relaxed text-white/80 relative pl-2 fade-in-sequence notranslate">
+      <span className="font-medium">Garanta sua aprovação</span> com nossa metodologia
+      exclusiva e professores especialistas em cada área. Conquiste
+      sua <span className="text-[#D4AF37] font-medium mr-2">estabilidade financeira</span>
+      e transforme sua vida agora.
+    </p>
+  </motion.div>
+</div>
             </div>
           </div>
         </motion.div>
@@ -1494,17 +1446,17 @@ const ProfessorsSection = () => {
                         <p className="text-white/80 text-sm">{member.specialization}</p>
                       </div>
 
-                     
+
                     </div>
                   </div>
 
-                 
+
                 </div>
               </motion.div>
             ))}
           </div>
 
-          
+
         </div>
       </div>
       <style>{`
@@ -1749,8 +1701,8 @@ const TestimonialsSection = () => {
               <motion.button
                 key={cat}
                 className={`px-4 py-2 rounded-full text-sm transition-all ${category === cat
-                    ? "bg-[#D4AF37] text-black font-medium"
-                    : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10"
+                  ? "bg-[#D4AF37] text-black font-medium"
+                  : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10"
                   }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -1850,8 +1802,8 @@ const TestimonialsSection = () => {
                 <button
                   key={index}
                   className={`relative h-3 overflow-hidden rounded-full transition-all ${index === activeTestimonial
-                      ? "w-16 bg-[#D4AF37]/20"
-                      : "w-3 bg-white/20 hover:bg-white/40"
+                    ? "w-16 bg-[#D4AF37]/20"
+                    : "w-3 bg-white/20 hover:bg-white/40"
                     }`}
                   onClick={() => {
                     setActiveTestimonial(index);
@@ -2085,8 +2037,8 @@ const TestimonialsSection = () => {
                       <motion.div
                         key={i}
                         className={`p-4 bg-white/5 backdrop-blur-sm border rounded-xl cursor-pointer transition-all relative overflow-hidden ${activeTestimonial === i
-                            ? "border-[#D4AF37]/50 bg-[#D4AF37]/5"
-                            : "border-white/10 hover:border-white/20"
+                          ? "border-[#D4AF37]/50 bg-[#D4AF37]/5"
+                          : "border-white/10 hover:border-white/20"
                           }`}
                         whileHover={{ y: -3, boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.3)" }}
                         initial={{ opacity: 0, x: 30 }}
@@ -2179,8 +2131,8 @@ const TestimonialsSection = () => {
               {/* Autoplay toggle with enhanced animations */}
               <motion.button
                 className={`px-4 py-2 rounded-full flex items-center gap-2 ${autoplay
-                    ? "bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30"
-                    : "bg-white/5 text-white/70 border border-white/10"
+                  ? "bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30"
+                  : "bg-white/5 text-white/70 border border-white/10"
                   }`}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -2377,6 +2329,12 @@ const TestimonialsSection = () => {
         .animate-shimmer {
           animation: shimmer 8s ease-in-out infinite;
         }
+          .heading-container h1 div {
+    margin-bottom: 1.5rem;
+  }
+  .heading-container h1 div:last-child {
+    margin-bottom: 0;
+  }
       `}</style>
     </section>
   );

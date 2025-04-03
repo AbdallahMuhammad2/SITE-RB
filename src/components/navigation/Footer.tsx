@@ -57,7 +57,7 @@ export const Footer = () => {
             <img src={logo} alt="RB Cursos" className="h-20" />            </div>
             
             <p className="text-white/70 text-sm mb-6">
-              Excelência em aprovações para concursos jurídicos através de metodologia exclusiva e materiais de estudo de alta qualidade.
+              Excelência em aprovações para concursos através de metodologia exclusiva e materiais de estudo de alta qualidade.
             </p>
             
             <div className="flex gap-4">
@@ -120,14 +120,14 @@ export const Footer = () => {
           
           {/* Column 3: Cursos */}
           <div>
-            <h4 className="text-white font-semibold mb-5">Cursos Populares</h4>
+            <h4 className="text-white font-semibold mb-5">Cursos Finalizados</h4>
             <ul className="space-y-3">
               {[
-                { label: "Magistratura Federal", path: "/courses/magistratura-federal" },
-                { label: "Ministério Público", path: "/courses/ministerio-publico" },
-                { label: "Defensoria Pública", path: "/courses/defensoria-publica" },
-                { label: "Procuradorias", path: "/courses/procuradorias" },
-                { label: "Carreiras Policiais", path: "/courses/carreiras-policiais" },
+                { label: "Concurso de Vitória da Conquista", path: "/courses/magistratura-federal" },
+                { label: "Vitória da Conquista e Barra do Choça", path: "/courses/ministerio-publico" },
+                { label: "Prefeitura de Caraíbas", path: "/courses/defensoria-publica" },
+                { label: "SESAB", path: "/courses/procuradorias" },
+                { label: "Correios", path: "/courses/carreiras-policiais" },
               ].map((item, i) => (
                 <li key={i}>
                   <Link 

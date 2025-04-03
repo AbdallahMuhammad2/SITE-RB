@@ -675,7 +675,7 @@ useEffect(() => {
             >
               {[
                 { value: 3000, suffix: "+", label: "Alunos aprovados", icon: User },
-                { value: 95, suffix: "%", label: "Taxa de aprovação", icon: Trophy },
+                { value: 98, suffix: "%", label: "Taxa de aprovação", icon: Trophy },
                 { value: 12, suffix: "+", label: "Anos de experiência", icon: Star },
                 { value: 1200, suffix: "+", label: "Questões resolvidas", icon: CheckCircle }
               ].map((stat, index) => (
@@ -705,18 +705,28 @@ useEffect(() => {
           >
             <div className="relative max-w-md w-full">
               <div className="absolute -inset-4 bg-[#D4AF37]/10 rounded-3xl blur-2xl"></div>
-              <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#D4AF37]/30">
+              <div className="relative z-20 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#D4AF37]/30">
                 <img 
-                  src={heroImage || "https://via.placeholder.com/600x700?text=Professor+Paula"} 
+                  src={heroImage} 
                   alt="Professora Paula Barreto" 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                
+                {/* Quote overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                  <blockquote className="text-white italic text-lg font-light">
+                    "Quem aprende não depende"
+                  </blockquote>
+                  <p className="text-[#D4AF37] text-sm mt-2">— Lema de vida</p>
+                </div>
               </div>
 
               {/* Floating Badges */}
               <motion.div 
-                className="absolute -left-10 top-20 bg-black/60 backdrop-blur-lg rounded-xl p-4 border border-[#D4AF37]/30"
+                className="absolute -left-10 top-20 bg-black/60 backdrop-blur-lg rounded-xl p-4 border border-[#D4AF37]/30 z-30"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.5 }}
@@ -1188,7 +1198,7 @@ const SobreProfPaula: React.FC = () => {
               {/* Glow effect */}
               <div className="absolute -inset-4 bg-[#D4AF37]/10 rounded-3xl blur-2xl"></div>
               
-              {/* Photo frame with golden border */}
+              {/* Photo frame with golden border - REDUZIDO PARA z-10 */}
               <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#D4AF37]/30">
                 <img 
                   src={heroImage} 
@@ -1207,38 +1217,23 @@ const SobreProfPaula: React.FC = () => {
                   <p className="text-[#D4AF37] text-sm mt-2">— Lema de vida</p>
                 </div>
               </div>
-              
-              {/* Achievement badges around the photo */}
-              <motion.div 
-                className="absolute -right-16 top-20 bg-black/70 backdrop-blur-md rounded-xl p-4 border border-[#D4AF37]/30 shadow-lg"
-                initial={{ opacity: 0, x: 30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.7 }}
-              >
-                <div className="flex items-center gap-3">
-                  <GraduationCap className="w-8 h-8 text-[#D4AF37]" />
-                  <div>
-                    <p className="text-white font-bold">Mestre em Letras</p>
-                    <p className="text-white/50 text-xs">Cultura e Educação em Linguagens</p>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                className="absolute -left-16 top-1/3 bg-black/70 backdrop-blur-md rounded-xl p-4 border border-[#D4AF37]/30 shadow-lg"
-                initial={{ opacity: 0, x: -30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.9 }}
-              >
-                <div className="flex items-center gap-3">
-                  <FileText className="w-8 h-8 text-[#D4AF37]" />
-                  <div>
-                    <p className="text-white font-bold">Especialista</p>
-                    <p className="text-white/50 text-xs">Teoria e Método da Língua Portuguesa</p>
-                  </div>
-                </div>
-              </motion.div>
             </div>
+            
+            {/* Floating Badges separadas para ficarem fora do contexto de empilhamento da foto */}
+            <motion.div 
+              className="absolute -left-16 top-20 bg-black/70 backdrop-blur-md rounded-xl p-4 border border-[#D4AF37]/30 shadow-lg z-50"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.5 }}
+            >
+              <div className="flex items-center gap-3">
+                <GraduationCap className="w-8 h-8 text-[#D4AF37]" />
+                <div>
+                  <p className="text-white font-bold">Mestre em Letras</p>
+                  <p className="text-white/50 text-xs">Especialista em Linguística</p>
+                </div>
+              </div>
+            </motion.div>
             
             {/* Experience Stats */}
             <motion.div 

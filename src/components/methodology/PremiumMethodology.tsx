@@ -1029,7 +1029,7 @@ export const PremiumMethodology = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.3, duration: 0.6 }}
                             >
-                                Esclarecemos as principais dúvidas sobre nossa abordagem e como ela pode transformar sua preparação para concursos jurídicos.
+                                Esclarecemos as principais dúvidas sobre nossa abordagem e como ela pode transformar sua preparação para concursos .
                             </motion.p>
                         </div>
 
@@ -1048,7 +1048,7 @@ export const PremiumMethodology = () => {
                                 },
                                 {
                                     question: "O método funciona para qualquer tipo de concurso jurídico?",
-                                    answer: "Sim, o Método RB foi desenvolvido para ser adaptável a diversos concursos jurídicos, desde a magistratura e ministério público até carreiras como defensoria, procuradoria e advocacia pública. A metodologia é ajustada conforme as especificidades de cada banca e cargo pretendido.",
+                                    answer: "Sim, o Método RB foi desenvolvido para ser adaptável a diversos concursos, desde a magistratura e ministério público até carreiras como defensoria, procuradoria e advocacia pública. A metodologia é ajustada conforme as especificidades de cada banca e cargo pretendido.",
                                     iconColor: "#059669"
                                 },
                                 {
