@@ -1023,8 +1023,8 @@ useEffect(() => {
                   whileHover={{ scale: 1.1, rotate: 3 }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d674c6e?auto=format&fit=crop&q=80&w=256"
-                    alt="Juliana Silva"
+    src="https://randomuser.me/api/portraits/women/65.jpg"
+    alt="Juliana Silva"
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
