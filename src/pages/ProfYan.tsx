@@ -22,6 +22,7 @@ import case8 from '../images/case8.jpg';
 import image from '../images/image.png';
 import yan2 from '../images/yan3.jpg';
 import yan from '../images/yan3.jpg';
+import ImportedCounter from '../components/Counter';
 // ProfYanNavigation component with black and gold luxury theme
 const ProfYanNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -187,7 +188,7 @@ const ProfYanNavigation = () => {
 };
 
 // Ultra-premium Counter with better animations
-const Counter = ({ from, to, duration = 1, delay = 0 }: {
+const LocalCounter = ({ from, to, duration = 1, delay = 0 }: {
   from: number; to: number; duration?: number; delay?: number
 }) => {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -879,7 +880,7 @@ const ProfYan = () => {
                     <div className="relative z-10">
                       <div className="flex items-baseline">
                         <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
-                          <Counter from={0} to={stat.value} duration={2 + i * 0.3} delay={1.2 + i * 0.2} />
+                          <LocalCounter from={0} to={stat.value} duration={2 + i * 0.3} delay={0.5 + i * 0.2} />
                         </div>
                         <span className="text-2xl lg:text-3xl font-bold text-[#D4AF37] ml-1">{stat.suffix}</span>
                       </div>
@@ -1761,7 +1762,15 @@ const ProfYan = () => {
           
           <div className="relative flex items-center gap-3">
             <Eye className="w-5 h-5 text-[#D4AF37]" />
-            <span className="text-[#D4AF37] font-medium">Mais informações</span>
+            <a 
+              href="https://wa.me/5577998663437"
+              target="_blank"
+              rel="noopener noreferrer" 
+              className="text-[#D4AF37] font-medium flex items-center gap-1"
+            >
+              Mais informações
+              <ChevronRight className="w-4 h-4" />
+            </a>
           </div>
         </motion.a>
       </div>
@@ -1943,7 +1952,7 @@ const ProfYan = () => {
               >
                 <div className="flex flex-col items-center">
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent mb-2 flex items-baseline">
-                    <Counter from={0} to={stat.value} duration={2} delay={0.3} />
+                    <LocalCounter from={0} to={stat.value} duration={2} delay={0.3} />
                     <span className="ml-1">{stat.suffix}</span>
                   </div>
                   <p className="text-white/60">{stat.label}</p>

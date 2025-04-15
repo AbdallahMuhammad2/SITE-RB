@@ -20,7 +20,9 @@ import Paula1 from '../images/yure.png';
 import stella from '../images/stella.png';
 import Yure from '../images/equipe3.png';
 
-// Componente de bloco de notícias atuais de concursos
+// ----------------------------------------------------------------
+// Bloco de notícias recentes (exemplo de componente mais simples)
+// ----------------------------------------------------------------
 const CurrentNewsBlock = () => {
   // Array com os dados das notícias
   const newsItems = [
@@ -76,9 +78,9 @@ const CurrentNewsBlock = () => {
 
   return (
     <section id="current-news" className="py-32 bg-[#0A090C] relative overflow-hidden">
-      {/* Background elements */}
+      {/* Efeitos de fundo */}
       <div className="absolute inset-0">
-        {/* Dynamic gradient orbs */}
+        {/* Orbes de gradiente */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none"
           animate={{
@@ -96,7 +98,7 @@ const CurrentNewsBlock = () => {
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Subtle background pattern */}
+        {/* Padrão sutil */}
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.02]"></div>
       </div>
 
@@ -108,7 +110,7 @@ const CurrentNewsBlock = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          {/* Section label */}
+          {/* Rótulo da seção */}
           <div className="flex items-center justify-center mb-4">
             <motion.div
               className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#D4AF37]"
@@ -176,11 +178,20 @@ const CurrentNewsBlock = () => {
           {newsItems.map((item, i) => (
             <motion.div
               key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
             >
               <Link
                 to={item.link}
-                className="block h-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl overflow-hidden transition-all duration-300 group"
+                className="block h-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl overflow-hidden transition-all duration-300 group relative"
               >
+                {/* Efeito de brilho suave no hover */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none"
+                  whileHover={{ backgroundColor: 'rgba(255,255,255,0.03)' }}
+                  transition={{ duration: 0.3 }}
+                />
                 <div className="p-6">
                   <div className="text-sm text-[#D4AF37] mb-2 flex items-center justify-between">
                     <span>Notícia</span>
@@ -233,7 +244,9 @@ const CurrentNewsBlock = () => {
   );
 };
 
+// ----------------------------------------------------------------
 // Função auxiliar de rolagem
+// ----------------------------------------------------------------
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
   if (element) {
@@ -247,45 +260,9 @@ const scrollToSection = (id: string) => {
   }
 };
 
-// Main Home component with optimized structure
-const HomePage = () => {
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = '';
-    };
-  }, []);
-
-  return (
-    <div className="bg-[#08070A] overflow-hidden">
-      <section id="inicio">
-        <UltraHero />
-      </section>
-      <section id="metodologia">
-        <StatsHighlightBanner />
-      </section>
-      <section id="cursos">
-        <AboutSection />
-      </section>
-      <section id="aprovados">
-        <PastExamsSection />
-      </section>
-     
-      <section id="professores">
-        <ProfessorsSection />
-      </section>
-      <section id="depoimentos">
-        <TestimonialsSection />
-      </section>
-      <NewsSection />
-      <div id="matricula">
-        <CTASection />
-      </div>
-    </div>
-  );
-};
-
-export default HomePage;
+// ----------------------------------------------------------------
+// Seção de cursos finalizados (Aprovados)
+// ----------------------------------------------------------------
 const PastExamsSection = () => {
   return (
     <section className="py-28 bg-gradient-to-b from-[#0A090C] to-[#120F19] relative overflow-hidden">
@@ -321,7 +298,6 @@ const PastExamsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            {/* Premium label */}
             <div className="flex items-center justify-center mb-3">
               <motion.div
                 className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#D4AF37]"
@@ -374,7 +350,7 @@ const PastExamsSection = () => {
                 color: "#D4AF37",
                 details: "Alunos aprovados em múltiplas áreas da administração municipal",
                 year: "2023",
-                stats: "32 aprovados",
+                stats: "",
               },
               {
                 title: "Processo Seletivo",
@@ -383,7 +359,7 @@ const PastExamsSection = () => {
                 color: "#D4AF37",
                 details: "Preparação completa para todas as fases do processo seletivo",
                 year: "2023/2024",
-                stats: "27 aprovados",
+                stats: "",
               },
               {
                 title: "Prefeitura de Caraíbas",
@@ -391,7 +367,7 @@ const PastExamsSection = () => {
                 color: "#D4AF37",
                 details: "Excelentes resultados em diversos cargos no município",
                 year: "2023",
-                stats: "18 aprovados",
+                stats: "",
               },
               {
                 title: "SESAB",
@@ -400,7 +376,7 @@ const PastExamsSection = () => {
                 color: "#D4AF37",
                 details: "Preparação específica para área de saúde com alto índice de aprovação",
                 year: "2022",
-                stats: "45 aprovados",
+                stats: "",
               },
               {
                 title: "Correios",
@@ -408,7 +384,7 @@ const PastExamsSection = () => {
                 color: "#D4AF37",
                 details: "Curso direcionado para as especificidades do concurso nacional",
                 year: "2023",
-                stats: "23 aprovados",
+                stats: "",
               },
               {
                 title: "Outros Concursos",
@@ -416,18 +392,22 @@ const PastExamsSection = () => {
                 color: "#D4AF37",
                 details: "Diversos outros concursos federais, estaduais e municipais",
                 year: "2022-2024",
-                stats: "150+ aprovados",
+                stats: "s",
               },
             ].map((exam, index) => (
               <motion.div
                 key={index}
-                className="bg-[#13121A] border border-[#D4AF37]/10 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-[#D4AF37]/5 transition-all duration-300 group"
+                className="bg-[#13121A] border border-[#D4AF37]/10 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-[#D4AF37]/5 transition-all duration-300 group relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 whileHover={{ y: -5, scale: 1.02 }}
               >
+                {/* Brilho de borda ao hover */}
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/10 to-[#D4AF37]/20 rounded-xl opacity-0 group-hover:opacity-30 group-hover:blur-lg transition-all duration-300"
+                />
                 <div className="px-6 py-8">
                   {/* Icon */}
                   <div className="mb-5 w-14 h-14 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors">
@@ -522,20 +502,23 @@ const PastExamsSection = () => {
     </section>
   );
 };
-// Stats Highlight Banner
+
+// ----------------------------------------------------------------
+// Banner de destaques (logo abaixo do Hero)
+// ----------------------------------------------------------------
 const StatsHighlightBanner = () => {
   return (
     <div className="relative z-10 -mt-20 mb-12">
       <div className="container mx-auto px-4">
         <motion.div
-          className="bg-gradient-to-r from-[#13121A] to-[#0F0E13] backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+          className="bg-gradient-to-r from-[#13121A] to-[#0F0E13] backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden relative"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 2 }}
         >
-          {/* Enhanced background elements */}
+          {/* Elementos de fundo */}
           <div className="absolute inset-0 overflow-hidden">
-            {/* Patterned background */}
+            {/* Padrão subtil */}
             <div className="absolute inset-0 opacity-[0.03]">
               {[...Array(10)].map((_, i) => (
                 <div
@@ -544,8 +527,7 @@ const StatsHighlightBanner = () => {
                 />
               ))}
             </div>
-
-            {/* Subtle animated gradients */}
+            {/* Gradiente animado */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-30"
               animate={{
@@ -575,7 +557,7 @@ const StatsHighlightBanner = () => {
                   transition: { duration: 0.2 }
                 }}
               >
-                {/* Enhanced background icon */}
+                {/* Ícone de fundo grande */}
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center"
                   initial={{ opacity: 0.05 }}
@@ -588,7 +570,6 @@ const StatsHighlightBanner = () => {
                   {stat.icon && React.cloneElement(stat.icon, { className: "w-28 h-28 text-[#D4AF37]" })}
                 </motion.div>
 
-                {/* Content with enhanced animations */}
                 <div className="relative z-10">
                   <motion.div
                     className="text-3xl md:text-4xl font-bold relative inline-block"
@@ -611,7 +592,6 @@ const StatsHighlightBanner = () => {
                     {stat.label}
                   </div>
 
-                  {/* Animated underline on hover */}
                   <motion.div
                     className="h-px w-0 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-2"
                     initial={{ width: 0 }}
@@ -628,16 +608,22 @@ const StatsHighlightBanner = () => {
   );
 };
 
-// Ultra-Premium Hero Section with Cinematic Visual Effects
+// ----------------------------------------------------------------
+// Hero principal (UltraHero) - Design cinematográfico
+// ----------------------------------------------------------------
 export const UltraHero = () => {
+  // Refs para container e título
   const containerRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const [loaded, setLoaded] = useState(false);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  // Valores para parallax avançado
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  // Transforma o movimento do mouse para deslocamento dos elementos de fundo
+  const backgroundX = useTransform(mouseX, [-1, 1], ["-30px", "30px"]);
+  const backgroundY = useTransform(mouseY, [-1, 1], ["-30px", "30px"]);
 
-
-  // Enhanced cursor tracking for 3D effect
+  // Função de movimento do mouse para atualizar os valores do parallax
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
@@ -648,276 +634,217 @@ export const UltraHero = () => {
   };
 
   useEffect(() => {
-    if (headingRef.current) {
-      // Ultra premium text animation
-      const titleText = new SplitType(headingRef.current, { types: 'chars,words' });
-
+    if (titleRef.current) {
+      // Quebrando o título em caracteres para animação com SplitType
+      const split = new SplitType(titleRef.current, { types: "chars,words" });
       gsap.fromTo(
-        titleText.chars,
+        split.chars,
         {
-          y: 100,
+          y: 150,
           opacity: 0,
-          rotateX: -90,
-          transformOrigin: "center bottom"
+          rotateX: -80,
+          filter: "blur(4px)"
         },
         {
           y: 0,
           opacity: 1,
           rotateX: 0,
-          stagger: 0.03,
-          duration: 1.2,
+          filter: "blur(0px)",
+          stagger: 0.02,
+          duration: 1.5,
           delay: 0.3,
-          ease: 'power4.out'
+          ease: "power3.out"
         }
       );
-
-      // Create stunning light beam effect
-      const container = containerRef.current;
-      if (container) {
-        // Create light beams
-        for (let i = 0; i < 5; i++) {
-          const beam = document.createElement('div');
-          beam.className = 'absolute h-screen w-40 origin-bottom';
-          beam.style.left = `${Math.random() * 100}%`;
-          beam.style.transform = `rotate(${-10 + Math.random() * 20}deg)`;
-          beam.style.background = `linear-gradient(to top, 
-            rgba(212,175,55,${Math.random() * 0.15 + 0.05}) 0%, 
-            rgba(249,224,119,${Math.random() * 0.1}) 50%,
-            transparent 100%)`;
-          beam.style.filter = 'blur(8px)';
-          beam.style.opacity = '0';
-
-          container.appendChild(beam);
-
-          gsap.to(beam, {
-            opacity: Math.random() * 0.3 + 0.1,
-            duration: 2,
-            delay: i * 0.4,
-            yoyo: true,
-            repeat: -1,
-            repeatDelay: Math.random() * 5
-          });
-        }
-      }
     }
 
-    setLoaded(true);
+    // Criação de feixes de luz com GSAP (aumentamos a quantidade e variamos mais parâmetros)
+    const container = containerRef.current;
+    if (container) {
+      for (let i = 0; i < 7; i++) {
+        const beam = document.createElement("div");
+        beam.className = "ultra-beam";
+        beam.style.left = `${Math.random() * 100}%`;
+        beam.style.transform = `rotate(${-10 + Math.random() * 20}deg)`;
+        container.appendChild(beam);
+        gsap.to(beam, {
+          opacity: Math.random() * 0.5 + 0.2,
+          duration: 2 + Math.random(),
+          yoyo: true,
+          repeat: -1,
+          repeatDelay: Math.random() * 4,
+          ease: "sine.inOut"
+        });
+      }
+    }
   }, []);
 
   return (
     <motion.section
       ref={containerRef}
-      className="relative min-h-screen w-full overflow-hidden"
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
+      lang="pt-BR"
+      className="ultra-hero relative w-full min-h-screen overflow-hidden"
       style={{
-        background: "radial-gradient(circle at 20% bottom, #131219 0%, #08060a 70%)",
-        perspective: 2000
-      }}
-      lang="pt-BR" // Força o idioma português aqui também
-    >
-      {/* Premium volumetric atmosphere */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Conteúdo existente */}
-      </div>
-
-      {/* Advanced Content Container with Depth */}
-      <div className="relative z-30 flex items-center justify-center min-h-screen">
-        <motion.div className="container mx-auto px-4 md:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[80vh]">
-            {/* Left Column */}
-            <div className="lg:col-span-7 lg:col-start-1 py-12">
-              {/* Premium Brand Badge */}
-              <motion.div
-                className="mb-8 fade-in-sequence relative inline-block"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-              >
-                {/* Conteúdo existente */}
-                <div className="relative inline-flex items-center px-5 py-1.5 rounded-full bg-black/30 backdrop-blur-xl border border-[#D4AF37]/40 overflow-hidden group">
-                  {/* Conteúdo existente */}
-                  <span className="ml-3 text-xs tracking-widest uppercase font-medium bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent relative z-10">
-                    RB Cursos
-                  </span>
-                </div>
-              </motion.div>
-
-
-<div className="mb-12">
-
-<div className="heading-container" style={{ lineHeight: 1.1, perspective: "1500px" }}>
-<h1
-    ref={headingRef}
-    className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight notranslate"
-    style={{ lineHeight: 1.1, perspective: "1500px" }}
-  >
-    <span className="block mb-6 text-white" style={{ display: "block", width: "100%" }}>
-      Excelência em
-    </span>
-    <span 
-      className="block mb-6 text-[#D4AF37] font-bold" 
-      style={{ 
-        display: "block", 
-        width: "100%",
-        position: "relative",
-        marginTop: "1.5rem",
-        marginBottom: "1.5rem"
+        background: "radial-gradient(circle at 10% 90%, #1f1c2c, #07000f)",
+        perspective: 2500
       }}
     >
-      aprovações
-    </span>
-    <span className="block text-white" style={{ display: "block", width: "100%" }}>
-      para concursos
-    </span>
-  </h1>
-</div>
-  <motion.div
-    className="max-w-2xl relative mt-10"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 1.6 }}
-  >
-    <motion.span
-      className="absolute -left-5 top-0 w-[2px] h-full"
-      style={{
-        background: "linear-gradient(to bottom, transparent, #D4AF37, transparent)"
-      }}
-      animate={{
-        opacity: [0.3, 0.8, 0.3],
-        height: ["40%", "100%", "40%"],
-        top: ["30%", "0%", "30%"]
-      }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-    />
-
-    <p className="text-xl leading-relaxed text-white/80 relative pl-2 fade-in-sequence notranslate">
-      <span className="font-medium">Garanta sua aprovação</span> com nossa metodologia
-      exclusiva e professores especialistas em cada área. Conquiste
-      sua <span className="text-[#D4AF37] font-medium mr-2">estabilidade financeira</span>
-      e transforme sua vida agora.
-    </p>
-  </motion.div>
-</div>
-            </div>
-          </div>
-        </motion.div>
+      {/* CAMADA 1: PARTICULAS DINÂMICAS */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(120)].map((_, i) => {
+          const size = Math.random() * 4 + 1;
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          return (
+            <motion.div
+              key={i}
+              className="absolute rounded-full bg-white"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                top: `${posY}%`,
+                left: `${posX}%`
+              }}
+              animate={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.5, 1] }}
+              transition={{
+                duration: Math.random() * 4 + 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 2
+              }}
+            />
+          );
+        })}
       </div>
 
-      {/* Scroll indicator */}
-      {/* Resto do conteúdo existente */}
+      {/* CAMADA 2: OVERLAY SHIMMER */}
+      <motion.div
+        className="absolute inset-0 opacity-30 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+          backgroundSize: "200% 100%"
+        }}
+        animate={{ backgroundPosition: ["-200% 0%", "200% 0%"] }}
+        transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+      />
+
+      {/* CAMADA 3: ORBES LUMINOSOS */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ x: backgroundX, y: backgroundY }}
+      >
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: "30rem",
+            height: "30rem",
+            top: "-10%",
+            left: "-10%",
+            background:
+              "radial-gradient(circle, rgba(212,175,55,0.6), transparent 70%)"
+          }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: "25rem",
+            height: "25rem",
+            bottom: "-10%",
+            right: "-10%",
+            background:
+              "radial-gradient(circle, rgba(249,224,119,0.6), transparent 70%)"
+          }}
+          animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+      </motion.div>
+
+      {/* CAMADA 4: CONTEÚDO PRINCIPAL CENTRALIZADO */}
+      <div className="relative z-30 flex flex-col items-center justify-center text-center min-h-screen px-4">
+        <div className="max-w-3xl mx-auto">
+          {/* Tag de destaque */}
+          <motion.div
+            className="mb-6 inline-flex items-center px-6 py-2 rounded-full bg-black/50 backdrop-blur-md border border-[#D4AF37]/40"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <span className="text-sm tracking-widest uppercase font-bold bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
+              RB Cursos
+            </span>
+          </motion.div>
+
+          {/* Título com efeito 3D */}
+          <motion.h1
+            ref={titleRef}
+            className="font-extrabold leading-tight text-white notranslate drop-shadow-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+          >
+            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+              Excelência em
+            </span>
+            <span className="block my-4 text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#D4AF37]">
+              aprovações
+            </span>
+            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+              para concursos
+            </span>
+          </motion.h1>
+
+          {/* Descrição com tipografia refinada */}
+          <motion.p
+            className="mt-6 text-lg leading-relaxed text-white/80 drop-shadow-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8, duration: 1 }}
+          >
+            Garanta sua aprovação com nossa metodologia exclusiva e os melhores professores.
+            Transforme sua vida hoje mesmo!
+          </motion.p>
+        </div>
+      </div>
+
+      {/* Estilos customizados para feixes de luz */}
+      <style>{`
+        .ultra-hero {
+          overflow: hidden;
+        }
+        .ultra-beam {
+          position: absolute;
+          height: 100vh;
+          width: 10rem;
+          transform-origin: bottom;
+          background: linear-gradient(
+            to top,
+            rgba(212,175,55,0.2),
+            rgba(249,224,119,0.1),
+            transparent
+          );
+          filter: blur(10px);
+          opacity: 0;
+        }
+      `}</style>
     </motion.section>
   );
 };
-
-// Enhanced floating card component with premium 3D effects
-interface EnhancedFloatingCardProps {
-  index: number;
-  delay: number;
-  mouseX: MotionValue<number>;
-  mouseY: MotionValue<number>;
-}
-
-const EnhancedFloatingCard: React.FC<EnhancedFloatingCardProps> = ({ index, delay, mouseX, mouseY }) => {
-  const x = useTransform(mouseX, (value: number) => value * 20 * (index + 1));
-  const y = useTransform(mouseY, (value: number) => value * 20 * (index + 1));
-  const rotateX = useTransform(mouseY, (value: number) => value * -5);
-  const rotateY = useTransform(mouseX, (value: number) => value * 5);
-
-  const cardsData = [
-    {
-      title: "Acesso Imediato",
-      icon: <Calendar className="w-5 h-5 text-[#D4AF37]" />,
-      description: "Comece a estudar agora mesmo e não perca tempo!",
-      highlight: "100% online"
-    },
-    {
-      title: "Aulas Exclusivas",
-      icon: <Clock className="w-5 h-5 text-[#D4AF37]" />,
-      description: "Assista às aulas de onde estiver e quando quiser.",
-      highlight: "24/7"
-    },
-    {
-      title: "Conteúdo Atualizado",
-      icon: <BarChart3 className="w-5 h-5 text-[#D4AF37]" />,
-      description: "Material sempre atualizado com as últimas novidades.",
-      highlight: "2025"
-    },
-  ];
-
-  const card = cardsData[index % cardsData.length];
-
-  return (
-    <motion.div
-      className="absolute w-72 rounded-2xl overflow-hidden"
-      style={{
-        x,
-        y,
-        rotateX,
-        rotateY,
-        transformPerspective: 1000,
-        top: index === 0 ? '5%' : index === 1 ? '35%' : '65%',
-        left: index === 0 ? '5%' : index === 1 ? '25%' : '45%',
-        zIndex: 30 - index
-      }}
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay }}
-    >
-      {/* Outer glow */}
-      <motion.div
-        className="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-[#D4AF37]/30 to-[#F9E077]/20 blur-sm"
-        animate={{
-          opacity: [0.3, 0.6, 0.3],
-          scale: [0.98, 1.01, 0.98],
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Card inner content with glass effect */}
-      <div className="relative bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md border border-white/20 p-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50"></div>
-
-        <div className="relative z-10">
-          <div className="flex items-center mb-4">
-            <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center mr-3 shadow-inner">
-              {card.icon}
-            </div>
-            <h3 className="text-lg font-medium text-white">{card.title}</h3>
-          </div>
-
-          <p className="text-white/70 text-sm mb-4">{card.description}</p>
-
-          <div className="flex items-center justify-between">
-            <div className="text-xs font-semibold px-3 py-1 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37]">
-              {card.highlight}
-            </div>
-
-            <motion.div
-              className="w-6 h-6 rounded-full bg-white/5 border border-white/20 flex items-center justify-center"
-              whileHover={{ scale: 1.2, backgroundColor: "rgba(212,175,55,0.1)" }}
-            >
-              <ArrowRight className="w-3 h-3 text-white/70" />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Corner accent */}
-        <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-[#D4AF37]/20 to-transparent rounded-full blur-xl"></div>
-      </div>
-    </motion.div>
-  );
-};
-
-// About Section (Quem somos nós)
+// ----------------------------------------------------------------
+// Seção “Quem Somos?” (AboutSection)
+// ----------------------------------------------------------------
 const AboutSection = () => {
   return (
     <section className="py-32 bg-[#0A090C] relative overflow-hidden">
-      {/* Enhanced background elements */}
+      {/* Fundo aprimorado */}
       <div className="absolute inset-0">
-        {/* Dynamic gradient orbs */}
+        {/* Orbes dinâmicos */}
         <motion.div
           className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[30rem] h-[30rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none"
           animate={{
@@ -934,11 +861,9 @@ const AboutSection = () => {
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Subtle background pattern */}
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.02]"></div>
 
-        {/* Enhanced light beams */}
+        {/* Feixes de luz adicionais */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(3)].map((_, i) => (
             <motion.div
@@ -973,7 +898,6 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            {/* Enhanced premium section label with animation */}
             <motion.div
               className="flex items-center justify-center mb-6"
               initial={{ opacity: 0, y: 10 }}
@@ -1068,7 +992,6 @@ const AboutSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.7 }}
               >
-                {/* Enhanced card with glowing effect */}
                 <motion.div
                   className="absolute -inset-1 bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/5 to-[#D4AF37]/20 rounded-2xl opacity-0 blur-xl"
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -1083,11 +1006,9 @@ const AboutSection = () => {
                 />
 
                 <div className="bg-gradient-to-b from-white/8 to-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-8 relative h-full">
-                  {/* Subtle corner ambient accents */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/5 rounded-full blur-xl transform translate-x-1/4 -translate-y-1/4 opacity-60"></div>
                   <div className="absolute bottom-0 left-0 w-16 h-16 bg-[#D4AF37]/5 rounded-full blur-lg transform -translate-x-1/3 translate-y-1/3"></div>
 
-                  {/* Enhanced icon container */}
                   <motion.div
                     className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 flex items-center justify-center mb-6 relative"
                     whileHover={{
@@ -1101,7 +1022,7 @@ const AboutSection = () => {
                       initial={{ opacity: 0 }}
                       whileHover={{
                         opacity: 1,
-                        boxShadow: "0 0 20px rgba(212, 175, 55, 0.3)"
+                        boxShadow: "0 0 20px rgba(212,175,55,0.3)"
                       }}
                     />
                     {item.icon}
@@ -1124,7 +1045,7 @@ const AboutSection = () => {
             ))}
           </div>
 
-          {/* Enhanced decorative elements */}
+          {/* Decorações adicionais */}
           <motion.div
             className="absolute -right-16 top-1/4 w-40 h-40 border border-[#D4AF37]/20 rounded-full opacity-20"
             animate={{
@@ -1153,7 +1074,9 @@ const AboutSection = () => {
   );
 };
 
-// Professors Section with premium styling
+// ----------------------------------------------------------------
+// Seção de Professores (ProfessorsSection)
+// ----------------------------------------------------------------
 const ProfessorsSection = () => {
   const professors = [
     {
@@ -1196,18 +1119,22 @@ const ProfessorsSection = () => {
       role: "Professor de Conhecimentos Pedagógicos",
       image: Paula1,
       specialization: "Especialista em Didática",
-      achievement: "Desenvolvimento de materiais exclusivos"
+      achievement: "Desenvolvimento de materiais exclusivos",
+      approvalRate: "94%"
+
     },
     {
       name: "Stella Renathe",
       role: "Professora de Políticas Públicas de Saúde",
       image: stella,
       specialization: "Especialista em Saúde Pública",
-      achievement: "Consultora em concursos da área"
+      achievement: "Consultora em concursos da área",
+      approvalRate: "94%"
+
     },
   ];
 
-  // Dados da equipe interna - Atualização com membros reais
+  // Membros da equipe interna
   const internalTeam = [
     {
       name: "Paula Portugal",
@@ -1233,19 +1160,17 @@ const ProfessorsSection = () => {
 
   return (
     <section className="py-32 bg-gradient-to-b from-[#0A090C] to-[#12101A] relative overflow-hidden">
-      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-[#D4AF37]/10 blur-[80px] animate-pulse" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-[#D4AF37]/5 blur-[100px] animate-pulse" style={{ animationDuration: '8s' }} />
         <div className="absolute top-1/2 left-3/4 w-64 h-64 rounded-full bg-[#8A2BE2]/5 blur-[80px] animate-pulse" style={{ animationDuration: '12s' }} />
       </div>
 
-      {/* Decorative grid lines */}
       <div className="absolute inset-0 bg-[url('/api/placeholder/20/20')] bg-repeat opacity-5" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
-          {/* Professores Especialistas - cabeçalho */}
+          {/* Cabeçalho Professores Especialistas */}
           <motion.div
             className="max-w-3xl mx-auto text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
@@ -1296,7 +1221,7 @@ const ProfessorsSection = () => {
 
               <motion.button
                 className="px-8 py-3 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 text-white font-medium flex items-center gap-2 group"
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(212,175,55,0.1)' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 onClick={() => scrollToSection('testimonials-section')}
@@ -1330,10 +1255,7 @@ const ProfessorsSection = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 image-enhanced"
                     />
 
-                    {/* Sobreposição de gradiente aprimorada para melhorar a visibilidade */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A090C] via-[#0A090C]/70 to-transparent"></div>
-
-                    {/* Adicionar uma sutil correção de cor para melhorar a qualidade da foto */}
                     <div className="absolute inset-0 mix-blend-soft-light bg-gradient-to-br from-[#D4AF37]/10 to-transparent"></div>
 
                     <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -1368,7 +1290,7 @@ const ProfessorsSection = () => {
             ))}
           </div>
 
-          {/* Separador elegante */}
+          {/* Separador */}
           <motion.div
             className="my-24 flex items-center justify-center"
             initial={{ opacity: 0 }}
@@ -1379,7 +1301,7 @@ const ProfessorsSection = () => {
             <div className="h-[1px] w-full max-w-sm bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"></div>
           </motion.div>
 
-          {/* Equipe Interna - cabeçalho */}
+          {/* Equipe Interna */}
           <motion.div
             className="max-w-3xl mx-auto text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
@@ -1411,7 +1333,6 @@ const ProfessorsSection = () => {
             </p>
           </motion.div>
 
-          {/* Grade da equipe interna */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-10">
             {internalTeam.map((member, i) => (
               <motion.div
@@ -1445,17 +1366,12 @@ const ProfessorsSection = () => {
                         </div>
                         <p className="text-white/80 text-sm">{member.specialization}</p>
                       </div>
-
-
                     </div>
                   </div>
-
-
                 </div>
               </motion.div>
             ))}
           </div>
-
 
         </div>
       </div>
@@ -1469,7 +1385,9 @@ const ProfessorsSection = () => {
   );
 };
 
-// Testimonials Section
+// ----------------------------------------------------------------
+// Seção de Depoimentos (TestimonialsSection)
+// ----------------------------------------------------------------
 const TestimonialsSection = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
@@ -1477,7 +1395,6 @@ const TestimonialsSection = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState("");
 
-  // Definição completa dos testimonials com todas as propriedades necessárias
   const testimonials = [
     {
       content: "A metodologia focada em resolução de questões foi fundamental para minha aprovação. O direcionamento dos professores fez toda a diferença!",
@@ -1494,7 +1411,7 @@ const TestimonialsSection = () => {
     {
       content: "Estudei apenas 4 meses com o método RB e consegui minha aprovação. Os materiais são excelentes e os professores realmente se importam!",
       name: "Anna Alves",
-      role: "Aprovada • Polícia Civil",
+      role: "Aprovada",
       image: Anna,
       category: "policial",
       highlight: "4 Meses de Estudo",
@@ -1517,19 +1434,18 @@ const TestimonialsSection = () => {
     }
   ];
 
-  // Filtered testimonials based on selected category
   const filteredTestimonials = category === "all"
     ? testimonials
     : testimonials.filter(t => t.category === category);
 
-  // Ensure active testimonial is within range of filtered results
+  // Ajusta o índice ativo caso o array filtrado mude
   useEffect(() => {
     if (activeTestimonial >= filteredTestimonials.length) {
       setActiveTestimonial(0);
     }
   }, [category, filteredTestimonials.length, activeTestimonial]);
 
-  // Autoplay control
+  // Controle de autoplay
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
     if (autoplay && filteredTestimonials.length > 0) {
@@ -1540,7 +1456,7 @@ const TestimonialsSection = () => {
     return () => clearInterval(interval);
   }, [autoplay, filteredTestimonials.length]);
 
-  // Open video modal
+  // Abre o modal de vídeo
   const openVideoModal = (url: string) => {
     setCurrentVideo(url);
     setIsVideoModalOpen(true);
@@ -1549,9 +1465,8 @@ const TestimonialsSection = () => {
 
   return (
     <section id="testimonials-section" className="py-32 bg-[#080608] relative overflow-hidden">
-      {/* Premium animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Parallax stars effect */}
+        {/* “Estrelas” parallax */}
         <div className="absolute inset-0">
           {[...Array(100)].map((_, i) => {
             const size = Math.random() * 2 + 1;
@@ -1581,7 +1496,7 @@ const TestimonialsSection = () => {
           })}
         </div>
 
-        {/* Premium gradient orbs */}
+        {/* Orbes de gradiente */}
         <motion.div
           className="absolute top-0 left-1/3 w-[50vw] h-[50vh] rounded-full bg-gradient-to-br from-[#D4AF37]/5 to-transparent blur-[120px]"
           animate={{
@@ -1602,13 +1517,11 @@ const TestimonialsSection = () => {
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Enhanced grid pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(rgba(212,175,55,0.03)_1px,transparent_1px)] bg-[length:20px_20px] opacity-30" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
-          {/* Section header with 3D depth effect */}
           <motion.div
             className="max-w-3xl mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -1616,7 +1529,6 @@ const TestimonialsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {/* Premium section label */}
             <div className="flex items-center justify-center mb-3">
               <motion.div
                 className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#D4AF37]"
@@ -1689,7 +1601,7 @@ const TestimonialsSection = () => {
             </motion.p>
           </motion.div>
 
-          {/* Category filters */}
+          {/* Filtros de categoria */}
           <motion.div
             className="flex flex-wrap justify-center gap-3 mb-12"
             initial={{ opacity: 0, y: 15 }}
@@ -1713,7 +1625,7 @@ const TestimonialsSection = () => {
             ))}
           </motion.div>
 
-          {/* Key stats with 3D hover effect */}
+          {/* Pequenos indicadores estatísticos */}
           <motion.div
             className="flex flex-wrap justify-center gap-8 mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -1751,7 +1663,6 @@ const TestimonialsSection = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <div className="flex items-center gap-3">
-                  {/* Icon with 3D floating effect */}
                   <motion.div
                     className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center"
                     animate={{
@@ -1766,7 +1677,6 @@ const TestimonialsSection = () => {
                     {stat.icon}
                   </motion.div>
                   <div>
-                    {/* Dynamic text reveal animation */}
                     <div className="overflow-hidden">
                       <motion.p
                         className="text-xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#F9E077] bg-clip-text text-transparent"
@@ -1781,22 +1691,12 @@ const TestimonialsSection = () => {
                     <p className="text-xs text-white/60">{stat.label}</p>
                   </div>
                 </div>
-
-                {/* Premium light reflection effect */}
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-1"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent transform -translate-x-full group-hover:translate-x-full transition-all duration-1000" />
-                </motion.div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* 3D Testimonial Carousel */}
+          {/* Carrossel principal */}
           <div className="relative">
-            {/* Carousel indicators with progress animation */}
             <div className="flex justify-center items-center gap-3 mb-10">
               {filteredTestimonials.map((_, index) => (
                 <button
@@ -1827,10 +1727,9 @@ const TestimonialsSection = () => {
               ))}
             </div>
 
-            {/* Dynamic 3D testimonial showcase */}
             <div className="relative overflow-visible" style={{ perspective: '2000px' }}>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main testimonial card with 3D depth */}
+                {/* Card principal */}
                 <motion.div
                   className="lg:col-span-2 bg-gradient-to-b from-white/8 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-8 lg:p-10 relative overflow-hidden"
                   initial={{ opacity: 0, y: 20, rotateY: -5 }}
@@ -1842,12 +1741,8 @@ const TestimonialsSection = () => {
                     type: "spring",
                     stiffness: 100
                   }}
-                  whileHover={{
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.7)",
-                    scale: 1.01
-                  }}
+                  whileHover={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.7)", scale: 1.01 }}
                 >
-                  {/* Premium light effects */}
                   <div className="absolute -top-[300px] -right-[300px] w-[600px] h-[600px]">
                     <motion.div
                       className="w-full h-full rounded-full bg-gradient-to-b from-[#D4AF37]/10 to-transparent blur-[100px]"
@@ -1859,11 +1754,9 @@ const TestimonialsSection = () => {
                     />
                   </div>
 
-                  {/* Quote decoration */}
                   <div className="absolute top-6 left-6 text-9xl text-[#D4AF37]/5 font-serif leading-none">"</div>
                   <div className="absolute bottom-6 right-6 text-9xl text-[#D4AF37]/5 font-serif leading-none transform rotate-180">"</div>
 
-                  {/* Verification badge */}
                   <div className="absolute top-8 right-8 flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
                     <motion.div
                       className="w-2 h-2 rounded-full bg-[#D4AF37]"
@@ -1873,7 +1766,6 @@ const TestimonialsSection = () => {
                     <span className="text-xs text-white/70">Depoimento Verificado</span>
                   </div>
 
-                  {/* Dynamic content with animations */}
                   <div className="mb-8 relative">
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -1884,7 +1776,6 @@ const TestimonialsSection = () => {
                         transition={{ duration: 0.5, type: "spring" }}
                         className="relative pl-6 pr-6"
                       >
-                        {/* Animated quote icon */}
                         <motion.div
                           className="absolute -top-1 -left-1"
                           initial={{ scale: 0 }}
@@ -1894,7 +1785,6 @@ const TestimonialsSection = () => {
                           <Quote className="w-10 h-10 text-[#D4AF37]/30" />
                         </motion.div>
 
-                        {/* Testimonial highlight tag */}
                         {filteredTestimonials[activeTestimonial]?.highlight && (
                           <motion.div
                             className="inline-block mb-4 px-3 py-1 bg-[#D4AF37]/10 rounded-full border border-[#D4AF37]/20"
@@ -1908,7 +1798,6 @@ const TestimonialsSection = () => {
                           </motion.div>
                         )}
 
-                        {/* Dynamic text reveal */}
                         <p className="text-xl md:text-2xl text-white/90 leading-relaxed italic mb-6">
                           {filteredTestimonials[activeTestimonial]?.content.split(' ').map((word, i) => (
                             <motion.span
@@ -1935,10 +1824,8 @@ const TestimonialsSection = () => {
                     </AnimatePresence>
                   </div>
 
-                  {/* Profile info with animated elements */}
                   <div className="flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-6 mt-6">
                     <div className="flex items-center">
-                      {/* Animated profile picture */}
                       <div className="relative mr-4 group">
                         <motion.div
                           className="absolute inset-0 rounded-full bg-gradient-to-r from-[#D4AF37]/30 to-[#D4AF37]/10 blur-md opacity-0 group-hover:opacity-100"
@@ -1960,7 +1847,6 @@ const TestimonialsSection = () => {
                             </AnimatePresence>
                           </div>
 
-                          {/* Play button for video testimonials */}
                           {filteredTestimonials[activeTestimonial]?.hasVideo && (
                             <motion.button
                               className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-[#D4AF37] flex items-center justify-center shadow-lg"
@@ -1973,7 +1859,6 @@ const TestimonialsSection = () => {
                           )}
                         </div>
 
-                        {/* Animated ring */}
                         <motion.div
                           className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/50 border-t-transparent border-l-transparent"
                           animate={{ rotate: 360 }}
@@ -1981,7 +1866,6 @@ const TestimonialsSection = () => {
                         />
                       </div>
 
-                      {/* Animated name and role */}
                       <div>
                         <AnimatePresence mode="wait">
                           <motion.div
@@ -1998,10 +1882,8 @@ const TestimonialsSection = () => {
                       </div>
                     </div>
 
-                    {/* Rating info with stars */}
                     <div className="flex flex-col items-end">
                       <div className="flex items-center mb-1">
-                        {/* Animated stars */}
                         {[...Array(5)].map((_, i) => (
                           <motion.div
                             key={i}
@@ -2020,7 +1902,6 @@ const TestimonialsSection = () => {
                     </div>
                   </div>
 
-                  {/* Year badge */}
                   <div className="absolute bottom-8 left-8 flex items-center gap-2">
                     <div className="w-5 h-5 rounded-full bg-[#D4AF37]/20 flex items-center justify-center">
                       <CheckCircle2 className="w-3 h-3 text-[#D4AF37]" />
@@ -2029,10 +1910,9 @@ const TestimonialsSection = () => {
                   </div>
                 </motion.div>
 
-                {/* Side panel with enhanced animations and layout */}
+                {/* Thumbnails laterais */}
                 <div className="lg:col-span-1">
                   <div className="grid grid-cols-1 gap-4 h-full">
-                    {/* Testimonial thumbnails */}
                     {filteredTestimonials.map((testimonial, i) => (
                       <motion.div
                         key={i}
@@ -2049,7 +1929,6 @@ const TestimonialsSection = () => {
                           setAutoplay(false);
                         }}
                       >
-                        {/* Hover animation effect */}
                         {activeTestimonial !== i && (
                           <motion.div
                             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full"
@@ -2059,10 +1938,8 @@ const TestimonialsSection = () => {
                         )}
 
                         <div className="flex items-center gap-3 mb-2">
-                          {/* Profile picture with border glow on active */}
                           <div className={`w-10 h-10 rounded-full overflow-hidden relative ${activeTestimonial === i ? "ring-2 ring-[#D4AF37]/50" : "border border-white/20"
                             }`}>
-                            {/* Video indicator */}
                             {testimonial.hasVideo && (
                               <div className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-[#D4AF37] flex items-center justify-center">
                                 <Play fill="#000" className="w-2 h-2 text-black ml-px" />
@@ -2083,7 +1960,6 @@ const TestimonialsSection = () => {
                           {testimonial.content.substring(0, 80)}...
                         </p>
 
-                        {/* Active indicator with animated gradient */}
                         {activeTestimonial === i && (
                           <motion.div
                             className="w-full h-0.5 mt-3 bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-[length:200%_auto]"
@@ -2099,9 +1975,8 @@ const TestimonialsSection = () => {
               </div>
             </div>
 
-            {/* Enhanced navigation controls */}
+            {/* Controles de navegação */}
             <div className="flex justify-center mt-10 gap-4">
-              {/* Previous button */}
               <motion.button
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group hover:border-[#D4AF37]/30 bg-black/20 backdrop-blur-sm"
                 whileHover={{
@@ -2120,15 +1995,12 @@ const TestimonialsSection = () => {
                 aria-label="Depoimento anterior"
               >
                 <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-[#D4AF37] rotate-180" />
-
-                {/* Button hover animation */}
                 <motion.div
                   className="absolute inset-0 rounded-full border border-[#D4AF37]/30 scale-125 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
                 />
               </motion.button>
 
-              {/* Autoplay toggle with enhanced animations */}
               <motion.button
                 className={`px-4 py-2 rounded-full flex items-center gap-2 ${autoplay
                   ? "bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30"
@@ -2167,7 +2039,6 @@ const TestimonialsSection = () => {
                 </AnimatePresence>
               </motion.button>
 
-              {/* Next button */}
               <motion.button
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group hover:border-[#D4AF37]/30 bg-black/20 backdrop-blur-sm"
                 whileHover={{
@@ -2183,8 +2054,6 @@ const TestimonialsSection = () => {
                 aria-label="Próximo depoimento"
               >
                 <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-[#D4AF37]" />
-
-                {/* Button hover animation */}
                 <motion.div
                   className="absolute inset-0 rounded-full border border-[#D4AF37]/30 scale-125 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
@@ -2193,7 +2062,7 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Enhanced CTA Button with premium animations */}
+          {/* Botão CTA */}
           <motion.div
             className="text-center mt-16"
             initial={{ opacity: 0, y: 20 }}
@@ -2218,10 +2087,8 @@ const TestimonialsSection = () => {
                 <ArrowRight className="h-5 w-5 text-black" />
               </motion.span>
 
-              {/* Enhanced shine effect */}
               <div className="absolute -inset-full h-full w-1/4 z-5 block transform -skew-x-12 bg-white opacity-40 group-hover:animate-shine" />
 
-              {/* Dynamic glow effect */}
               <motion.div
                 className="absolute -inset-1 rounded-full opacity-0 group-hover:opacity-100 blur-md bg-gradient-to-r from-[#D4AF37]/30 to-[#F5CC4D]/30 -z-10"
                 animate={{
@@ -2231,45 +2098,26 @@ const TestimonialsSection = () => {
               />
             </motion.button>
 
-            {/* Subtle animated rings around the CTA */}
-            <div className="absolute left-1/2 -translate-x-1/2 opacity-30 pointer-events-none">
-              <motion.div
-                className="w-40 h-40 rounded-full border border-[#D4AF37]/10"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.2, 0.3, 0.2],
-                  rotate: 360
-                }}
-                transition={{
-                  scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                  opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 20, repeat: Infinity, ease: "linear" }
-                }}
-              />
+            <div className="flex justify-center mt-8">
+              <motion.a
+                href="#"
+                className="text-[#D4AF37]/80 text-sm flex items-center gap-1.5 hover:text-[#F9E077] transition-colors relative group"
+                whileHover={{ y: -2 }}
+              >
+                Ver todos os depoimentos
+                <ArrowUpRight className="w-3.5 h-3.5" />
+                <motion.span
+                  className="absolute bottom-0 left-0 right-0 h-px bg-[#D4AF37]/50"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
             </div>
           </motion.div>
-
-          {/* Enhanced text link with animated underline */}
-          <div className="flex justify-center mt-8">
-            <motion.a
-              href="#"
-              className="text-[#D4AF37]/80 text-sm flex items-center gap-1.5 hover:text-[#F9E077] transition-colors relative group"
-              whileHover={{ y: -2 }}
-            >
-              Ver todos os depoimentos
-              <ArrowUpRight className="w-3.5 h-3.5" />
-              <motion.span
-                className="absolute bottom-0 left-0 right-0 h-px bg-[#D4AF37]/50"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.a>
-          </div>
         </div>
       </div>
 
-      {/* Video modal for testimonial videos */}
       <AnimatePresence>
         {isVideoModalOpen && (
           <motion.div
@@ -2312,7 +2160,6 @@ const TestimonialsSection = () => {
         )}
       </AnimatePresence>
 
-      {/* CSS animations */}
       <style>{`
         @keyframes shine {
           from { transform: translateX(-100%) skewX(-15deg); }
@@ -2329,14 +2176,55 @@ const TestimonialsSection = () => {
         .animate-shimmer {
           animation: shimmer 8s ease-in-out infinite;
         }
-          .heading-container h1 div {
-    margin-bottom: 1.5rem;
-  }
-  .heading-container h1 div:last-child {
-    margin-bottom: 0;
-  }
+        .heading-container h1 div {
+          margin-bottom: 1.5rem;
+        }
+        .heading-container h1 div:last-child {
+          margin-bottom: 0;
+        }
       `}</style>
     </section>
   );
 };
 
+// ----------------------------------------------------------------
+// Componente principal da página Home
+// ----------------------------------------------------------------
+const HomePage = () => {
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+    };
+  }, []);
+
+  return (
+    <div className="bg-[#08070A] overflow-hidden">
+      <section id="inicio">
+        <UltraHero />
+      </section>
+      <section id="metodologia">
+        <StatsHighlightBanner />
+      </section>
+      <section id="cursos">
+        <AboutSection />
+      </section>
+      <section id="aprovados">
+        <PastExamsSection />
+      </section>
+      <section id="professores">
+        <ProfessorsSection />
+      </section>
+      <section id="depoimentos">
+        <TestimonialsSection />
+      </section>
+      {/* Seu componente de notícias atuais */}
+      <NewsSection />
+      <div id="matricula">
+        <CTASection />
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;
