@@ -189,7 +189,429 @@ const Blog = () => {
           </ul>
         </div>
       `
-    }
+    },{
+      id: '4',
+      title: 'Concursos 2025: são mais de 90 mil vagas. Confira aqui!',
+      excerpt: 'O ano de 2025 está repleto de oportunidades nos concursos públicos! São milhares de vagas confirmadas nas áreas policial, fiscal, legislativa, da saúde e muito mais.',
+      date: '25 Abr 2025',
+      author: {
+        id: 'editor-yan',
+        name: 'Yan Souza',
+        role: 'Editor de Concursos',
+        avatar: yan,
+        bio: 'Especialista em carreiras públicas, acompanha diariamente as movimentações do setor de concursos no Brasil.'
+      },
+      category: 'Concursos Públicos',
+      image: 'https://images.unsplash.com/photo-1600195077070-7dca93aabbcf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'concursos-2025-mais-de-90-mil-vagas',
+      readTime: '12 min',
+      views: '2.1K',
+      content: `
+        <h2>Concursos 2025: são mais de 90 mil vagas. Confira aqui!</h2>
+        <p>Como estão seus planos para esse ano de 2025? No mundo dos concursos públicos não podemos perder tempo, pois quem se antecipa sai na frente!</p>
+        <p>Já são várias seleções confirmadas para 2025 e, ao longo dos próximos meses, a quantidade de oportunidades previstas só vai aumentar.</p>
+        <p>Além disso, o Congresso aprovou o Projeto de Lei Orçamentária Anual (PLOA 2025), o qual prevê o total de <strong>57.972 vagas</strong> para provimentos em concursos públicos.</p>
+        
+        <div class="article-highlight">
+          <p><strong>Dica:</strong> Em meio a tantas opções, a dúvida pode tomar conta dos concurseiros, mas esse artigo foi criado exatamente para ser uma luz na sua busca. Salve esta página nos seus favoritos e fique sempre atualizado!</p>
+        </div>
+    
+        <p>Por isso, separamos as principais oportunidades previstas, divididas por áreas de atuação. Se você deseja mudar de vida ingressando na carreira pública, continue lendo e confira as novidades nos concursos espalhados por todo o país.</p>
+    
+        <h3>Concursos 2025: área Policial</h3>
+        
+        <div class="article-image">
+          <img src="https://images.unsplash.com/photo-1610645308596-9abe95aa9367?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Policial em serviço" />
+          <p class="caption">A área de segurança pública concentra grande parte das vagas previstas para 2025</p>
+        </div>
+        
+        <p>A área policial é uma das que mais oferecem oportunidades em 2025, com destaque para:</p>
+        
+        <ul>
+          <li><strong>Concurso PRF</strong>: Status solicitado, com 4.902 vagas solicitadas para Policial Rodoviário, exigindo nível superior e oferecendo salário de R$ 10.790,87.</li>
+          <li><strong>Concurso PF</strong>: Banca definida (Cebraspe), com 1.000 vagas para Agente, Escrivão, Papiloscopista, Perito Criminal e Delegado, exigindo nível superior e oferecendo salários de R$ 13.900,54 a R$ 26.300,00.</li>
+          <li><strong>Concurso PCDF</strong>: Banca definida (Cebraspe), com 50 vagas + 100 CR para Agente de Custódia, exigindo nível superior e oferecendo salário de R$ 9.394,68.</li>
+          <li><strong>Concurso PC RJ</strong>: Autorizado, com 414 vagas para diversos cargos, exigindo nível superior e oferecendo salários de R$ 13.981,45 a R$ 26.981,77.</li>
+          <li><strong>Concurso PC BA</strong>: Comissão formada, com mais de mil vagas para Delegado e Investigador, exigindo nível superior e oferecendo salários de R$ 4.873,18 a R$ 13.032,44.</li>
+          <li><strong>Concurso PMERJ</strong>: Anunciado, com 4.000 vagas para Soldado, exigindo nível médio e oferecendo salário de R$ 5.233,88.</li>
+          <li><strong>Concurso PM MG</strong>: Anunciado, com 2.500 vagas, exigindo nível superior e oferecendo salários de R$ 4.360,83 a R$ 11.037,14.</li>
+        </ul>
+        
+        <h3>Concursos 2025: área Fiscal</h3>
+        
+        <p>Para quem busca estabilidade e altos salários, a área fiscal apresenta excelentes oportunidades:</p>
+        
+        <ul>
+          <li><strong>Concurso Sefaz GO</strong>: Banca definida (FCC), com 200 vagas + 100 CR para Auditor Fiscal, exigindo nível superior e oferecendo salário de R$ 27.247,26 + verba indenizatória de R$ 3,6 mil.</li>
+          <li><strong>Concurso Sefaz SE</strong>: Banca provável (Cebraspe), com 10 vagas + 40 CR para Auditor Fiscal Tributário, exigindo nível superior e oferecendo salário de R$ 16.016,47 + gratificação de arrecadação de R$ 6 mil.</li>
+          <li><strong>Concurso ISS Porto Velho (RO)</strong>: Comissão formada para Auditor do Tesouro Municipal e Fiscal Municipal de Tributos, com salários de R$ 32.301,27 para Auditor e R$ 21.430,54 para Fiscal.</li>
+          <li><strong>Concurso ISS Niterói (RJ)</strong>: Previsto para 2025, para Fiscal de Tributos, exigindo nível superior e oferecendo salário de R$ 30.468,68.</li>
+        </ul>
+        
+        <div class="article-highlight">
+          <p><strong>Importante:</strong> Concursos fiscais são conhecidos pela alta remuneração e estabilidade, mas a concorrência também é elevada. Prepare-se com antecedência!</p>
+        </div>
+    
+        <h3>Concursos 2025: área de Controle</h3>
+        
+        <p>Os órgãos de controle também oferecem ótimas oportunidades para 2025:</p>
+        
+        <ul>
+          <li><strong>Concurso TCE PE</strong>: Banca definida (FGV), com 44 vagas para Auditor, Analista de Controle Externo e Procurador, exigindo nível superior e oferecendo salários de R$ 16.433,62 a R$ 26.161,63.</li>
+          <li><strong>Concurso TCE RJ</strong>: Banca definida (IBFC), com 40 vagas + CR para Auditor de Controle Externo, exigindo nível superior e oferecendo salário de R$ 19.793,26.</li>
+          <li><strong>Concurso CGE SP</strong>: Edital previsto para agosto, com 200 vagas para Auditor Estadual de Controle, exigindo nível superior e oferecendo salário de R$ 17.850,00.</li>
+          <li><strong>Concurso TCE RS</strong>: Banca definida (Cebraspe), com 45 vagas + CR para Oficial de Controle Externo e Auditor de Controle Externo, exigindo níveis médio e superior e oferecendo salários de R$ 9.801,07 e R$ 20.572,72.</li>
+          <li><strong>Concurso TCU</strong>: Previsto, com 300 vagas previstas para Técnico e Auditor Federal de Controle Externo, exigindo níveis médio e superior e oferecendo salários de R$ 15.128,26 e R$ 26.159,01.</li>
+        </ul>
+        
+        <h3>Concursos 2025: área de Tribunais e Procuradorias</h3>
+        
+        <p>O sistema judiciário também oferece excelentes oportunidades:</p>
+        
+        <ul>
+          <li><strong>Concurso TJ PR</strong>: Comissão formada, com 60 vagas para técnico judiciário, exigindo nível superior e oferecendo salário de R$ 7.082,99.</li>
+          <li><strong>Concurso TJ RJ</strong>: Banca definida (Instituto AOCP), para técnico e analista, exigindo nível superior e oferecendo salário de R$ 9.363,84 + benefícios.</li>
+          <li><strong>Concurso TRE TO</strong>: Banca definida (Instituto AOCP), para técnico e analista, exigindo nível superior e oferecendo salários de R$ 9.052,54 (Técnico) e R$ 14.852,98 (Analista).</li>
+        </ul>
+    
+        <div class="article-image">
+          <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tribunal de Justiça" />
+          <p class="caption">Tribunais de Justiça e órgãos do sistema judiciário oferecem vagas com excelentes remunerações</p>
+        </div>
+        
+        <h3>Concursos 2025: área Legislativa</h3>
+        
+        <p>O poder legislativo também oferece boas oportunidades:</p>
+        
+        <ul>
+          <li><strong>Concurso Câmara dos Deputados</strong>: Anunciado, para Policial Legislativo, exigindo nível médio e oferecendo salários de R$ 26.196,30 a R$ 34.812,19.</li>
+          <li><strong>Concurso ALERJ (RJ)</strong>: Comissão formada, com 109 vagas para vários cargos, exigindo níveis médio e superior e oferecendo salário de R$ 5.546,19.</li>
+          <li><strong>Concurso ALEGO</strong>: Autorizado e em fase de contratação da banca, com 101 vagas para diversos cargos, exigindo níveis médio e superior e oferecendo salários de R$ 2 mil a R$ 30 mil.</li>
+          <li><strong>Concurso CLDF</strong>: Grupo de estudos formado, com 90 vagas previstas para Analista, Assistente Técnico e Técnico Administrativo, exigindo níveis médio e superior e oferecendo salários de R$ 6.086,65 a R$ 13.531,06.</li>
+        </ul>
+        
+        <h3>Concursos 2025: área da Saúde</h3>
+        
+        <p>A área da saúde continua em expansão com várias oportunidades:</p>
+        
+        <ul>
+          <li><strong>Concurso Ministério da Saúde (Efetivos)</strong>: Autorizado, com 319 vagas para vários cargos, exigindo níveis médio/técnico e superior e oferecendo salários de R$ 3.731,83 a R$ 6.256,90.</li>
+          <li><strong>Concurso SES SC</strong>: Anunciado e previsto em 2025, com 500 vagas para vários cargos, exigindo níveis médio, técnico e superior e oferecendo salários de R$ 1.092,87 e R$ 4.369,16.</li>
+          <li><strong>Concurso SES SP</strong>: Autorizado, com 790 vagas para diversos cargos, exigindo níveis médio e superior e oferecendo salários de R$ 2.913,55 a R$ 7.900,60.</li>
+          <li><strong>Concurso João Pessoa Saúde</strong>: Anunciado, com 2.000 vagas para diversos cargos.</li>
+        </ul>
+        
+        <h3>Concursos 2025: área da Educação</h3>
+        
+        <p>A educação também conta com grandes oportunidades:</p>
+        
+        <ul>
+          <li><strong>Concurso SEE MG</strong>: Banca definida, com 14.281 vagas para diversos cargos, exigindo níveis superior e médio e oferecendo salários de R$ 1.623,94 a R$ 5.876,21.</li>
+          <li><strong>Concurso SEC BA</strong>: Anunciado, com 2.113 vagas para pedagogo e professor, exigindo nível superior e oferecendo salários de R$ 5.050,43 a R$ 5.187,88.</li>
+          <li><strong>Concurso SEE PB</strong>: Comissão formada, com 2.000 vagas para professor, exigindo nível superior e oferecendo salários de R$ 1.918,29 a R$ 3.162,86.</li>
+          <li><strong>Concurso SEDU ES</strong>: Banca definida, com 1.290 vagas para professor e suporte, exigindo níveis superior e médio.</li>
+          <li><strong>Concurso SEMED Campo Grande</strong>: Comissão formada, com 4.200 vagas autorizadas, oferecendo salário de R$3.671,07.</li>
+        </ul>
+        
+        <div class="article-exercise">
+          <h4>Como se preparar para concursos em 2025?</h4>
+          <ol>
+            <li>Escolha concursos compatíveis com sua formação e objetivos de carreira</li>
+            <li>Analise editais anteriores para conhecer o perfil da prova</li>
+            <li>Crie um cronograma de estudos realista e persistente</li>
+            <li>Utilize materiais de qualidade e faça simulados regularmente</li>
+            <li>Acompanhe as notícias sobre os concursos de seu interesse</li>
+          </ol>
+        </div>
+        
+        <h3>Outros destaques para 2025</h3>
+        
+        <ul>
+          <li><strong>CNU – Concurso Nacional Unificado</strong>: Previsto para 2025, com 3.000 vagas previstas para diversos cargos, exigindo níveis médio/técnico e superior e oferecendo salários de R$ 3.741,84 a R$ 22.921,71.</li>
+          <li><strong>Concurso INSS</strong>: Anunciado, com 1.000 vagas previstas para Analista do Seguro Social, exigindo nível superior e oferecendo salário de R$ 9.109,20.</li>
+          <li><strong>Concurso Banco do Brasil</strong>: Em estudos, com salário inicial de R$ 3.622,23 + benefícios.</li>
+          <li><strong>Concurso CVM</strong>: Solicitado, com 139 vagas para Inspetor, Analista e Agente Executivo, exigindo níveis médio e superior e oferecendo salário de R$ 20.924,80.</li>
+        </ul>
+        
+        <h2>Conclusão</h2>
+        <p>2025 promete ser um ano histórico para os concursos públicos. Se você busca estabilidade, bons salários e realização profissional, esse é o momento de começar sua preparação com foco total.</p>
+        <p>Lembre-se: o sucesso em concursos públicos não é fruto do acaso, mas sim de planejamento, dedicação e estudo consistente. Sua vaga pode estar entre essas 90 mil oportunidades!</p>
+        
+        <div class="article-references">
+          <h3>Fontes:</h3>
+          <ul>
+            <li>Projeto de Lei Orçamentária Anual (PLOA 2025)</li>
+            <li>Diários Oficiais da União, dos Estados e Municípios</li>
+            <li>Sites oficiais dos órgãos e instituições mencionados</li>
+            <li>Portais de transparência governamentais</li>
+          </ul>
+        </div>
+      `
+    },
+    {
+      id: '5',
+      title: 'Concurso PF 2025: Confira os requisitos para cada cargo',
+      excerpt: 'Cebraspe é a banca do concurso PF 2025, com edital previsto para 20 de maio e provas em julho. Descubra os requisitos específicos para os cargos da Polícia Federal.',
+      date: '25 Abr 2025',
+      author: {
+        id: 'editor-yan',
+        name: 'Yan Souza',
+        role: 'Editor de Concursos',
+        avatar: yan,
+        bio: 'Especialista em carreiras públicas, acompanha diariamente as movimentações do setor de concursos no Brasil.'
+      },
+      category: 'Concursos Públicos',
+      image: 'https://images.unsplash.com/photo-1589578527966-fdac0f44566c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'concurso-pf-2025-requisitos-cargos',
+      readTime: '8 min',
+      views: '1.8K',
+      content: `
+          <h2>Concurso PF 2025: Confira os requisitos para cada cargo</h2>
+          <p>Foram divulgados diversos documentos acerca do novo concurso PF (Polícia Federal) 2025. Com isso, cresce a expectativa do concurseiro que sonha ingressar na área policial.</p>
+          <p>A Cebraspe já foi definida como banca organizadora, com edital previsto para 20 de maio e provas programadas para julho de 2025. Serão mil vagas no total, distribuídas entre diversos cargos, todos de nível superior.</p>
+          
+          <div class="article-highlight">
+            <p><strong>Importante:</strong> Todas as oportunidades do concurso PF exigem nível superior de escolaridade, com salários que variam de R$ 13.900,54 a R$ 26.300,00.</p>
+          </div>
+          
+          <h3>Distribuição das vagas no Concurso PF 2025</h3>
+          <p>As mil vagas do concurso PF 2025 serão distribuídas da seguinte forma:</p>
+          <ul>
+            <li><strong>Agente de Polícia Federal:</strong> 630 vagas</li>
+            <li><strong>Escrivão de Polícia Federal:</strong> 160 vagas</li>
+            <li><strong>Delegado de Polícia Federal:</strong> 120 vagas</li>
+            <li><strong>Perito Criminal Federal:</strong> 69 vagas (áreas: Meio Ambiente, Contabilidade e Tecnologia da Informação)</li>
+            <li><strong>Papiloscopista Policial Federal:</strong> 21 vagas</li>
+          </ul>
+          
+          <div class="article-image">
+            <img src="https://images.unsplash.com/photo-1603899968034-60a0d5110417?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Polícia Federal em operação" />
+            <p class="caption">O concurso PF 2025 oferece oportunidades em diversas áreas da segurança pública</p>
+          </div>
+          
+          <h3>Requisitos específicos para cada cargo</h3>
+          <p>Confira abaixo os requisitos detalhados para cada cargo do concurso PF 2025:</p>
+          
+          <h4>Delegado de Polícia Federal</h4>
+          <ul>
+            <li><strong>Requisito:</strong> Diploma, devidamente registrado, de conclusão de curso de graduação de nível superior de bacharel em Direito, fornecido por instituição de ensino superior reconhecida pelo MEC</li>
+            <li><strong>Salário inicial:</strong> R$ 26.300,00</li>
+          </ul>
+          
+          <h4>Agente de Polícia Federal</h4>
+          <ul>
+            <li><strong>Requisito:</strong> Diploma, devidamente registrado, de conclusão de qualquer curso superior, em nível de graduação, fornecido por instituição de ensino reconhecida pelo MEC</li>
+            <li><strong>Salário inicial:</strong> R$ 13.900,54</li>
+          </ul>
+          
+          <h4>Escrivão de Polícia Federal</h4>
+          <ul>
+            <li><strong>Requisito:</strong> Diploma, devidamente registrado, de conclusão de qualquer curso superior, em nível de graduação, fornecido por instituição de ensino reconhecida pelo MEC</li>
+            <li><strong>Salário inicial:</strong> R$ 13.900,54</li>
+          </ul>
+          
+          <h4>Papiloscopista Policial Federal</h4>
+          <ul>
+            <li><strong>Requisito:</strong> Diploma, devidamente registrado, de conclusão de qualquer curso superior, em nível de graduação, fornecido por instituição de ensino reconhecida pelo MEC</li>
+            <li><strong>Salário inicial:</strong> R$ 13.900,54</li>
+          </ul>
+          
+          <div class="article-highlight">
+            <p><strong>Dica:</strong> Para os cargos de Agente, Escrivão e Papiloscopista Policial Federal, é aceita qualquer graduação, o que amplia as possibilidades para candidatos de diversas áreas.</p>
+          </div>
+          
+          <h4>Perito Criminal Federal</h4>
+          <p>O cargo de Perito Criminal Federal exige formação específica de acordo com a área de atuação:</p>
+          
+          <ul>
+            <li><strong>Área Contábil Financeira:</strong> Bacharel em Ciências Contábeis ou Ciências Econômicas</li>
+            <li><strong>Área Engenharia Elétrica/Eletrônica:</strong> Bacharel em Engenharia Elétrica, Engenharia Eletrônica, Engenharia de Telecomunicações, Engenharia de Redes de Comunicação ou Engenharia Mecatrônica</li>
+            <li><strong>Área Informática Forense:</strong> Bacharel em Ciências da Computação, Informática, Análise de Sistemas, Engenharia da Computação ou Engenharia de Redes de Comunicação</li>
+            <li><strong>Área Geologia:</strong> Bacharel em Geologia</li>
+            <li><strong>Área Engenharia Civil:</strong> Bacharel em Engenharia Civil</li>
+            <li><strong>Área Engenharia Cartográfica:</strong> Bacharel em Engenharia Cartográfica</li>
+            <li><strong>Área Medicina Legal:</strong> Bacharel em Medicina</li>
+            <li><strong>Área Física Forense:</strong> Bacharel em Física</li>
+            <li><strong>Área Engenharia de Minas:</strong> Bacharel em Engenharia de Minas</li>
+            <li><strong>Área Genética Forense:</strong> Bacharel em Biomedicina, Ciências Biológicas, Farmácia, Odontologia, Medicina, Engenharia Agronômica, Engenharia Florestal ou Medicina Veterinária</li>
+            <li><strong>Área Engenharia Ambiental:</strong> Bacharel em Biomedicina, Ciências Biológicas, Farmácia, Odontologia, Medicina, Engenharia Agronômica, Engenharia Florestal ou Medicina Veterinária</li>
+            <li><strong>Área Antropologia Forense:</strong> Bacharel em Biomedicina, Ciências Biológicas, Medicina ou Odontologia</li>
+            <li><strong>Área Meio Ambiente:</strong> Bacharel em Ciências Biológicas, Engenharia Agronômica, Engenharia Ambiental, Engenharia Cartográfica, Engenharia de Minas, Engenharia Florestal, Geologia ou Medicina Veterinária</li>
+          </ul>
+          
+          <p>Todos os diplomas devem ser devidamente registrados e fornecidos por instituição de ensino superior reconhecida pelo MEC.</p>
+          
+          <h3>Perspectivas para o futuro</h3>
+          <p>De acordo com anúncio do Ministério da Justiça e Segurança Pública (MJSP), é possível que um próximo concurso PF ocorra a partir de janeiro de 2026 para provimento de outras mil oportunidades. Isso demonstra o compromisso do governo com o fortalecimento do efetivo da Polícia Federal nos próximos anos.</p>
+          
+          <div class="article-exercise">
+            <h4>Planejamento para o concurso PF 2025</h4>
+            <p>Se você pretende se candidatar, considere estas etapas:</p>
+            <ol>
+              <li>Verifique se sua formação atende aos requisitos do cargo desejado</li>
+              <li>Estude o edital anterior para entender o perfil de prova</li>
+              <li>Crie um cronograma de estudos intensivo até as provas (julho/2025)</li>
+              <li>Prepare-se para todas as etapas: prova objetiva, discursiva, exame físico, avaliação médica e psicológica</li>
+              <li>Treine regularmente para o Teste de Aptidão Física (TAF)</li>
+            </ol>
+          </div>
+          
+          <h3>Etapas do concurso PF 2025</h3>
+          <p>O concurso PF 2025 contará com as seguintes etapas:</p>
+          <ol>
+            <li><strong>Prova objetiva:</strong> Eliminatória e classificatória</li>
+            <li><strong>Prova discursiva:</strong> Eliminatória e classificatória</li>
+            <li><strong>Exame de aptidão física:</strong> Eliminatório</li>
+            <li><strong>Avaliação médica:</strong> Eliminatória</li>
+            <li><strong>Avaliação psicológica:</strong> Eliminatória</li>
+            <li><strong>Avaliação de títulos:</strong> Classificatória (apenas para o cargo de Delegado)</li>
+            <li><strong>Curso de formação profissional:</strong> Eliminatório</li>
+          </ol>
+          
+          <h2>Conclusão</h2>
+          <p>O concurso PF 2025 representa uma excelente oportunidade para quem deseja ingressar na carreira policial federal. Com mil vagas distribuídas entre diferentes cargos e a perspectiva de outro concurso em 2026, este é o momento ideal para iniciar a preparação.</p>
+          <p>Lembre-se de verificar cuidadosamente os requisitos específicos para o cargo desejado e preparar-se adequadamente para todas as etapas do processo seletivo. A carreira na Polícia Federal oferece não apenas estabilidade e boa remuneração, mas também a oportunidade de contribuir significativamente para a segurança do país.</p>
+          
+          <div class="article-references">
+            <h3>Fontes:</h3>
+            <ul>
+              <li>Documentos oficiais divulgados pela Polícia Federal</li>
+              <li>Associação Nacional dos Peritos Criminais Federais (APCF)</li>
+              <li>Ministério da Justiça e Segurança Pública (MJSP)</li>
+              <li>Editais anteriores de concursos da Polícia Federal</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: '6',
+        title: 'CNU 2025 terá novos cargos e blocos temáticos; entenda!',
+        excerpt: 'EXCLUSIVO! MGI deve realizar coletiva de imprensa na próxima sexta (25) para divulgar o termo de referência. Conheça os principais detalhes do próximo Concurso Nacional Unificado.',
+        date: '22 Abr 2025',
+        author: {
+          id: 'editor-yan',
+          name: 'Yan Souza',
+          role: 'Editor de Concursos',
+          avatar: yan,
+          bio: 'Especialista em carreiras públicas, acompanha diariamente as movimentações do setor de concursos no Brasil.'
+        },
+        category: 'Concursos Públicos',
+        image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        slug: 'cnu-2025-novos-cargos-blocos-tematicos',
+        readTime: '6 min',
+        views: '1.3K',
+        content: `
+          <h2>CNU 2025 terá novos cargos e blocos temáticos; entenda!</h2>
+          <p><strong>EXCLUSIVO!</strong> MGI deve realizar coletiva de imprensa na próxima sexta (25) para divulgar o termo de referência.</p>
+          
+          <p>Mais cedo, a ministra do MGI, Esther Dweck, divulgou informações sobre o Concurso Nacional Unificado (CNU) 2025. Agora, em contato exclusivo com fontes internas do Ministério, tivemos acesso a mais detalhes.</p>
+          
+          <p>Uma dúvida muito grande dos concurseiros é quanto aos cargos que serão ofertados e como eles se encaixarão em cada bloco temático.</p>
+          
+          <div class="article-highlight">
+            <p><strong>Importante:</strong> Fomos informados que os cargos e blocos temáticos do próximo edital serão totalmente distintivos da edição anterior. Essa estrutura por blocos faz parte das diretrizes de planejamento, com o objetivo de deslocar o foco exclusivo dos cargos e reforçar a busca por candidatos vocacionados.</p>
+          </div>
+          
+          <p>Ou seja, pessoas com real interesse em atuar nas áreas específicas, motivadas pela afinidade com o serviço público, e não apenas pela remuneração.</p>
+          
+          <p>Mais detalhes sobre o número final de vagas, cargos, blocos temáticos e órgãos participantes devem ser revelados em uma coletiva de imprensa, prevista inicialmente para a próxima sexta-feira (25).</p>
+          
+          <h3>Principais informações do CNU 2025</h3>
+          
+          <div class="article-image">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pessoa estudando para concurso" />
+            <p class="caption">O CNU 2025 traz diversas novidades para os candidatos</p>
+          </div>
+          
+          <h4>Nova banca organizadora e inscrições</h4>
+          <ul>
+            <li>O Termo de Referência para escolha da banca será lançado ainda nesta semana</li>
+            <li>Fundação Cesgranrio pode não ser mantida como organizadora</li>
+            <li>Inscrições deverão ser abertas em junho</li>
+          </ul>
+          
+          <h4>Substituição das "bolinhas" por código de barras</h4>
+          <ul>
+            <li>Objetivo: evitar erros de identificação e judicializações</li>
+            <li>Código de barras ligará automaticamente a prova ao candidato</li>
+            <li>Garante anonimato, imparcialidade na correção e agilidade nos resultados</li>
+          </ul>
+          
+          <h4>Edital unificado</h4>
+          <ul>
+            <li>Todos os blocos constarão em um único edital</li>
+            <li>Medida visa simplificar e tornar as regras mais acessíveis</li>
+          </ul>
+          
+          <div class="article-highlight">
+            <p><strong>Novidade:</strong> Estuda-se a possibilidade de aplicar provas em dois dias diferentes, seguindo o modelo do ENEM, para facilitar a logística. Além disso, considera-se a realização de uma prova extraordinária para até 0,50% dos candidatos que forem prejudicados por imprevistos.</p>
+          </div>
+          
+          <h4>Vagas e novas carreiras confirmadas</h4>
+          <ul>
+            <li>Analista Técnico de Justiça e Defesa (ATJD)</li>
+            <li>Analista Técnico de Desenvolvimento Socioeconômico (ATDS)</li>
+            <li>Carreiras criadas pela MP nº 1.286/2024</li>
+            <li>Previsão de cerca de 3 mil vagas (menos da metade da primeira edição)</li>
+          </ul>
+          
+          <div class="article-image">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pessoas em ambiente de trabalho" />
+            <p class="caption">As novas carreiras buscam atrair profissionais com vocação para o serviço público</p>
+          </div>
+          
+          <h4>Bonificação para mulheres</h4>
+          <ul>
+            <li>Medida para corrigir a desigualdade de gênero nos resultados</li>
+            <li>Possível adoção de bonificações, como já ocorre no MRE</li>
+            <li>Discrepância identificada entre áreas: mulheres predominam em sociais e educação, mas são minoria em TI</li>
+          </ul>
+          
+          <div class="article-exercise">
+            <h4>Como se preparar para o CNU 2025?</h4>
+            <p>Com as mudanças anunciadas, confira algumas dicas:</p>
+            <ol>
+              <li>Acompanhe a divulgação do Termo de Referência, que trará informações sobre conteúdos e formato das provas</li>
+              <li>Identifique sua vocação e área de interesse antes de escolher o bloco temático</li>
+              <li>Estude as novas carreiras (ATJD e ATDS) para entender suas atribuições e requisitos</li>
+              <li>Prepare-se para possíveis mudanças no modelo de prova e critérios de avaliação</li>
+              <li>Monte um cronograma de estudos considerando que as inscrições devem abrir em junho</li>
+            </ol>
+          </div>
+          
+          <h3>Diferenças em relação ao CNU anterior</h3>
+          
+          <p>O primeiro Concurso Nacional Unificado, realizado em 2024, trouxe uma série de inovações para o cenário dos concursos públicos brasileiros. No entanto, a edição de 2025 promete ser ainda mais aprimorada.</p>
+          
+          <p>Entre as principais diferenças, destacam-se:</p>
+          
+          <ul>
+            <li>Novos blocos temáticos, com configuração diferente da primeira edição</li>
+            <li>Possibilidade de aplicação das provas em duas datas, facilitando a logística</li>
+            <li>Sistema de identificação por código de barras, aumentando a segurança</li>
+            <li>Edital unificado para todos os blocos</li>
+            <li>Novas carreiras criadas especificamente para esta edição</li>
+            <li>Mecanismo de bonificação para mulheres, visando maior equidade</li>
+          </ul>
+          
+          <h2>Conclusão</h2>
+          
+          <p>O CNU 2025 promete trazer importantes inovações que podem transformar definitivamente o modelo de seleção para o serviço público federal. A busca por candidatos vocacionados, aliada às melhorias operacionais e de transparência, demonstra o compromisso do governo em aprimorar o processo seletivo.</p>
+          
+          <p>Com aproximadamente 3 mil vagas previstas, embora em menor número que a edição anterior, o certame continua sendo uma excelente oportunidade para quem deseja ingressar no serviço público. A coletiva de imprensa marcada para sexta-feira (25) deverá trazer informações mais detalhadas sobre o concurso, esclarecendo muitas das dúvidas dos candidatos.</p>
+          
+          <div class="article-references">
+            <h3>Fontes:</h3>
+            <ul>
+              <li>Entrevista com a ministra Esther Dweck</li>
+              <li>Fontes internas do Ministério da Gestão e Inovação (MGI)</li>
+              <li>Medida Provisória nº 1.286/2024</li>
+              <li>Documentos oficiais do governo federal</li>
+            </ul>
+          </div>
+        `
+      },
+    
   ];
 
   // Get all unique categories
