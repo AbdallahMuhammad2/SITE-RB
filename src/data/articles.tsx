@@ -560,4 +560,184 @@ export const articles = [
       </div>
     `
   },
+  {
+    id: '7',
+    title: 'GOMIFES: Quem são os agentes da proposta de intervenção no ENEM?',
+    excerpt: 'Aprenda a estruturar uma proposta de intervenção completa para sua redação no ENEM utilizando a sigla GOMIFES para identificar os agentes responsáveis.',
+    date: '28 Abr 2025',
+    author: {
+      id: 'prof-paula',
+      name: 'Profa. Paula Barreto',
+      role: 'Especialista em Língua Portuguesa',
+      avatar: paula,
+      bio: 'Mestre em Letras: Cultura, Educação e Linguagens e Especialista em Teoria e Método de Ensino da Língua Portuguesa.'
+    },
+    category: 'Redação',
+    image: 'https://images.unsplash.com/photo-1606326608690-4e0281b1e588?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    slug: 'gomifes-agentes-proposta-intervencao-enem',
+    readTime: '7 min',
+    views: '890',
+    content: `
+      <h2>GOMIFES: Quem são os agentes da proposta de intervenção no ENEM?</h2>
+      
+      <p>Uma das grandes exigências da redação do ENEM é a elaboração de uma proposta de intervenção que respeite os direitos humanos e seja viável dentro da realidade brasileira. Para que essa proposta tenha força e coerência, é essencial indicar quem será o responsável por colocá-la em prática — e é aí que entram os agentes da intervenção.</p>
+      
+      <div class="article-highlight">
+        <p><strong>Fundamental:</strong> A proposta de intervenção vale 2 pontos na nota final da redação do ENEM. Sem ela, mesmo que o restante do texto esteja perfeito, você não conseguirá atingir a nota máxima.</p>
+      </div>
+      
+      <h3>Mas afinal, o que são esses agentes?</h3>
+      
+      <p>Eles são os atores sociais que podem executar as ações sugeridas para resolver o problema apresentado no texto. E para facilitar a sua memorização, existe uma sigla que ajuda bastante: GOMIFES.</p>
+      
+      <p>Cada letra representa um tipo de agente que pode (e deve!) ser usado na sua proposta. Vamos conhecê-los:</p>
+      
+      <div class="article-image">
+        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pessoas trabalhando em conjunto" />
+        <p class="caption">A proposta de intervenção precisa identificar quem são os responsáveis por colocar a solução em prática</p>
+      </div>
+      
+      <h3>G – Governo</h3>
+      
+      <p>Esse é o agente mais usado, mas também o mais arriscado quando mal utilizado. O "governo" é amplo demais! Para evitar generalizações, é importante especificar:</p>
+      
+      <ul>
+        <li><strong>Poder Legislativo:</strong> cria e regulamenta leis.</li>
+        <li><strong>Poder Judiciário:</strong> julga e aplica as leis.</li>
+        <li><strong>Poder Executivo:</strong> administra e executa ações do Estado.</li>
+      </ul>
+      
+      <p>Além disso, considere o nível de atuação:</p>
+      
+      <ul>
+        <li><strong>Federal:</strong> abrange todo o território nacional (Ex.: Ministério da Saúde).</li>
+        <li><strong>Estadual:</strong> cuida de questões regionais (Ex.: Secretaria Estadual de Educação).</li>
+        <li><strong>Municipal:</strong> responsável por ações locais (Ex.: prefeitura, postos de saúde).</li>
+      </ul>
+      
+      <div class="article-highlight">
+        <p><strong>Dica:</strong> Quanto mais específico for seu agente, mais credibilidade sua proposta terá! Em vez de "o governo deve fazer", prefira "o Ministério da Educação, em parceria com as Secretarias Estaduais, deve implementar..."</p>
+      </div>
+      
+      <h3>O – ONGs (Organizações Não Governamentais)</h3>
+      
+      <p>As ONGs atuam de forma independente do Estado e estão presentes em diversas áreas, como meio ambiente, saúde, educação e direitos humanos. Elas são ótimas para ações socioculturais, como:</p>
+      
+      <ul>
+        <li>Palestras educativas</li>
+        <li>Oficinas comunitárias</li>
+        <li>Apoio a campanhas de conscientização</li>
+      </ul>
+      
+      <h3>M – Mídia</h3>
+      
+      <p>A mídia é um veículo poderoso para informar e sensibilizar a sociedade. Pode ser usada para sugerir:</p>
+      
+      <ul>
+        <li>Campanhas publicitárias</li>
+        <li>Programas de TV</li>
+        <li>Conteúdos nas redes sociais</li>
+        <li>Parcerias com influenciadores</li>
+      </ul>
+      
+      <p>A chave aqui é a disseminação de informação e mudança de comportamento.</p>
+      
+      <h3>I – Iniciativa Privada (ou Indivíduo)</h3>
+      
+      <p>Pouco lembrada pelos candidatos, mas extremamente válida! A iniciativa privada pode:</p>
+      
+      <ul>
+        <li>Financiar projetos sociais</li>
+        <li>Criar campanhas educativas</li>
+        <li>Estimular ações com apoio do governo (parcerias público-privadas)</li>
+      </ul>
+      
+      <p>Você também pode mencionar o indivíduo como agente de mudança, especialmente quando o foco é comportamento ou consciência cidadã.</p>
+      
+      <div class="article-image">
+        <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Família reunida conversando" />
+        <p class="caption">A família é um agente fundamental quando a proposta envolve educação e valores</p>
+      </div>
+      
+      <h3>F – Família</h3>
+      
+      <p>Apesar de parecer distante de temas sociais amplos, a família é fundamental na formação ética, emocional e social dos indivíduos. É ideal quando sua proposta envolve:</p>
+      
+      <ul>
+        <li>Educação infantil</li>
+        <li>Violência doméstica</li>
+        <li>Valores familiares</li>
+        <li>Saúde mental</li>
+      </ul>
+      
+      <h3>E – Escola</h3>
+      
+      <p>A escola é um ambiente de transformação real. Pode ser agente de propostas que envolvam:</p>
+      
+      <ul>
+        <li>Educação cidadã</li>
+        <li>Campanhas de conscientização</li>
+        <li>Projetos pedagógicos</li>
+      </ul>
+      
+      <div class="article-highlight">
+        <p><strong>Importante:</strong> Identifique o nível educacional envolvido para acertar qual esfera do governo deve ser acionada (municipal, estadual ou federal).</p>
+      </div>
+      
+      <h3>S – Sociedade</h3>
+      
+      <p>A sociedade como agente é válida quando se fala de mobilização social. Mas atenção: dizer apenas "a sociedade precisa mudar" é vago.</p>
+      
+      <p>Seja específico: cite movimentos sociais, ONGs comunitárias, coletivos ou associações de bairro.</p>
+      
+      <div class="article-exercise">
+        <h4>Exercício prático:</h4>
+        <p>Para cada tema abaixo, identifique pelo menos dois agentes específicos que poderiam atuar na proposta de intervenção:</p>
+        <ol>
+          <li>Bullying nas escolas</li>
+          <li>Desmatamento na Amazônia</li>
+          <li>Fake news nas redes sociais</li>
+        </ol>
+      </div>
+      
+      <h3>Como usar os agentes na redação?</h3>
+      
+      <p>Para atingir uma boa nota, sua proposta deve conter:</p>
+      
+      <ul>
+        <li><strong>Ação:</strong> o que será feito?</li>
+        <li><strong>Agente:</strong> quem fará?</li>
+        <li><strong>Modo/meio:</strong> como será feito?</li>
+        <li><strong>Finalidade:</strong> para quê?</li>
+        <li><strong>Detalhamento:</strong> quando/onde/com quem?</li>
+      </ul>
+      
+      <p>Exemplo:</p>
+      <p>"O Poder Executivo Federal, por meio do Ministério da Educação, deve promover campanhas de combate ao bullying nas escolas públicas, utilizando redes sociais e parcerias com ONGs, a fim de reduzir a violência escolar e promover um ambiente mais saudável para os estudantes."</p>
+      
+      <div class="article-image">
+        <img src="https://images.unsplash.com/photo-1519452575417-564c1401ecc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Estudante escrevendo" />
+        <p class="caption">Uma proposta bem estruturada pode garantir até 2 pontos na nota final da redação</p>
+      </div>
+      
+      <h2>Conclusão</h2>
+      
+      <p>Usar bem os agentes da proposta de intervenção é uma estratégia fundamental para elevar sua nota na redação do ENEM. A sigla GOMIFES pode ser a sua aliada para organizar ideias e construir soluções mais completas e convincentes.</p>
+      
+      <p>Pratique, revise e, principalmente, seja específico e realista. Sua proposta precisa ter quem a execute de forma viável.</p>
+      
+      <p>Lembre-se que o ENEM busca avaliar sua capacidade de analisar problemas sociais e propor soluções concretas. Quanto mais detalhada e bem fundamentada for sua proposta, maiores as chances de alcançar uma excelente pontuação.</p>
+      
+      <div class="article-references">
+        <h3>Material complementar recomendado:</h3>
+        <ul>
+          <li>Cartilha de Redação do ENEM (INEP)</li>
+          <li>Fiorin, J. L.; Savioli, F. P. (2007). <em>Para entender o texto: leitura e redação</em>. São Paulo: Ática.</li>
+          <li>Garcia, O. M. (2010). <em>Comunicação em Prosa Moderna</em>. 27ª ed. Rio de Janeiro: FGV.</li>
+          <li>Marcuschi, L. A. (2008). <em>Produção textual, análise de gêneros e compreensão</em>. São Paulo: Parábola.</li>
+        </ul>
+      </div>
+    `
+  },
+
 ]
