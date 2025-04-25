@@ -614,7 +614,7 @@ const Blog = () => {
         id: '7',
         title: 'GOMIFES: Quem são os agentes da proposta de intervenção no ENEM?',
         excerpt: 'Aprenda a estruturar uma proposta de intervenção completa para sua redação no ENEM utilizando a sigla GOMIFES para identificar os agentes responsáveis.',
-        date: '28 Abr 2025',
+        date: '25 abril 2025',
         author: {
           id: 'prof-paula',
           name: 'Profa. Paula Barreto',
