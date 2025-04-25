@@ -188,30 +188,86 @@ const ProfYanNavigation = () => {
 };
 
 // Ultra-premium Counter with better animations
-const LocalCounter = ({ from, to, duration = 1, delay = 0 }: {
+const LocalCounter = ({ from, to, duration = 2, delay = 0 }: {
   from: number; to: number; duration?: number; delay?: number
 }) => {
+  const [count, setCount] = useState(from);
   const nodeRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(nodeRef, { once: true, margin: "-10%" });
-  const count = useMotionValue(from);
-
+  const isInView = useInView(nodeRef, { once: true, margin: "-5%" });
+  const hasAnimated = useRef(false);
+  
   useEffect(() => {
-    if (isInView) {
-      const animation = animate(count, to, {
-        duration,
-        delay,
-        ease: [0.16, 1, 0.3, 1], // Custom spring-like easing
-        onUpdate: (latest) => {
-          if (nodeRef.current) {
-            nodeRef.current.textContent = Math.round(latest).toString();
-          }
+    // Ensure final value is shown if component unmounts
+    return () => {
+      if (!hasAnimated.current) {
+        setCount(to);
+      }
+    };
+  }, [to]);
+  
+  useEffect(() => {
+    if (!isInView || hasAnimated.current) return;
+    
+    // Set a fallback timeout to ensure number always appears
+    const fallback = setTimeout(() => {
+      if (count === from) {
+        setCount(to);
+      }
+    }, 3000); // Fallback after 3 seconds
+    
+    // Start animation with a small delay to ensure mobile has time to initialize
+    const timer = setTimeout(() => {
+      hasAnimated.current = true;
+      
+      let startTime: number | null = null;
+      let animationFrame: number;
+      
+      const step = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+        
+        // Use easing function for smoother counting
+        const easeOutQuad = (x: number) => 1 - (1 - x) * (1 - x);
+        const easedProgress = easeOutQuad(progress);
+        
+        const currentValue = Math.floor(from + (to - from) * easedProgress);
+        setCount(currentValue);
+        
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(step);
+        } else {
+          setCount(to); // Ensure final value is exact
         }
-      });
-      return animation.stop;
+      };
+      
+      animationFrame = requestAnimationFrame(step);
+      
+      return () => {
+        cancelAnimationFrame(animationFrame);
+        clearTimeout(fallback);
+      };
+    }, delay * 1000);
+    
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(fallback);
+    };
+  }, [isInView, from, to, duration, delay, count]);
+  
+  // For server-side rendering safety
+  useEffect(() => {
+    // Set value immediately on mobile devices
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      // Add slight delay to ensure React has time to render
+      const mobileTimer = setTimeout(() => {
+        setCount(to);
+      }, 500);
+      return () => clearTimeout(mobileTimer);
     }
-  }, [isInView, count, to, duration, delay]);
-
-  return <span ref={nodeRef}>{from}</span>;
+  }, [to]);
+  
+  return <span ref={nodeRef}>{count}</span>;
 };
 
 // Background Canvas Element for organic animation
@@ -849,12 +905,7 @@ const ProfYan = () => {
               </motion.div>
 
               {/* Enhanced Stats */}
-              <motion.div
-                className="grid grid-cols-2 gap-x-12 gap-y-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.1 }}
-              >
+              <motion.div className="grid grid-cols-2 gap-x-12 gap-y-8">
                 {[
                   { value: 5000, suffix: "+", label: "Alunos aprovados", delay: 0 },
                   { value: 98, suffix: "%", label: "Taxa de aprovação", delay: 0.1 },
@@ -880,7 +931,7 @@ const ProfYan = () => {
                     <div className="relative z-10">
                       <div className="flex items-baseline">
                         <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#D4AF37] via-[#F9E077] to-[#D4AF37] bg-clip-text text-transparent">
-                          <LocalCounter from={0} to={stat.value} duration={2 + i * 0.3} delay={0.5 + i * 0.2} />
+                          <LocalCounter from={0} to={stat.value} duration={2} delay={0.5} />
                         </div>
                         <span className="text-2xl lg:text-3xl font-bold text-[#D4AF37] ml-1">{stat.suffix}</span>
                       </div>
@@ -1926,12 +1977,7 @@ const ProfYan = () => {
           <CaseStudyCarousel />
 
           {/* Stats Display */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
             {[
               { value: 98, suffix: "%", label: "Taxa de aprovação" },
               { value: 120, suffix: "+", label: "Primeiros lugares" },
